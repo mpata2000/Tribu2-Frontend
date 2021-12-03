@@ -1,0 +1,17 @@
+.Header {
+    text-align: left;
+    border: 4px;
+    background-color: darkcyan;
+    height: 100px;
+    display:flex;
+    vertical-align: middle;
+    align-items: center;
+  }
+.Title {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: larger;
+    font-weight:1000;
+    font-style: italic;
+    vertical-align: middle;
+}
+  
