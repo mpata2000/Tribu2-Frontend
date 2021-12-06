@@ -1,5 +1,6 @@
 import React from 'react'
-import AboutView from '../views/About'
+import AboutView from 'views/About'
+
 
 const AboutContainer = () => {
     return (
