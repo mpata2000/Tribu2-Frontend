@@ -1,12 +1,18 @@
-import * as React from "react";
+import React, { useEffect } from "react";
 import './App.css';
 import { Routes, Route, Link } from "react-router-dom";
-import HomeContainer from "./containers/HomeContainer"
-import AboutContainer from "./containers/AboutContainer"
-import Header from "./components/Header/Header";
+import { Provider } from 'react-redux';
+import store from 'redux_folder/store';
+
+import HomeContainer from "containers/HomeContainer"
+import AboutContainer from "containers/AboutContainer"
+import Header from "components/Header/Header";
+
 
 function App() {
+  
   return (
+    <Provider store={store}>
     <div className="App">
       <Header/>
       <Routes>
@@ -14,6 +20,7 @@ function App() {
         <Route path="/about" element={<AboutContainer />} />
       </Routes>
     </div>
+    </Provider>
   );
 }
 
