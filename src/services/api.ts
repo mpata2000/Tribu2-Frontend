@@ -1,8 +1,7 @@
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 
-const api = axios.create({
-  baseURL: '',
-});
+
+const api = axios.create();
 
 async function getOptions() {
   const options = {
@@ -13,7 +12,7 @@ async function getOptions() {
   return options;
 }
 
-function errorResponse(error) {
+function errorResponse(error: any) {
   const { response } = error;
   let message = error;
   if (response) {
@@ -23,29 +22,29 @@ function errorResponse(error) {
   return new Error(message);
 }
 
-export async function get(url, headers = {}) {
+export async function get(url: string, headers = {}): Promise<AxiosResponse> {
   try {
     const getToken = await getOptions();
     const options = { ...getToken, ...headers };
     const response = await api.get(url, options);
     return response;
-  } catch (error) {
+  } catch (error: any) {
     throw errorResponse(error);
   }
 }
 
-export async function post(url, params = {}, headers = {}) {
+export async function post(url: string, params = {}, headers = {}): Promise<any> {
   try {
     const getToken = await getOptions();
     const options = { ...getToken, ...headers };
     const response = await api.post(url, params, options);
     return response;
-  } catch (error) {
+  } catch (error: any) {
     throw errorResponse(error);
   }
 }
 
-export async function put(url, params = {}, headers = {}){
+export async function put(url: string, params = {}, headers = {}): Promise<any> {
   try {
     const getToken = await getOptions();
     const options = { ...getToken, ...headers };
@@ -56,7 +55,7 @@ export async function put(url, params = {}, headers = {}){
   }
 }
 
-export async function patch(url, params = {}, headers = {}) {
+export async function patch(url: string, params = {}, headers = {}): Promise<any> {
   try {
     const getToken = await getOptions();
     const options = { ...getToken, ...headers };

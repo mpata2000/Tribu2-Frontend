@@ -7,9 +7,9 @@ import * as actions from 'redux_folder/actions/hours.actions';
 
 import { getHours } from 'services/hours.services';
 
-export function* hoursGetAll(action) {
+export function* hoursGetAll() {
   try {
-    const data = yield call(getHours);
+    const data: unknown = yield call(getHours);
     yield put(actions.onGetAllSucceeded(data));
   } catch (error) {
     yield put(actions.onGetAllFailed(error));

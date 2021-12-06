@@ -9,7 +9,7 @@ const sagaMiddleware = createSagaMiddleware();
 const loggerMiddleware = createLogger();
 
 export const composeEnhancers =
-  (window && (window).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
+  (window && (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
 const store = createStore(
   reducers,
   /* preloadedState, */

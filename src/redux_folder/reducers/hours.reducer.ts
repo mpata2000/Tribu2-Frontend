@@ -1,7 +1,8 @@
 import { Reducer } from 'redux';
 import * as constants from 'redux_folder/constants/hours.constants';
+import { IHoursDefaultState } from 'types/hours.types';
 
-const defaultState = {
+const defaultState: IHoursDefaultState = {
   loading: false,
   hours: [],
 };
@@ -20,7 +21,7 @@ const hoursReducer: Reducer = (state = defaultState, action) => {
       return {
         ...state,
         loading: false,
-        hours: data,
+        hours: data.data.hours,
       }
     case constants.HOURS_ON_GET_ALL_FAILED:
       return {
