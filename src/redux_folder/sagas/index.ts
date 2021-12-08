@@ -4,6 +4,5 @@ import { watchHours } from './hours.sagas';
 import { watchTickets } from './tickets.sagas';
 
 export default function* rootSaga(): Generator {
-  yield all([watchHours()]);
-  yield all([watchTickets()]);
+  yield all([watchHours(), watchTickets()]);
 }

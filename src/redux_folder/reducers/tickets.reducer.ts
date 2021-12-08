@@ -21,7 +21,7 @@ const ticketsReducer: Reducer = (state = defaultState, action) => {
       return {
         ...state,
         loading: false,
-        tickets: data.data.tickets,
+        tickets: data.data,
       }
     case constants.TICKETS_ON_GET_ALL_FAILED:
       return {
