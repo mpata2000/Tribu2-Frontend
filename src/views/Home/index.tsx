@@ -7,15 +7,15 @@ const HomeView = (props: any) => {
   const {onGetHours} = props;
 
   return (
-    <>
-      <main>
+    <div className="Home">
+      <main >
         <h2>Welcome to the homepage!</h2>
       </main>
       <Button onClick={onGetHours} text={"Get Hours"}/>
       <nav>
         <Link to="/about">About</Link>
       </nav>
-    </>
+    </div>
     )
 }
 

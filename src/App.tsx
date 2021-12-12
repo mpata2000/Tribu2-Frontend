@@ -1,4 +1,6 @@
+
 import Header from 'components/Header/Header';
+import SideBar from 'components/SideBar';
 import AboutContainer from 'containers/AboutContainer';
 import HomeContainer from 'containers/HomeContainer';
 import React from 'react';
@@ -10,10 +12,16 @@ function App() {
   return (
         <div className="App">
           <Header/>
-          <Routes>
-            <Route path="/" element={<HomeContainer />}/>
-          < Route path="/about" element={<AboutContainer />} />
-          </Routes>
+          <div className="rowView">
+            <SideBar />
+            <div className='contentView'>
+              <Routes>
+                <Route path="/" element={<HomeContainer />}/>
+                < Route path="/about" element={<AboutContainer />} />
+                
+              </Routes>
+            </div>
+          </div>
         </div>
   );
 }
