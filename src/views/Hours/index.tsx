@@ -1,9 +1,11 @@
 import React from 'react'
-
+import './index.css'
 const HoursView = () => {
     return (
-        <div>
-            
+        <div className="hoursView">
+            <h1 className='title'>
+                Area personal
+            </h1>
         </div>
     )
 }
