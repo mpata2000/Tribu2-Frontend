@@ -9,4 +9,15 @@
     margin: 10px;
     padding: 5px;
     font-family: monospace;
+    color: grey;
 }
+
+.rowDiv {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 10px;
+    padding: 5px;
+}
+
+.calendar {}
