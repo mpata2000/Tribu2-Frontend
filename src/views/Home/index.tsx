@@ -7,8 +7,8 @@ const HomeView = (props: any) => {
   const {onGetHours} = props;
 
   return (
-    <>
-      <main>
+    <div className="Home">
+      <main >
         <h2>Welcome to the homepage!</h2>
       </main>
       <Button onClick={onGetHours} text={"Get Hours"}/>
@@ -16,7 +16,7 @@ const HomeView = (props: any) => {
         <Link to="/about">About</Link>
         <Link to="/soporte">Soporte</Link>
       </nav>
-    </>
+    </div>
     )
 }
 

@@ -1,0 +1,25 @@
+.SideBar{
+    max-width: 20%;
+    min-height: 1000;
+    background-color: white;
+}
+
+.list{
+    background-color: white;
+    margin: 20px 5px 0px 20px;
+    border-radius: 8px;
+    border-color: black;
+    border-width: 2px; 
+}
+.listItem{
+    background-color: white;
+    border-color: grey;
+    border-width: 2px;
+    border-radius: 8px;
+}
+
+.text{
+    font-size: 15px;
+    font-weight: 500;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}

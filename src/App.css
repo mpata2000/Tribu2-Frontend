@@ -1,5 +1,6 @@
 .App {
-  text-align: center;
+  min-width:100%;
+  min-height:600px;
 }
 
 .App-logo {
@@ -35,4 +36,24 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.contentView{
+  border-width: 2px;
+  border-radius: 8px;
+  text-align: center;
+  width: 80%;
+  height: 500px;
+  padding: 10px;
+  margin: 10px;
+  background-color: white;
+}
+
+.rowView{
+  min-width: 100%;
+  min-height: 600px;
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: whitesmoke;
 }
