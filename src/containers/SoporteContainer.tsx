@@ -17,7 +17,7 @@ const SoporteContainer = () => {
         console.log("click")
     }
     return (
-        <SoporteView onGetTickets={onGetTickets}/>
+        <SoporteView onGetTickets={onGetTickets} tickets={tickets}/>
     )
 }
 
