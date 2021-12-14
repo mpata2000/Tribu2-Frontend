@@ -9,16 +9,10 @@ const SoporteContainer = () => {
     
     const dispatch = useDispatch();
 
-    const tickets = useTypedSelector((state) => state.tickets.tickets);
-    console.log(tickets);
-
     const onGetTickets = () => {
         dispatch(onTicketsGetAll());
-        console.log("click")
     }
-    return (
-        <SoporteView onGetTickets={onGetTickets} tickets={tickets}/>
-    )
+    return (<SoporteView onGetTickets={onGetTickets}/>);
 }
 
 export default SoporteContainer

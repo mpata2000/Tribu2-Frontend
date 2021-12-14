@@ -24,7 +24,7 @@ const SoporteView = (props: any) => {
                     <Accordion.Header>Siu Guarani</Accordion.Header>
                     <Accordion.Body>
                         <Link to="/soporte/tickets">
-                            Version 1.0
+                            <span onClick={onGetTickets}>Version 1.0</span>
                         </Link>
                     </Accordion.Body>
                 </Accordion.Item>

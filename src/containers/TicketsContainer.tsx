@@ -7,18 +7,16 @@ import useTypedSelector from 'hooks/useTypedSelector';
 const TicketsContainer = () => {
 
 
-    const dispatch = useDispatch();
 
-    const tickets = useTypedSelector((state) => state.tickets.tickets);
-    console.log(tickets);
+    const ticket_state = useTypedSelector((state) => state.tickets);
 
-    const onGetTickets = () => {
-        dispatch(onTicketsGetAll());
-        console.log("click")
+    if(ticket_state.loading){
+        return (
+            <h2>Loading...</h2>
+        )
     }
-
     return (
-        <TicketsView tickets={tickets} />
+        <TicketsView tickets={ticket_state.tickets} />
     )
 }
 
