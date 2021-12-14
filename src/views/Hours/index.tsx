@@ -5,8 +5,11 @@ import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import DatePicker from '@mui/lab/DatePicker';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import ListItem from 'components/ListItem';
+import HoursButtons from 'components/HoursButtons';
 
-const HoursView = () => {
+const HoursView = (props:any) => {
+    const {hours} = props;
     const [value, setValue] = useState(null);
 
     return (
@@ -30,8 +33,17 @@ const HoursView = () => {
                     </div>
                     <ArrowForwardIosIcon style={{margin:10, padding: 5, width: 40, height: 40, alignSelf:'center'}}/>
                 </div>
-                
-
+            </div>
+            <div className="hoursList">
+                <ul>
+                    {hours.map((hour:any) => (
+                        <div>
+                            <ListItem item={hour}>
+                                <HoursButtons seconds={hour.seconds} minutes={hour.minutes} hours={hour.hours}/>
+                            </ListItem>
+                        </div>
+                    )) }
+                </ul>
             </div>
         </div>
     )

@@ -21,3 +21,10 @@
 }
 
 .calendar {}
+
+.hoursList {
+    display: flex;
+    flex-direction: column;
+    min-width: 70%;
+    min-height: 70%;
+}
