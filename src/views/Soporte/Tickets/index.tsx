@@ -1,14 +1,22 @@
-import React from 'react'
+import React, { useState } from 'react';
 import {Button, Accordion} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from 'react-router-dom';
 import Tabla from 'components/Tabla/Tabla'
 import './index.css'
+import Descripcion from '../componentes/Descripcion';
+
 
 
 const TicketsView = (props: any) => {
     const {tickets} = props;
-    
+    console.log(tickets);
+    const [ ticket_i, setTicketI ] = useState(0);
+    function onRowClick(i:number){
+        setTicketI(i)
+        console.log(i)
+    }
+
     return (
       <>
         <div className='body'>
@@ -25,7 +33,7 @@ const TicketsView = (props: any) => {
             <div className='d-flex flex-row justify-content-evenly tabla_aside'>
                 <div className='d-flex flex-column justify-content-between tabla'>
                     
-                    <Tabla tickets={tickets} />
+                    <Tabla tickets={tickets} onRowClick={onRowClick} />
 
                     <div className='d-flex flex-row justify-content-between'>
                         <Link to='/soporte' className='btn btn-secondary boton_pie_pagina'>
@@ -36,55 +44,8 @@ const TicketsView = (props: any) => {
                 </div>
 
                 <div className='aside shadow bg-white rounded'>
-                    {tickets.map((ticket : { nombre: string; descripcion: string;severidad: string; fecha_creacion:string; creador: string; tipo: string; recurso: string; estado: string; cliente: string; fecha_limite: string;})=> (
-                    <div className='info'>
-                        <h6>{ticket.nombre}</h6>
-                        <div>
-                            <p className='subtitulo margen_chico'>Descripción:</p>
-                            <p className='margen_chico descripcion'>{ticket.descripcion}</p>
-                        </div>
-                        <div className='d-flex flex-row justify-content-around info_item'>
-                            <div>
-                                <p className='subtitulo margen_chico'>Tipo:</p>
-                                <p className='margen_chico'>{ticket.tipo}</p>
-                            </div>
-                            <div>
-                                <p className='subtitulo margen_chico'>Severidad:</p>
-                                <p className='margen_chico'>{ticket.severidad}</p>
-                            </div>
-                        </div>
-                        <div className='d-flex flex-row justify-content-evenly'>
-                            <div>
-                                <p className='subtitulo margen_chico'>Fecha creación:</p>
-                                <p className='margen_chico'>{ticket.fecha_creacion}</p>
-                            </div>
-                            <div>
-                                <p className='subtitulo margen_chico'>Fecha límite:</p>
-                                <p className='margen_chico'>{ticket.fecha_limite}</p>
-                            </div>
-                        </div>
-                        <div className='d-flex flex-row justify-content-around'>
-                            <div>
-                                <p className='subtitulo margen_chico'>Cliente:</p>
-                                <p className='margen_chico'>{ticket.cliente}</p>
-                            </div>
-                            <div>
-                                <p className='subtitulo margen_chico'>Creador:</p>
-                                <p className='margen_chico'>{ticket.creador}</p>
-                            </div>
-                        </div>
-                        <div className='d-flex flex-row justify-content-center'>
-                            <p className='subtitulo margen_chico margen_derecho'>Recurso:</p>
-                            <p className='margen_chico'>{ticket.recurso}</p>
-                        </div>
-
-                        <div className='d-flex flex-column align-items-center'>
-                            <p className='btn btn-link boton_tareas'>Ver tareas asociadas</p>
-                            <p className='btn btn-secondary boton_accion'>Eliminar</p>
-                            <p className='btn btn-dark boton_accion'>Modificar</p>
-                        </div>
-                    </div>
-                            ))}   
+                    <Descripcion ticket={tickets[ticket_i]}/>
+                    
                 </div>
             </div>
             

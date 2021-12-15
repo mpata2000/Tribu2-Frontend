@@ -4,6 +4,7 @@ import Table from 'react-bootstrap/Table'
 
 const Tabla = (props:any) => {
     const {tickets} = props;
+    const {onRowClick} = props;
     return (
         <Table striped bordered hover>
                         <thead>
@@ -17,8 +18,8 @@ const Tabla = (props:any) => {
                             </tr>
                         </thead>
                         <tbody>
-                            {tickets.map((ticket: { nombre: string; tipo: string; recurso: string; estado: string; cliente: string; fecha_limite: string;})=> (
-                            <tr>
+                            {tickets.map((ticket: { nombre: string; tipo: string; recurso: string; estado: string; cliente: string; fecha_limite: string;}, index:number)=> (
+                            <tr onClick={()=>{onRowClick(index)}}>
                                 <td>{ticket.nombre}</td>
                                 <td>{ticket.tipo}</td>
                                 <td>{ticket.recurso}</td>
