@@ -5,6 +5,7 @@ import { InputText } from 'primereact/inputtext';
 import { isPropertySignature } from 'typescript';
 import Button from 'components/Button/Button';
 import { Calendar } from 'primereact/calendar';
+import { Input } from '@mui/material';
 
 const ProjectForm = (props: any) => {
     // const {proyecto, proyectos, items, selectedProyecto, setSelectedProyecto, visible, footer, setVisible, setProyecto} = props;
@@ -13,6 +14,38 @@ const ProjectForm = (props: any) => {
             <Button text="Guardar" icon="pi pi-check" onClick={props.onSave} />
         </div>
     );
+
+    const fechaInicioRealChangeHandler = (event) => {
+        let val = event.target.value.toString();
+        props.setProject((prevProject: { proyecto: any; }) => {
+            let proyecto = Object.assign({}, props.proyecto);
+            return { proyecto };
+        })
+    };
+    const fechaFinalizacionRealChangeHandler = (event) => {
+        let val = event.target.value.toString();
+        props.setProject((prevProject: { proyecto: any; }) => {
+            let proyecto = Object.assign({}, props.proyecto);
+            proyecto.fechaFinalizacionReal = val;
+            return { proyecto };
+        })
+    };
+    const fechaInicionEstimadoChangeHandler = (event) => {
+        let val = event.target.value.toString();
+        props.setProject((prevProject: { proyecto: any; }) => {
+            let proyecto = Object.assign({}, props.proyecto);
+            proyecto.fechaInicioEstimado = val;
+            return { proyecto };
+        })
+    };
+    const fechaFinalizacionEstimadoChangeHandler = (event) => {
+        let val = event.target.value.toString();
+        props.setProject((prevProject: { proyecto: any; }) => {
+            let proyecto = Object.assign({}, props.proyecto);
+            proyecto.fechaFinalizacionEstimado = val;
+            return { proyecto };
+        })
+    };
 
     return (
         <div>
@@ -45,58 +78,24 @@ const ProjectForm = (props: any) => {
                         <label htmlFor="descripcion">Descripción</label>
                     </span>
                     <br />
+                    <label htmlFor="fechaInicioReal">Fecha Inicio Real</label>
                     <span className="p-float-label">
-                    <Calendar selectionMode='single' value={new Date(props.fechaInicioReal)} onChange={(e) => {
-                            let val = e.target.value?.toString;
-                            props.onSave((prevProject: { proyecto: any; }) => {
-                                let proyecto = Object.assign({}, prevProject.proyecto);
-                                proyecto.fechaInicioReal = val;
-                                return { proyecto };
-                            })
-                        }
-                        } />
-                        <label htmlFor="fechaInicioReal">Fecha Inicio Real</label>
+                        <Input type='date' value={props.fechaInicioReal} onChange={fechaInicioRealChangeHandler} />
                     </span>
                     <br />
+                    <label htmlFor="fechaFinalizacionReal">Fecha Finalización Real</label>
                     <span className="p-float-label">
-                    <Calendar selectionMode='single' value={new Date(props.fechaFinalizacionReal)} onChange={(e) => {
-                            let val = e.target.value?.toString;
-                            props.onSave((prevProject: { proyecto: any; }) => {
-                                let proyecto = Object.assign({}, prevProject.proyecto);
-                                proyecto.fechaFinalizacionReal = val;
-                                return { proyecto };
-                            })
-                        }
-                        } />
-                        <label htmlFor="fechaFinalizacionReal">Fecha Finalización Real</label>
+                        <Input type='date' value={props.fechaFinalizacionReal} onChange={fechaFinalizacionRealChangeHandler} />
                     </span>
                     <br />
+                    <label htmlFor="fechaInicioEstimada">Fecha Inicio Estimada</label>
                     <span className="p-float-label">
-                        <Calendar selectionMode='single' value={new Date(props.fechaInicioEstimada)} onChange={(e) => {
-                            let val = e.target.value?.toString;
-                            props.onSave((prevProject: { proyecto: any; }) => {
-                                let proyecto = Object.assign({}, prevProject.proyecto);
-                                proyecto.fechaInicioEstimada = val;
-
-                                console.log(props.fechaInicioEstimada)
-                                return { proyecto };
-                            })
-                        }
-                        } />
-                        <label htmlFor="fechaInicioEstimada">Fecha Inicio Estimada</label>
+                        <Input type='date' value={props.fechaInicioEstimada} onChange={fechaInicionEstimadoChangeHandler} />
                     </span>
                     <br />
+                    <label htmlFor="fechaFinalizacionEstimada">Fecha Finalización Estimada</label>
                     <span className="p-float-label">
-                        <Calendar selectionMode='single' value={new Date(props.fechafinalizacionEstimada)} onChange={(e) => {
-                            let val = e.target.value?.toString;
-                            props.onSave((prevProject: { proyecto: any; }) => {
-                                let proyecto = Object.assign({}, prevProject.proyecto);
-                                proyecto.fechafinalizacionEstimada = val;
-                                return { proyecto };
-                            })
-                        }
-                        } />
-                        <label htmlFor="fechaFinalizacionEstimada">Fecha Finalización Estimada</label>
+                        <Input type='date' value={props.fechafinalizacionEstimada} onChange={fechaFinalizacionEstimadoChangeHandler} />
                     </span>
 
 
