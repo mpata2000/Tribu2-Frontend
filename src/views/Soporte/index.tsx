@@ -7,6 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 const SoporteView = (props: any) => {
   const {onGetTickets} = props;
+//  const {tickets}      = props;
 
   return (
     <>
@@ -14,6 +15,7 @@ const SoporteView = (props: any) => {
             
             <div className='d-flex flex-row' id="titulo">{/* Lo pongo a la izquierda y que ocupe todo el ancho  */}
                 <h2>Productos</h2>
+        
             </div>
             
             <Accordion className='productos'>
@@ -22,7 +24,7 @@ const SoporteView = (props: any) => {
                     <Accordion.Header>Siu Guarani</Accordion.Header>
                     <Accordion.Body>
                         <Link to="/soporte/tickets">
-                            Version 1.0
+                            <span onClick={onGetTickets}>Version 1.0</span>
                         </Link>
                     </Accordion.Body>
                 </Accordion.Item>
