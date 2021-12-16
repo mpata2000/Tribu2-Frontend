@@ -2,19 +2,19 @@ import React from 'react'
 import ProjectForm from './ProjectForm';
 import ProjectItem from './ProjectItem';
 import { useState } from 'react';
+import { Alert, AlertTitle, Portal } from '@mui/material';
 
 
 const proyectoDefault = {
     idProyecto: null,
-    nombre: null,
-    descripcion: null,
-    fechaInicioReal: null,
-    fechaFinalizacionReal: null,
-    fechaInicioEstimada: null,
-    fechaFinalizacionEstimada: null,
+    nombre: '',
+    descripcion: '',
+    fechaInicioReal: '',
+    fechaFinalizacionReal: '',
+    fechaInicioEstimada: '',
+    fechaFinalizacionEstimada: '',
     idLegajo: null
 }
-
 const Projects = (props: any) => {
 
     const [visible, setVisible] = useState(false)
@@ -75,6 +75,14 @@ const Projects = (props: any) => {
         setProyecto(selectedProject)
 
     }
+    const showSuccess = () => {
+        <Alert severity="success">
+          <AlertTitle> Success </AlertTitle>
+        </Alert>
+      }
+    const setTitle=()=>{
+        return null != proyecto.idProyecto ? 'Editar Proyecto: ' + proyecto.idProyecto : 'Crear Proyecto';
+    }
 
     return (
         <div>
@@ -85,6 +93,7 @@ const Projects = (props: any) => {
                 setSelectedProject={setSelectedProject}
             />
             <ProjectForm
+                title={setTitle}
                 project = {proyecto}
                 nombre ={proyecto.nombre}
                 descripcion ={proyecto.descripcion}
