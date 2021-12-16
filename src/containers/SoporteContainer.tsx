@@ -10,7 +10,7 @@ const SoporteContainer = () => {
     const dispatch = useDispatch();
 
     const onGetTickets = () => {
-        dispatch(onTicketsGetAll());
+        dispatch(onTicketsGetAll("Siu Guarani", "1.0.0"));
     }
     return (<SoporteView onGetTickets={onGetTickets}/>);
 }
