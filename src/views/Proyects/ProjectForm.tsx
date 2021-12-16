@@ -16,7 +16,7 @@ const ProjectForm = (props: any) => {
 
     return (
         <div>
-            <Dialog header="Editar de Proyecto" visible={props.visible} style={{ width: '400px' }} footer={footer} modal={true} onHide={() => props.setVisible(false)}>
+            <Dialog header={props.title} visible={props.visible} style={{ width: '400px' }} footer={footer} modal={true} onHide={() => props.setVisible(false)}>
                 <form id="proyecto-form">
                     <span className="p-float-label">
                         <InputText value={props.nombre} style={{ width: '100%' }} id="nombre" onChange={(e: any) => {

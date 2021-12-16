@@ -2,16 +2,17 @@ import React from 'react'
 import ProjectForm from './ProjectForm';
 import ProjectItem from './ProjectItem';
 import { useState } from 'react';
+import { Alert, AlertTitle, Portal } from '@mui/material';
 
 
 const proyectoDefault = {
     idProyecto: null,
-    nombre: null,
-    descripcion: null,
-    fechaInicioReal: null,
-    fechaFinalizacionReal: null,
-    fechaInicioEstimada: null,
-    fechaFinalizacionEstimada: null,
+    nombre: '',
+    descripcion: '',
+    fechaInicioReal: '',
+    fechaFinalizacionReal: '',
+    fechaInicioEstimada: '',
+    fechaFinalizacionEstimada: '',
     idLegajo: null
 }
 
@@ -25,12 +26,12 @@ const Projects = (props: any) => {
         {
             label: 'Nuevo',
             icon: 'pi pi-fw pi-plus',
-            command: () => { showSaveDialog() }
+            command: () => { showNewProjectDialog() }
         },
         {
             label: 'Editar',
             icon: 'pi pi-fw pi-pencil',
-            command: () => { showEditDialog() }
+            command: () => { showEditProjectDialog() }
         },
         {
             label: 'Eliminar',
@@ -38,6 +39,13 @@ const Projects = (props: any) => {
             command: () => { delete_() }
         }
     ];
+
+    const showSuccess = () => {
+        <Alert severity="success">
+            <AlertTitle> Success </AlertTitle>
+        </Alert>
+    }
+
 
     const save = () => {
         //SQUAD 9 HACER EL FLUJO DEL DISPATCH COMO EL GET, PARA EL POST
@@ -64,18 +72,26 @@ const Projects = (props: any) => {
           });
         }*/
     }
-    const showSaveDialog = () => {
+    const showNewProjectDialog = () => {
         setVisible(true)
         setProyecto(proyectoDefault)
+        showSuccess();
         //document.getElementById('proyecto-form').reset();
     }
 
-    const showEditDialog = () => {
+    const showEditProjectDialog = () => {
         setVisible(true)
         setProyecto(selectedProject)
 
     }
 
+    const addProjectHandler = () => {
+        return ('');
+    };
+
+    const selectTitle = () => { 
+        return null === proyecto.idProyecto ? 'Crear Proyecto' : 'Editar Proyecto: ' + proyecto.idProyecto;
+    };
     return (
         <div>
             <ProjectItem
@@ -85,18 +101,19 @@ const Projects = (props: any) => {
                 setSelectedProject={setSelectedProject}
             />
             <ProjectForm
-                project = {proyecto}
-                nombre ={proyecto.nombre}
-                descripcion ={proyecto.descripcion}
-                idResponsable ={proyecto.idLegajo}
-                fechaInicioEstimada ={proyecto.fechaInicioEstimada}
-                fechaFinalizacionEstimada ={proyecto.fechaFinalizacionEstimada}
-                fechaInicioReal ={proyecto.fechaInicioReal}
-                fechaFinalizacionReal ={proyecto.fechaFinalizacionReal}
+                title={selectTitle()}
+                project={proyecto}
+                nombre={proyecto.nombre}
+                descripcion={proyecto.descripcion}
+                idResponsable={proyecto.idLegajo}
+                fechaInicioEstimada={proyecto.fechaInicioEstimada}
+                fechaFinalizacionEstimada={proyecto.fechaFinalizacionEstimada}
+                fechaInicioReal={proyecto.fechaInicioReal}
+                fechaFinalizacionReal={proyecto.fechaFinalizacionReal}
                 onSave={save}
                 visible={visible}
                 setVisible={setVisible}
-                setProject={setProyecto}></ProjectForm>
+                setProject={setProyecto} />
         </div>
     )
 }
