@@ -14,7 +14,6 @@ const HomeView = (props: any) => {
       <Button onClick={onGetHours} text={"Get Hours"}/>
       <nav>
         <Link to="/about">About</Link>
-        <Link to="/soporte">Soporte</Link>
       </nav>
     </div>
     )
