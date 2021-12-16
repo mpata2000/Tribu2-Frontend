@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import 'primereact/resources/themes/nova/theme.css'
 import 'primereact/resources/primereact.min.css'
 import 'primeicons/primeicons.css'
-import { onProyectsGetAll } from 'redux_folder/actions/proyects.actions';
+import { onProyectsGetAll , createProyect } from 'redux_folder/actions/proyects.actions';
 import useTypedSelector from 'hooks/useTypedSelector';
 import ProyectsView from 'views/Proyects';
 import { Alert, AlertTitle, Portal } from '@mui/material';
@@ -60,19 +60,18 @@ const ProyectoContainer = (props: any) => {
     </Alert>
   }
 
-  const createProyect = () => {
-
-  };
 
   const save = () => {
     //SQUAD 9 HACER EL FLUJO DEL DISPATCH COMO EL GET, PARA EL POST
 
-    // dispatch(createProyect())
+    //todo: Hay que pasar el objeto con los datos a guardar.
+     //dispatch(createProyect(data))
     // this.proyectoService.save(this.state.proyecto)
     //   setVisible(false);
     //   showSuccess();
     //   });
     //vuelvo a llamar al registro
+
     dispatch(onProyectsGetAll());
   }
 
