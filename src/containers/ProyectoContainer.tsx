@@ -1,4 +1,4 @@
-import React, { useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 //estilos css
@@ -8,27 +8,27 @@ import 'primeicons/primeicons.css'
 import { onProyectsGetAll } from 'redux_folder/actions/proyects.actions';
 import useTypedSelector from 'hooks/useTypedSelector';
 import ProyectsView from 'views/Proyects';
-import { Alert, AlertTitle } from '@mui/material';
-import Button from 'components/Button/Button';
+import { Alert, AlertTitle, Portal } from '@mui/material';
+import NewProject from './NewProject';
 
 const proyectoDefault = {
-  idProyecto : null,
-  nombre      : null,
-  descripcion : null,
-  fechaInicioReal : null,
-  fechaFinalizacionReal : null,
-  fechaInicioEstimada : null,
+  idProyecto: null,
+  nombre: null,
+  descripcion: null,
+  fechaInicioReal: null,
+  fechaFinalizacionReal: null,
+  fechaInicioEstimada: null,
   fechaFinalizacionEstimada: null,
-  idLegajo : null
+  idLegajo: null
 }
 
 const ProyectoContainer = (props: any) => {
   const dispatch = useDispatch();
-  const proyectos = useTypedSelector((state)=> state.proyects.proyects);
-  
-  const [visible, setVisible] = useState(false)
-  const [selectedProyecto, setSelectedProyecto] = useState(proyectoDefault)
-  const [proyecto, setProyecto] = useState(proyectoDefault)
+  const proyectos = useTypedSelector((state) => state.proyects.proyects);
+
+  //const [visible, setVisible] = useState(false)
+  // const [selectedProyecto, setSelectedProyecto] = useState(proyectoDefault)
+  //const [proyecto, setProyecto] = useState(proyectoDefault)
 
   useEffect(() => {
 
@@ -36,23 +36,23 @@ const ProyectoContainer = (props: any) => {
 
   }, [])
 
-  const items = [
-    {
-      label : 'Nuevo',
-      icon : 'pi pi-fw pi-plus',
-      command : ()=> {showSaveDialog()}
-    },
-    {
-      label : 'Editar',
-      icon : 'pi pi-fw pi-pencil',
-      command : ()=> {showEditDialog()}
-    },
-    {
-      label : 'Eliminar',
-      icon : 'pi pi-fw pi-trash',
-      command : ()=> {delete_()}
-    }
-  ];
+  // const items = [
+  //   {
+  //     label: 'Nuevo',
+  //     icon: 'pi pi-fw pi-plus',
+  //     command: () => { showSaveDialog() }
+  //   },
+  //   {
+  //     label: 'Editar',
+  //     icon: 'pi pi-fw pi-pencil',
+  //     command: () => { showEditDialog() }
+  //   },
+  //   {
+  //     label: 'Eliminar',
+  //     icon: 'pi pi-fw pi-trash',
+  //     command: () => { delete_() }
+  //   }
+  // ];
 
   const showSuccess = () => {
     <Alert severity="success">
@@ -60,16 +60,20 @@ const ProyectoContainer = (props: any) => {
     </Alert>
   }
 
+  const createProyect = () => {
+
+  };
+
   const save = () => {
     //SQUAD 9 HACER EL FLUJO DEL DISPATCH COMO EL GET, PARA EL POST
-    
-    //dispatch(createProyect())
-    /*this.proyectoService.save(this.state.proyecto)
-      setVisible(false);
-      showSuccess();
-      })  */
-      //vuelvo a llamar al registro
-      dispatch(onProyectsGetAll());
+
+    // dispatch(createProyect())
+    // this.proyectoService.save(this.state.proyecto)
+    //   setVisible(false);
+    //   showSuccess();
+    //   });
+    //vuelvo a llamar al registro
+    dispatch(onProyectsGetAll());
   }
 
   const delete_ = () => {
@@ -85,27 +89,37 @@ const ProyectoContainer = (props: any) => {
       });
     }*/
   }
-  const showSaveDialog = () => {
-    setVisible(true)
-    setProyecto(proyectoDefault)
-    //document.getElementById('proyecto-form').reset();
-  }
+  // const showSaveDialog = () => {
+  //   setVisible(true)
+  //   setProyecto(proyectoDefault)
+  //   //document.getElementById('proyecto-form').reset();
+  // }
 
-  const showEditDialog = () => {
-    setVisible(false)
-    setProyecto(selectedProyecto)
+  // const showEditDialog = () => {
+  //   setVisible(true)
+  //   setProyecto(selectedProject)
 
-  }
+  // }
 
-  const footer = (
-    <div>
-      <Button text="Guardar" icon="pi pi-check" onClick={save} />
-    </div>
+  // const footer = (
+  //   <div>
+  //     <Button text="Guardar" icon="pi pi-check" onClick={save} />
+  //   </div>
 
-  );
+  // );
+
+  const addProjectHandler = () => {
+     return ('');
+    };
+
 
   return (
-    <ProyectsView proyecto={proyecto} proyectos={proyectos} items={items} selectedProyecto={selectedProyecto} setSelectedProyecto={setSelectedProyecto}  visible={visible} footer={footer} setVisible={setVisible} setProyecto={setProyecto} />
+    <div>
+      <ProyectsView
+        projects={proyectos}
+        />
+      <NewProject onAddProject={addProjectHandler} ></NewProject>
+    </div>
   )
 }
 

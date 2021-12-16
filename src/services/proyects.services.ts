@@ -12,3 +12,11 @@ export async function postProyects(data: any): Promise<any> {
   return response;
 }
 
+export async function saveProyects(): Promise<any> {
+  const response = await get(`${url}/proyectos`);
+  return response;
+}
+// export async function deleteProyects(id): Promise<any> {
+//   const response = await get(`${url}/proyectos/`+id);
+//   return response;
+// }
