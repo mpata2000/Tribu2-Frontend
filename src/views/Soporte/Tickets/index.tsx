@@ -18,8 +18,14 @@ const TicketsView = (props: any) => {
     const product = useLocation().state.product;
     const version = useLocation().state.version;
 
-    const filter_name = () => {
+    const [ search, setSearch ] = useState('');
+    const filter_name = (event:any) => {
+        setSearch(event.target.value);
+    }
 
+    let filtered_tickets = tickets;
+    if(search){
+        filtered_tickets = filtered_tickets.filter((ticket:any) => {return ticket.nombre.includes(search)});
     }
 
     return (
@@ -32,7 +38,7 @@ const TicketsView = (props: any) => {
 
                 <div>
                 <label>
-                    Name:
+                    Filtro nombre:
                     <input type="text" name="search" onChange={filter_name}/>
                 </label>
                 </div>
@@ -45,7 +51,7 @@ const TicketsView = (props: any) => {
             <div className='d-flex flex-row justify-content-evenly tabla_aside'>
                 <div className='d-flex flex-column justify-content-between tabla'>
                     
-                    <Tabla tickets={tickets} onRowClick={onRowClick} />
+                    <Tabla tickets={filtered_tickets} onRowClick={onRowClick} />
 
                     <div className='d-flex flex-row justify-content-between'>
                         <Link to='/soporte' className='btn btn-secondary boton_pie_pagina'>
@@ -55,7 +61,7 @@ const TicketsView = (props: any) => {
                     </div>
                 </div>
                 <div className='aside shadow bg-white rounded'>
-                    <Descripcion ticket={tickets ? tickets[ticket_i] : null}/>
+                    <Descripcion ticket={filtered_tickets ? filtered_tickets[ticket_i] : null}/>
                     </div>
             </div>
             
