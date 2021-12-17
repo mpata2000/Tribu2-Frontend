@@ -28,7 +28,7 @@ const SoporteView = (props: any) => {
                         <Accordion.Body>
                         {product.versions.map((version: string, index:number)=> (
                             <div>
-                                <Link to="/soporte/tickets">
+                                <Link to="/soporte/tickets" state={{ product: product.name, version: version }}>
                                     <span onClick={() => {onGetTickets(product.name, version)}}>{version}</span>
                                 </Link>
                             </div>
@@ -37,10 +37,6 @@ const SoporteView = (props: any) => {
                     </Accordion.Item>
                 ))}
             </Accordion>
-
-            <Button onClick={onGetTickets} className='btn-primary boton_tickets_consola'>Ver tickets creados</Button>
-            
-
         </div>
     </>
     )

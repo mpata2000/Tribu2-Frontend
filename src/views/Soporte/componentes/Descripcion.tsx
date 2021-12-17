@@ -1,7 +1,11 @@
 import React from 'react'
+import moment from 'moment'
 
 const Descripcion = (props:any) => {
     let {ticket} = props;
+    if(!ticket){
+        return (<div></div>)
+    }
     return (
         <div className='info'>
             <h6>{ticket.nombre}</h6>
@@ -22,11 +26,11 @@ const Descripcion = (props:any) => {
             <div className='d-flex flex-row justify-content-evenly'>
                 <div>
                     <p className='subtitulo margen_chico'>Fecha creación:</p>
-                    <p className='margen_chico'>{ticket.fecha_creacion}</p>
+                    <p className='margen_chico'>{moment(new Date(parseInt(ticket.fecha_creacion))).format("DD/MM/YYYY")}</p>
                 </div>
                 <div>
                     <p className='subtitulo margen_chico'>Fecha límite:</p>
-                    <p className='margen_chico'>{ticket.fecha_limite}</p>
+                    <p className='margen_chico'>{moment(new Date(parseInt(ticket.fecha_limite))).format("DD/MM/YYYY")}</p>
                 </div>
             </div>
             <div className='d-flex flex-row justify-content-around'>
