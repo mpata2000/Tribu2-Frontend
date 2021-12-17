@@ -32,6 +32,10 @@ const Sidebar = () => {
         <ListItemButton onClick={() => goTo("/proyecto")}>
             <ListItemText primary="Proyectos" />
         </ListItemButton>  
+        
+        <ListItemButton onClick={() => goTo("/soporte")}>
+            <ListItemText primary="Soporte" />
+        </ListItemButton>
     </List>
     );
 }
