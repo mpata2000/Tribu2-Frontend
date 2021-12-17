@@ -39,7 +39,7 @@ const HoursView = (props:any) => {
                     {hours.map((hour:any) => (
                         <div>
                             <ListItem item={hour}>
-                                <HoursButtons seconds={hour.seconds} minutes={hour.minutes} hours={hour.hours}/>
+                                <HoursButtons hour={hour}/>
                             </ListItem>
                         </div>
                     )) }
