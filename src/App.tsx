@@ -5,6 +5,7 @@ import AboutContainer from 'containers/AboutContainer';
 import HomeContainer from 'containers/HomeContainer';
 import SoporteContainer from 'containers/SoporteContainer';
 import TicketsContainer from 'containers/TicketsContainer';
+import FormularioTicketsContainer from 'containers/FormularioTicketsContainer';
 import HoursContainer from 'containers/HoursContainer';
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
@@ -24,6 +25,7 @@ function App() {
                 < Route path="/hours" element={<HoursContainer />} />
                 <Route path="/soporte" element={<SoporteContainer />} />
                 <Route path="/soporte/tickets" element={<TicketsContainer />} />
+                <Route path="/soporte/tickets/crear" element={<FormularioTicketsContainer />} />
               </Routes>
             </div>
           </div>
