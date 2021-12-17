@@ -14,7 +14,7 @@ const proyectoDefault = {
     fechaInicioEstimada: '',
     fechaFinalizacionEstimada: '',
     fechaEntregaComunicadaACliente: '',
-    horasEstimadas: null,
+    horasEstimadas: 0,
     prioridad: '',
     estado: ''
 }
@@ -49,15 +49,16 @@ const Projects = (props: any) => {
     }
 
     const save = (enteredProject) => {
+        debugger;
         console.log(enteredProject);
         //SQUAD 9 HACER EL FLUJO DEL DISPATCH COMO EL GET, PARA EL POST
 
         dispatch(createProyect(enteredProject));
-        // this.proyectoService.save(this.state.proyecto)
+
         setVisible(false);
         showSuccess();
         //vuelvo a llamar al registro
-        //dispatch(onProyectsGetAll());
+        dispatch(onProyectsGetAll());
     }
 
     const delete_ = () => {
@@ -84,7 +85,9 @@ const Projects = (props: any) => {
         setProyecto(selectedProject)
     }
 
-    const setTitle = () => { return (null == proyecto.idProyecto ? 'Crear Proyecto' : 'Editar Proyecto: ' + proyecto.idProyecto) }
+    const setTitle = () => {
+        return (null == proyecto.idProyecto ? 'Crear Proyecto' : 'Editar Proyecto: ' + proyecto.idProyecto)
+    }
 
     return (
         <div>
@@ -96,17 +99,6 @@ const Projects = (props: any) => {
             />
             <ProjectForm
                 title={setTitle}
-                project={proyecto}
-                nombre={proyecto.nombre}
-                descripcion={proyecto.descripcion}
-                fechaInicioEstimada={proyecto.fechaInicioEstimada}
-                fechaFinalizacionEstimada={proyecto.fechaFinalizacionEstimada}
-                fechaInicioReal={proyecto.fechaInicioReal}
-                fechaFinalizacionReal={proyecto.fechaFinalizacionReal}
-                fechaEntrega={proyecto.fechaEntregaComunicadaACliente}
-                horasEstimadas={proyecto.horasEstimadas}
-                prioridad={proyecto.prioridad}
-                estado={proyecto.estado}
                 onSave={save}
                 visible={visible}
                 setVisible={setVisible}
