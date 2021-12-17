@@ -12,7 +12,7 @@ const FormularioCrear = (props:any) => {
             <Form className='d-flex flex-column justify-content-evenly formulario'>
                 <Form.Group className="d-flex flex-row justify-content-evenly" controlId="formBasicEmail">
                     <Form.Label className='etiqueta'>Nombre</Form.Label>
-                    <Form.Control className='input_grande' type="email" placeholder="Nombre del ticket" />
+                    <Form.Control className='input_grande' type="text" placeholder="Nombre del ticket" />
                     {/* <Form.Text className="text-muted">
                     We'll never share your email with anyone else.
                 </Form.Text> */}
