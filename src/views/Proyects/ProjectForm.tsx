@@ -198,7 +198,7 @@ const ProjectForm = (props: any) => {
                         <Box sx={{ minWidth: 120 }}>
                             <FormControl fullWidth>
                                 <InputLabel id='prioridad'>Prioridad</InputLabel>
-                                <Select labelId='prioridad' id="prioridades" label='Prioridad' onChange={prioridadChangeHandler} value={entepropsedPrioridad}
+                                <Select labelId='prioridad' id="prioridades" label='Prioridad' onChange={prioridadChangeHandler} value={enteredPrioridad}
                                 >
                                     <MenuItem value={'Urgente!'}>Urgente!</MenuItem>
                                     <MenuItem value={'Importante'}>Importante</MenuItem>
