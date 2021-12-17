@@ -6,8 +6,6 @@ import useTypedSelector from 'hooks/useTypedSelector';
 
 const TicketsContainer = () => {
 
-
-
     const ticket_state = useTypedSelector((state) => state.tickets);
 
     if(ticket_state.loading){

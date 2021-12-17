@@ -7,7 +7,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 const SoporteView = (props: any) => {
   const {onGetTickets} = props;
-//  const {tickets}      = props;
+  const {products} = props;
+  const {setProduct} = props;
 
   return (
     <>
@@ -20,18 +21,21 @@ const SoporteView = (props: any) => {
             
             <Accordion className='productos'>
                 {/* Aca deberiamos mostrar lo del get de productos y versiones */}
-                <Accordion.Item eventKey="0">
-                    <Accordion.Header>Siu Guarani</Accordion.Header>
-                    <Accordion.Body>
-                        <Link to="/soporte/tickets">
-                            <span onClick={onGetTickets}>Version 1.0</span>
-                        </Link>
-                    </Accordion.Body>
-                </Accordion.Item>
-                <Accordion.Item eventKey="1">
-                    <Accordion.Header>Proyecto 2</Accordion.Header>
-                    <Accordion.Body>Version 2.0</Accordion.Body>
-                </Accordion.Item>
+
+                {products.map((product: { name: string; versions: [string];}, index:number)=> (
+                    <Accordion.Item eventKey={index.toString()}>
+                        <Accordion.Header>{product.name}</Accordion.Header>
+                        <Accordion.Body>
+                        {product.versions.map((version: string, index:number)=> (
+                            <div>
+                                <Link to="/soporte/tickets">
+                                    <span onClick={() => {onGetTickets(product.name, version)}}>{version}</span>
+                                </Link>
+                            </div>
+                        ))}
+                        </Accordion.Body>
+                    </Accordion.Item>
+                ))}
             </Accordion>
 
             <Button onClick={onGetTickets} className='btn-primary boton_tickets_consola'>Ver tickets creados</Button>

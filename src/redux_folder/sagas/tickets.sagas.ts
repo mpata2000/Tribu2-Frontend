@@ -7,9 +7,9 @@ import * as actions from 'redux_folder/actions/tickets.actions';
 
 import { getTickets } from 'services/tickets.services';
 
-export function* ticketsGetAll() {
+export function* ticketsGetAll(action:any) {
   try {
-    const data: unknown = yield call(getTickets);
+    const data: unknown = yield call(getTickets, action.producto, action.version);
     yield put(actions.onGetAllSucceeded(data));
   } catch (error) {
     yield put(actions.onGetAllFailed(error));

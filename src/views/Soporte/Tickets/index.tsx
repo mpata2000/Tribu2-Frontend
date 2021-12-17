@@ -10,7 +10,6 @@ import Descripcion from '../componentes/Descripcion';
 
 const TicketsView = (props: any) => {
     const {tickets} = props;
-    console.log(tickets);
     const [ ticket_i, setTicketI ] = useState(0);
     function onRowClick(i:number){
         setTicketI(i)
