@@ -43,9 +43,9 @@ const FormularioCrear = (props:any) => {
                         <Form.Label className='etiqueta'>Estado</Form.Label>
                         <Form.Select className='input_chico'>
                             <option> </option>
-                            <option value="1">SIU-GUARANI</option>
-                            <option value="2">Proyecto2</option>
-                            <option value="3">Proyecto3</option>
+                            <option value="1">Abierto</option>
+                            <option value="2">Cerrado</option>
+                            <option value="3">En curso</option>
                         </Form.Select>
                     </Form.Group>
                     <Form.Group className='d-flex flex-row' controlId="floatingSelect">
@@ -63,17 +63,17 @@ const FormularioCrear = (props:any) => {
                         <Form.Label className='etiqueta'>Severidad</Form.Label>
                         <Form.Select className='input_chico'>
                             <option> </option>
-                            <option value="1">SIU-GUARANI</option>
-                            <option value="2">Proyecto2</option>
-                            <option value="3">Proyecto3</option>
+                            <option value="1">Alta</option>
+                            <option value="2">Media</option>
+                            <option value="3">Baja</option>
                         </Form.Select>
                     </Form.Group>
                     <Form.Group className='d-flex flex-row' controlId="floatingSelect">
                         <Form.Label className='etiqueta'>Cliente</Form.Label>
                         <Form.Select className='input_chico'>
                             <option> </option>
-                            <option value="1">Consulta</option>
-                            <option value="2">Incidencia</option>
+                            <option value="1">Cliente 1</option>
+                            <option value="2">Cliente 2</option>
                         </Form.Select>
                     </Form.Group>
                 </div>
@@ -90,8 +90,8 @@ const FormularioCrear = (props:any) => {
                     <Form.Label className='etiqueta'>Recurso</Form.Label>
                     <Form.Select className='input_grande'>
                         <option> </option>
-                        <option value="1">Consulta</option>
-                        <option value="2">Incidencia</option>
+                        <option value="1">Recurso 1</option>
+                        <option value="2">Recurso 2</option>
                     </Form.Select>
                 </Form.Group>
 
@@ -99,9 +99,9 @@ const FormularioCrear = (props:any) => {
                         <Form.Label className='etiqueta'>Tarea</Form.Label>
                         <Form.Select className='input_grande'>
                             <option> </option>
-                            <option value="1">SIU-GUARANI</option>
-                            <option value="2">Proyecto2</option>
-                            <option value="3">Proyecto3</option>
+                            <option value="1">Tarea1</option>
+                            <option value="2">Tarea2</option>
+                            <option value="3">Tarea3</option>
                         </Form.Select>
                     </Form.Group>
                 <div className="d-flex flex-row justify-content-evenly">
