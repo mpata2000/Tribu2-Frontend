@@ -1,18 +1,22 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
 import ProjectForm from './ProjectForm';
 import ProjectItem from './ProjectItem';
-import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { createProyect, onProyectsGetAll } from 'redux_folder/actions/proyects.actions';
 
 
 const proyectoDefault = {
     idProyecto: null,
-    nombre: null,
-    descripcion: null,
-    fechaInicioReal: null,
-    fechaFinalizacionReal: null,
-    fechaInicioEstimada: null,
-    fechaFinalizacionEstimada: null,
-    idLegajo: null
+    nombre: '',
+    descripcion: '',
+    fechaInicioReal: '',
+    fechaFinalizacionReal: '',
+    fechaInicioEstimada: '',
+    fechaFinalizacionEstimada: '',
+    fechaEntregaComunicadaACliente: '',
+    horasEstimadas: null,
+    prioridad: '',
+    estado: ''
 }
 
 const Projects = (props: any) => {
@@ -20,6 +24,7 @@ const Projects = (props: any) => {
     const [visible, setVisible] = useState(false)
     const [selectedProject, setSelectedProject] = useState(proyectoDefault)
     const [proyecto, setProyecto] = useState(proyectoDefault)
+    const dispatch = useDispatch();
 
     const buttons = [
         {
@@ -39,16 +44,20 @@ const Projects = (props: any) => {
         }
     ];
 
-    const save = () => {
+    const showSuccess = () => {
+        window.alert('Proyecto creado con exito.')
+    }
+
+    const save = (enteredProject) => {
+        console.log(enteredProject);
         //SQUAD 9 HACER EL FLUJO DEL DISPATCH COMO EL GET, PARA EL POST
 
-        // dispatch(createProyect())
+        dispatch(createProyect(enteredProject));
         // this.proyectoService.save(this.state.proyecto)
-        //   setVisible(false);
-        //   showSuccess();
-        //   });
+        setVisible(false);
+        showSuccess();
         //vuelvo a llamar al registro
-        // dispatch(onProyectsGetAll());
+        //dispatch(onProyectsGetAll());
     }
 
     const delete_ = () => {
@@ -85,19 +94,22 @@ const Projects = (props: any) => {
                 setSelectedProject={setSelectedProject}
             />
             <ProjectForm
-                project = {proyecto}
-                nombre ={proyecto.nombre}
-                descripcion ={proyecto.descripcion}
-                idResponsable ={proyecto.idLegajo}
-                fechaInicioEstimada ={proyecto.fechaInicioEstimada}
-                fechaFinalizacionEstimada ={proyecto.fechaFinalizacionEstimada}
-                fechaInicioReal ={proyecto.fechaInicioReal}
-                fechaFinalizacionReal ={proyecto.fechaFinalizacionReal}
+                project={proyecto}
+                nombre={proyecto.nombre}
+                descripcion={proyecto.descripcion}
+                fechaInicioEstimada={proyecto.fechaInicioEstimada}
+                fechaFinalizacionEstimada={proyecto.fechaFinalizacionEstimada}
+                fechaInicioReal={proyecto.fechaInicioReal}
+                fechaFinalizacionReal={proyecto.fechaFinalizacionReal}
+                fechaEntrega={proyecto.fechaEntregaComunicadaACliente}
+                horasEstimadas={proyecto.horasEstimadas}
+                prioridad={proyecto.prioridad}
+                estado={ proyecto.estado}
                 onSave={save}
                 visible={visible}
                 setVisible={setVisible}
                 setProject={setProyecto}></ProjectForm>
-        </div>
+        </div >
     )
 }
 export default Projects;

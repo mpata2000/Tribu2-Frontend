@@ -20,6 +20,10 @@ const ProjectItem = (props: any) => {
                     <Column field="fechaFinalizacionReal" header="Fecha fin Real"></Column>
                     <Column field="fechaInicioEstimada" header="Fecha inicio Estimada"></Column>
                     <Column field="fechaFinalizacionEstimada" header="Fecha fin Estimada"></Column>
+                    <Column field="fechaEntregaComunicadaACliente" header="Fecha de Entrega"></Column>
+                    <Column field="horasEstimadas" header="Horas estimadas"></Column>
+                    <Column field="estado" header="Estado"></Column>
+                    <Column field="prioridad" header="Prioridad"></Column>
                     <Column field="idLegajo" header="Responsable"></Column>
                 </DataTable>
             </Panel>

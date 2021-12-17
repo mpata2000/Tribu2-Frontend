@@ -8,6 +8,7 @@ export async function getProyects(): Promise<any> {
 }
 
 export async function postProyects(data: any): Promise<any> {
+  console.log(data);
   const response = await post(`${url}/proyectos`, data);
   return response;
 }
