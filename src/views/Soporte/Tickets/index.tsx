@@ -57,7 +57,9 @@ const TicketsView = (props: any) => {
                         <Link to='/soporte' className='btn btn-secondary boton_pie_pagina'>
                             Volver a Productos
                         </Link>
-                        <Link to='' className='btn btn-dark boton_pie_pagina'>Crear nuevo ticket</Link>
+                        <Link to='/soporte/tickets/crear' className='btn btn-dark boton_pie_pagina'>
+                            Crear nuevo ticket
+                        </Link>
                     </div>
                 </div>
                 <div className='aside shadow bg-white rounded'>
