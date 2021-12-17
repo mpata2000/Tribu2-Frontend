@@ -82,8 +82,9 @@ const Projects = (props: any) => {
     const showEditDialog = () => {
         setVisible(true)
         setProyecto(selectedProject)
-
     }
+
+    const setTitle = () => { return (null == proyecto.idProyecto ? 'Crear Proyecto' : 'Editar Proyecto: ' + proyecto.idProyecto) }
 
     return (
         <div>
@@ -94,6 +95,7 @@ const Projects = (props: any) => {
                 setSelectedProject={setSelectedProject}
             />
             <ProjectForm
+                title={setTitle}
                 project={proyecto}
                 nombre={proyecto.nombre}
                 descripcion={proyecto.descripcion}
@@ -104,7 +106,7 @@ const Projects = (props: any) => {
                 fechaEntrega={proyecto.fechaEntregaComunicadaACliente}
                 horasEstimadas={proyecto.horasEstimadas}
                 prioridad={proyecto.prioridad}
-                estado={ proyecto.estado}
+                estado={proyecto.estado}
                 onSave={save}
                 visible={visible}
                 setVisible={setVisible}
