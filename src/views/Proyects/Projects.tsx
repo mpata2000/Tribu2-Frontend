@@ -1,9 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import { useRef, useState } from 'react';
+
 import ProjectForm from './ProjectForm';
 import ProjectItem from './ProjectItem';
 import { useDispatch } from 'react-redux';
+import { Toast } from 'primereact/toast';
 import { createProyect, onProyectsGetAll } from 'redux_folder/actions/proyects.actions';
-
+import ProjectEditForm from './ProjectEditForm';
+import { deleteProyects, putProyects } from 'services/proyects.services';
 
 const proyectoDefault = {
     idProyecto: null,
@@ -20,11 +23,13 @@ const proyectoDefault = {
 }
 
 const Projects = (props: any) => {
-
-    const [visible, setVisible] = useState(false)
+    const toast = useRef(document.createElement("div") as any);
+    const [visibleSave, setVisibleSave] = useState(false)
+    const [visibleEdit, setVisibleEdit] = useState(false)
     const [selectedProject, setSelectedProject] = useState(proyectoDefault)
     const [proyecto, setProyecto] = useState(proyectoDefault)
     const dispatch = useDispatch();
+
 
     const buttons = [
         {
@@ -40,57 +45,114 @@ const Projects = (props: any) => {
         {
             label: 'Eliminar',
             icon: 'pi pi-fw pi-trash',
-            command: () => { delete_() }
+            command: () => { projectDelete() }
         }
     ];
 
-    const showSuccess = () => {
-        window.alert('Proyecto creado con exito.')
+    const showSuccess = (msje: any) => {
+        toast.current.show({ severity: 'success', summary: msje.title, detail: msje.description, life: 3000 });
     }
 
+    const showInfo = (msje) => {
+        toast.current.show({ severity: 'info', summary: msje.title, detail: msje.description, life: 3000 });
+    }
+
+    const showWarn = (msje) => {
+        toast.current.show({ severity: 'warn', summary: msje.title, detail: msje.description, life: 3000 });
+    }
+
+    const showError = (msje) => {
+        toast.current.show({ severity: 'error', summary: msje.title, detail: msje.description, life: 3000 });
+    }
+
+
     const save = (enteredProject) => {
-        debugger;
-        console.log(enteredProject);
         //SQUAD 9 HACER EL FLUJO DEL DISPATCH COMO EL GET, PARA EL POST
 
         dispatch(createProyect(enteredProject));
+        setVisibleSave(false);
+        const createdMessage = {
+            title: 'Pryecto agregado! ',
+            description: 'Se agrego correctamente el proyecto: ' + enteredProject.nombre
+        }
+        showSuccess(createdMessage);
+        //vuelvo a llamar a todos los proyectos.
+        dispatch(onProyectsGetAll());
 
-        setVisible(false);
-        showSuccess();
-        //vuelvo a llamar al registro
+    }
+
+    const edit = () => {
+        setVisibleSave(false);
+        // dispatch(putProyects(selectedProject))
+        const editedMessage = {
+            title: 'Proyecto editado! ',
+            description: 'Se edito correctamente el proyecto: ' + proyecto.nombre
+        }
+        showSuccess(editedMessage);
+        console.log(selectedProject);
+        //vuelvo a llamar a todos los proyectos.
         dispatch(onProyectsGetAll());
     }
 
-    const delete_ = () => {
+    const projectDelete = () => {
 
         //SQUAD 9 HACER EL FLUJO DEL DISPATCH COMO EL GET, PARA EL DELETE
-
-        /*if(window.confirm("¿Desea elminar el registro?")){
-            dispatch(onProjectDelete(selectedProyecto.idProyecto))
-            //alert('el registro fue borrado');
-            showSuccess();
-            dispatch(onProyectsGetAll());
-      
-          });
-        }*/
+        if (null != selectedProject.idProyecto) {
+            if (window.confirm("¿Desea elminar Proyecto: " + selectedProject.idProyecto + "?")) {
+                //cantidad de proyectos creados
+                const proyectos = props.projects;
+                try {
+                    dispatch(deleteProyects(selectedProject.idProyecto)); //SIEMPRE DEVUELVE ERROR PROMISE
+                    //REALIZA BIEN EL PUT PERO HAY UN ERROR QUE ES EL QUE SE RECIBE, LA RESPONSE QUEDA PERDIDA
+                    const deletedMessage = {
+                        title: 'Proyecto Eliminado! ',
+                        description: 'Se elimina proyecto con exito.'
+                    }
+                    showSuccess(deletedMessage);
+                    dispatch(onProyectsGetAll());
+                } catch (error: any) {
+                    debugger;
+                };
+                //vuelvo a llamar para actualizar el numero de proyectos.
+                dispatch(onProyectsGetAll());
+                //comparo con la cantidad, si hay menos es porque se elimino bien
+                if (proyectos.lenght === props.projects.lenght) {
+                    const deletedErrorMessage = {
+                        title: 'Atencion! ',
+                        description: 'No se pudo eliminar el proyecto: ' + selectedProject.idProyecto + ' puede tener tareas asociadas.'
+                    }
+                    showWarn(deletedErrorMessage);
+                } else {
+                    const deletedMessage = {
+                        title: 'Proyecto Eliminado! ',
+                        description: 'Se elimina proyecto con exito.'
+                    }
+                    showSuccess(deletedMessage);
+                }
+            }
+        } else {
+            const deletedWarningMessage = {
+                title: 'Atencion! ',
+                description: 'Debe seleccionar un proyecto para ser eliminado.'
+            }
+            showWarn(deletedWarningMessage);
+        }
     }
+
     const showSaveDialog = () => {
-        setVisible(true)
-        setProyecto(proyectoDefault)
+        setVisibleSave(true)
+        //setProyecto(proyectoDefault)
         //document.getElementById('proyecto-form').reset();
     }
 
     const showEditDialog = () => {
-        setVisible(true)
+        setVisibleEdit(true)
         setProyecto(selectedProject)
-    }
-
-    const setTitle = () => {
-        return (null == proyecto.idProyecto ? 'Crear Proyecto' : 'Editar Proyecto: ' + proyecto.idProyecto)
     }
 
     return (
         <div>
+            <Toast ref={toast} />
             <ProjectItem
                 items={props.projects}
                 buttons={buttons}
@@ -98,12 +160,20 @@ const Projects = (props: any) => {
                 setSelectedProject={setSelectedProject}
             />
             <ProjectForm
-                title={setTitle}
                 onSave={save}
-                visible={visible}
-                setVisible={setVisible}
-                setProject={setProyecto}></ProjectForm>
+                visible={visibleSave}
+                setVisible={setVisibleSave}
+            />
+            <ProjectEditForm
+                projectSelected={proyecto}
+                onEdit={edit}
+                onSetEditedProject={setSelectedProject}
+                visible={visibleEdit}
+                setVisible={setVisibleEdit}
+            />
+
         </div >
     )
 }
 export default Projects;
+

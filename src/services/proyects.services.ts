@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { get , post, delete_} from 'services/api';
+import { get, post, delete_, put } from 'services/api';
 
 const url = 'https://psa-tribu2-proyectos.herokuapp.com'
 
@@ -13,12 +13,12 @@ export async function postProyects(proyecto: any): Promise<any> {
   return response;
 }
 
-export async function saveProyects(): Promise<any> {
-  const response = await get(`${url}/proyectos`);
+export async function putProyects(data: any): Promise<any> {
+  const response = await put(`${url}/proyectos`, data);
   return response;
 }
- export async function deleteProyects(id): Promise<any> {
-   const response = await delete_(`${url}/proyectos/`+id);
-   return response;
- }
 
+export async function deleteProyects(id: any): Promise<any> {
+    const response = await delete_(`${url}/proyectos/` + id.toString());
+    return response;
+}

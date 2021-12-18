@@ -1,19 +1,4 @@
-import React from 'react'
-
-
-import ProjectForm from './ProjectForm';
 import Projects from './Projects';
-
-const proyectoDefault = {
-  idProyecto: null,
-  nombre: null,
-  descripcion: null,
-  fechaInicioReal: null,
-  fechaFinalizacionReal: null,
-  fechaInicioEstimada: null,
-  fechaFinalizacionEstimada: null,
-  idLegajo: null
-}
 
 const ProyectsView = (props: any) => {
 

@@ -30,7 +30,6 @@ const ProjectForm = (props: any) => {
         { value: 'Baja', label: 'Baja' }
     ]
 
-
     const footer = (
         <div>
             <Button text="Guardar" icon="pi pi-check" onClick={() => {
@@ -46,11 +45,7 @@ const ProjectForm = (props: any) => {
                     prioridad: enteredPrioridad,
                     estado: enteredEstado
                 }
-                debugger;
-                console.log(projectData);
-                props.setProject(projectData);
                 props.onSave(projectData);
-                //console.log(projectData)
                 setEnteredNombre('');
                 setEnteredDescripcion('');
                 setEnteredFechaInicioReal('');
@@ -65,6 +60,26 @@ const ProjectForm = (props: any) => {
         </div>
     );
 
+    const nombreChangeHandler = (event) => {
+        let val = event.target.value;
+        setEnteredNombre(val);
+        // props.setProject((prevProject: { proyecto: any; }) => {
+        //     let proyecto = Object.assign({}, props.project);
+        //     proyecto.nombre = val;
+        //     // console.log(proyecto.nombre);
+        //     return { proyecto };
+        // })
+    }
+    const descripcionChangeHandler = (event) => {
+        let val = event.target.value;
+        setEnteredDescripcion(val);
+        // props.setProject((prevProject: { proyecto: any; }) => {
+        //     let proyecto = Object.assign({}, props.project);
+        //     proyecto.nombre = val;
+        //     // console.log(proyecto.nombre);
+        //     return { proyecto };
+        // })
+    }
     const fechaInicioRealChangeHandler = (event) => {
         let val = event.target.value.toString();
         setEnteredFechaInicioReal(val);
@@ -142,39 +157,32 @@ const ProjectForm = (props: any) => {
         // console.log(val);
     };
 
+
+    // const setSelectProject = () => {
+    //     setEnteredNombre(props.projectSelected.nombre);
+    //     setEnteredDescripcion(props.projectSelected.descripcion);
+    //     setEnteredFechaEntrega(props.projectSelected.fechaEntregaComunicadaACliente);
+    //     setEnteredFechaFinalReal(props.projectSelected.fechaFinalizacionReal);
+    //     setEnteredFechaFinalEstimada(props.projectSelected.fechaFinalizacionEstimada);
+    //     setEnteredFechaInicioEstimada(props.projectSelected.fechaInicioEstimada);
+    //     setEnteredFechaInicioReal(props.projectSelected.fechaInicioReal);
+    //     setEnteredHoras(props.projectSelected.horasEstimadas);
+    //     setEnteredPrioridad(props.projectSelected.prioridad)
+    //     setEnteredEstado(props.projectSelected.estado);
+    // }
+
     return (
         <div>
-            <Dialog header={props.title} visible={props.visible} style={{ width: '400px' }} footer={footer} modal={true} onHide={() => props.setVisible(false)}>
-                <form id="proyecto-form">
+            <Dialog header={'Crear Proyecto'} visible={props.visible} style={{ width: '400px' }} footer={footer} modal={true} onHide={() => props.setVisible(false)}>
+                <form id="proyecto-form"  style={{ width: '100%' }}>
                     <span className="p-float-label">
                         <label htmlFor="nombre">Nombre</label>
-                        <Input type='text' name='nombre' value={enteredNombre} style={{ width: '100%' }} id="nombre" onChange={(e: any) => {
-                            let val = e.target.value;
-                            setEnteredNombre(val);
-                            // props.setProject((prevProject: { proyecto: any; }) => {
-                            //     let proyecto = Object.assign({}, props.project);
-                            //     proyecto.nombre = val;
-                            //     // console.log(proyecto.nombre);
-                            //     return { proyecto };
-                            // })
-                            console.log(enteredNombre);
-                        }
-                        } />
+                        <Input type='text' name='nombre' value={enteredNombre} style={{ width: '100%' }} id="nombre" onChange={nombreChangeHandler} />
                     </span>
                     <br />
                     <span className="p-float-label">
                         <label htmlFor="descripcion">Descripción</label>
-                        <Input type='text' value={enteredDescripcion} style={{ width: '100%' }} id="descripcion" onChange={(e: any) => {
-                            let val = e.target.value;
-                            setEnteredDescripcion(val);
-                            // props.setProject((prevProject: { proyecto: any; }) => {
-                            //     let proyecto = Object.assign({}, props.project);
-                            //     proyecto.descripcion = val;
-                            //    // console.log(proyecto.descripcion);
-                            //     return { proyecto };
-                            // })
-                        }
-                        } />
+                        <Input type='text' value={enteredDescripcion} style={{ width: '100%' }} id="descripcion" onChange={descripcionChangeHandler} />
                     </span>
                     <br />
                     <label htmlFor="fechaInicioReal">Fecha Inicio Real</label>
@@ -236,7 +244,6 @@ const ProjectForm = (props: any) => {
                             </FormControl>
                         </Box>
                     </span>
-
                 </form>
             </Dialog>
         </div>
