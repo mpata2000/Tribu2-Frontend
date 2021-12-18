@@ -3,23 +3,36 @@ import './FormularioEliminar.css';
 import Form from 'react-bootstrap/Form';
 import { FloatingLabel } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
+import { useLocation } from 'react-router-dom';
 
 const FormularioEliminar = (props:any) => {
 
-    const {tickets} = props;
+    const location = useLocation();
+    const { ticketID } = location.state;
+    const {nombre} = location.state;
+    const {descrip} = location.state
+
+    //const {tickets} = props;
 
     return (
         <div className='d-flex justify-content-center'>
             <Form className='d-flex flex-column justify-content-evenly formulario'>
+
+            <Form.Group className="d-flex flex-row justify-content-evenly" controlId="formBasicEmail">
+                    <Form.Label className='etiqueta'>ID del Ticket</Form.Label>
+                    <Form.Control value={ticketID} readOnly={true} className='input_grande' type="text" placeholder="Nombre del ticket" />
+                </Form.Group>
+
                 <Form.Group className="d-flex flex-row justify-content-evenly" controlId="formBasicEmail">
                     <Form.Label className='etiqueta'>Nombre del Ticket</Form.Label>
-                    <Form.Control readOnly={true} className='input_grande' type="text" placeholder="Nombre del ticket" />
+                    <Form.Control value={nombre} readOnly={true} className='input_grande' type="text" placeholder="Nombre del ticket" />
                 </Form.Group>
 
                 <div className="d-flex flex-row justify-content-evenly">
                     <Form.Group className='d-flex flex-row' controlId="formBasicEmail">
-                        <Form.Label className='etiqueta'>Descripcion</Form.Label>
+                        <Form.Label  className='etiqueta'>Descripcion</Form.Label>
                         <Form.Control
+                            value={descrip}
                             readOnly={true}
                             className='input_descripcion'
                             as="textarea"

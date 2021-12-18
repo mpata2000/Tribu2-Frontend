@@ -57,7 +57,11 @@ const Descripcion = (props:any) => {
 
 
 
-                <Link to='/soporte/tickets/eliminar' className='btn btn-secondary boton_accion'>
+                <Link to='/soporte/tickets/eliminar' 
+                className='btn btn-secondary boton_accion'
+                state={{ ticketID: ticket.id,
+                 nombre : ticket.nombre ,
+                 descrip : ticket.descripcion}}>
                     Eliminar
                 </Link>
 
