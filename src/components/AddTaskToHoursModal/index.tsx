@@ -1,4 +1,5 @@
-import { Alert, Box, FormControl, InputLabel, MenuItem, Select, TextField, Typography } from '@mui/material';
+import { Alert, Box, Button, FormControl, InputLabel, MenuItem, Select, TextField, Typography  } from '@mui/material';
+import AddIcon from '@mui/icons-material/Add';
 import { format } from 'date-fns';
 import useTypedSelector from 'hooks/useTypedSelector';
 import React from 'react'
@@ -9,7 +10,7 @@ import { onCreateHours } from 'redux_folder/actions/hours.actions';
 
 const AddTaskToHoursModal = (props: any) => {
 
-    const {date} = props;
+    const {date, handleClose} = props;
 
     const {
         handleSubmit, control, formState: { errors },
@@ -54,7 +55,7 @@ const AddTaskToHoursModal = (props: any) => {
         width: 400,
         bgcolor: 'background.paper',
         border: '2px solid #000',
-        boxShadow: 24,
+        boxShadow: '2px 2px darkcyan',
         p: 4,
       };
     
@@ -90,6 +91,7 @@ const AddTaskToHoursModal = (props: any) => {
             }
         }
         dispatch(onCreateHours(data_))
+        handleClose()
         
 
     }
@@ -103,7 +105,7 @@ const AddTaskToHoursModal = (props: any) => {
                     control={control}
                     render={({ field: { onChange, onBlur, value } }) => {
                         return (
-                            <>
+                            <FormControl fullWidth style={{marginTop: 40}}>
                                 <InputLabel id="tasks"> Tasks </InputLabel>
                                 <Select
                                     labelId="tasks"
@@ -115,7 +117,7 @@ const AddTaskToHoursModal = (props: any) => {
                                 >
                                     {tasks.map((task) => <MenuItem value={task.idTarea}> {task.nombre} from {task.idProyecto.nombre}</MenuItem>)}
                                 </Select>
-                            </>
+                            </FormControl>
                         )}}
                     name="task_id"
                     rules={{ required: true }}
@@ -125,10 +127,12 @@ const AddTaskToHoursModal = (props: any) => {
                     control={control}
                     render={({ field: { onChange, onBlur, value } }) => {
                         return (
-                            <>
-                                <InputLabel id="note"/>
-                                <TextField id="note"  placeholder='Note'  variant="outlined" onChange={onChange}/>
-                            </>
+                            <FormControl style={{margin: '40px 0px'}}>
+                                <InputLabel id="note"/> 
+                                <TextField id="note"  label='Note' multiline rows={4} variant="outlined" onChange={onChange}/>
+                            </FormControl>
+
+
                         )}}
                     name="note"
                 />
@@ -139,7 +143,6 @@ const AddTaskToHoursModal = (props: any) => {
                         render={({ field: { onChange, onBlur, value } }) => {
                             return (
                                 <>
-                                    <InputLabel id="hours"/>
                                     <TextField id="hours"  placeholder='00'  variant="standard" onChange={onChange}/>
                                 </>
                             )}}
@@ -153,7 +156,6 @@ const AddTaskToHoursModal = (props: any) => {
                         render={({ field: { onChange, onBlur, value } }) => {
                             return (
                                 <>
-                                    <InputLabel id="minutes"/>
                                     <TextField id="minutes"  placeholder='00'  variant="standard" onChange={onChange}/>
                                 </>
                                 )}}
@@ -166,7 +168,6 @@ const AddTaskToHoursModal = (props: any) => {
                         render={({ field: { onChange, onBlur, value } }) => {
                             return (
                                 <>
-                                    <InputLabel id="seconds"/>
                                     <TextField id="seconds"  placeholder='00'  variant="standard" onChange={onChange}/>
                                 </>
                                 )}}
@@ -178,7 +179,9 @@ const AddTaskToHoursModal = (props: any) => {
                 {errors?.hours?.type === 'pattern' && <p style={{color: 'red', fontSize: 10}}>Pls enter a number</p>}
                 {errors?.minutes?.type === 'pattern' && <p style={{color: 'red', fontSize: 10}}>Pls enter a number</p>}
                 {errors?.seconds?.type === 'pattern' && <p style={{color: 'red', fontSize: 10}}>Pls enter a number</p>}
-                <input type="submit" />
+                <Button style={{margin:'10px 0px',right: '0px', bottom:'0px', alignSelf: 'flex-end'}} endIcon={<AddIcon/>} variant="contained" onClick={handleSubmit(onSubmit)}>
+                    Add
+                </Button>
                 </form>    
             </Box>
     )

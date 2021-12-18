@@ -7,7 +7,7 @@ const ListItem = (props:any) => {
         <div className="container">
             <div className="columnDiv">
                 <p className="title2"> {item.name} </p>
-                <p className="description"> {item.description} </p>
+                <p className="description"> {item.note} </p>
             </div>
             {children}
         </div>
