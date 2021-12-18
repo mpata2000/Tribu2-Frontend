@@ -8,7 +8,6 @@ import useTypedSelector from 'hooks/useTypedSelector';
 
 const SoporteView = (props: any) => {
   const state = useTypedSelector((state) => state.products);
-  const products = [{"name":"Siu Guarani","versions":["1.0.0"]},{"name":"Proyecto 2","versions":["2.0","2.1","2.1.1"]}];
     if(state.loading){
         return (
             <h2>Loading...</h2>
@@ -26,13 +25,13 @@ const SoporteView = (props: any) => {
             <Accordion className='productos'>
                 {/* Aca deberiamos mostrar lo del get de productos y versiones */}
 
-                {products.map((product: { name: string; versions: string[];}, index:number)=> (
+                {Object.entries(state.products).map((product: any, index:number)=> (
                     <Accordion.Item eventKey={index.toString()}>
-                        <Accordion.Header>{product.name}</Accordion.Header>
+                        <Accordion.Header>{product[0]}</Accordion.Header>
                         <Accordion.Body>
-                        {product.versions.map((version: string, index:number)=> (
+                        {product[1].map((version: string, index:number)=> (
                             <div>
-                                <Link to="/soporte/tickets" state={{ product: product.name, version: version }}>
+                                <Link to="/soporte/tickets" state={{ product: product[0], version: version }}>
                                     <span>{version}</span>
                                 </Link>
                             </div>
