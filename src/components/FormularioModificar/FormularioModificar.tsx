@@ -3,6 +3,7 @@ import './FormularioModificar.css'
 import Form from 'react-bootstrap/Form'
 import { FloatingLabel } from 'react-bootstrap'
 import Button from 'react-bootstrap/Button'
+import {Link} from "react-router-dom";
 import { useLocation } from 'react-router-dom';
 
 const FormularioModificar = (props:any) => {
@@ -58,9 +59,6 @@ const FormularioModificar = (props:any) => {
                         Modificar ticket
                     </Button>
 
-                    <Button className='btn btn-dark'>
-                        Cancelar
-                    </Button>
                     </Form.Group>
                 </div>
 
