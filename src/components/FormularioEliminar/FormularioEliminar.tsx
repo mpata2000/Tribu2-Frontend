@@ -47,10 +47,7 @@ const FormularioEliminar = (props:any) => {
                     <Button className='btn btn-dark' type="submit">
                         Eliminar ticket
                     </Button>
-
-                    <Button className='btn btn-dark'>
-                        Cancelar
-                    </Button>
+                    
                     </Form.Group>
                 </div>
 
