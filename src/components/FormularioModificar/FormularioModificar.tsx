@@ -24,18 +24,29 @@ const FormularioModificar = (props:any) => {
 
                 <Form.Group className="d-flex flex-row justify-content-evenly" controlId="formBasicEmail">
                     <Form.Label className='etiqueta'>Nombre del Ticket</Form.Label>
-                    <Form.Control value={nombre} readOnly={true} className='input_grande' type="text" placeholder="Nombre del ticket" />
+                    <Form.Control value={nombre} readOnly={true} className='input_grande' type="text" placeholder="Severidad" />
+                </Form.Group>
+
+
+                <Form.Group className="d-flex flex-row justify-content-evenly" controlId="formBasicEmail">
+                    <Form.Label className='etiqueta'>Severidad</Form.Label>
+                    <Form.Control  readOnly={true} className='input_grande' type="text" placeholder="Estado" />
+                </Form.Group>
+
+
+                <Form.Group className="d-flex flex-row justify-content-evenly" controlId="formBasicEmail">
+                    <Form.Label className='etiqueta'>Estado</Form.Label>
+                    <Form.Control readOnly={true} className='input_grande' type="text" placeholder="Nombre del ticket" />
                 </Form.Group>
 
                 <div className="d-flex flex-row justify-content-evenly">
                     <Form.Group className='d-flex flex-row' controlId="formBasicEmail">
                         <Form.Label  className='etiqueta'>Descripcion</Form.Label>
                         <Form.Control
-                            value={descrip}
-                            readOnly={true}
+
                             className='input_descripcion'
                             as="textarea"
-                            placeholder="Descripción del ticket"
+                            placeholder={descrip}
                             style={{ height: '100px' }}
                             />
                     </Form.Group>
