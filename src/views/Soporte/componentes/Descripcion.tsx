@@ -1,5 +1,9 @@
 import React from 'react'
 import moment from 'moment'
+import Button from 'react-bootstrap/Button'
+import { AnyRecord } from 'dns';
+import {Link} from 'react-router-dom';
+
 
 const Descripcion = (props:any) => {
     let {ticket} = props;
@@ -50,8 +54,17 @@ const Descripcion = (props:any) => {
 
             <div className='d-flex flex-column align-items-center'>
                 <p className='btn btn-link boton_tareas'>Ver tareas asociadas</p>
-                <p className='btn btn-secondary boton_accion'>Eliminar</p>
-                <p className='btn btn-dark boton_accion'>Modificar</p>
+
+
+
+                <Link to='/soporte/tickets/eliminar' className='btn btn-secondary boton_accion'>
+                    Eliminar
+                </Link>
+
+                <Button className='btn btn-secondary boton_accion'>
+                    Modificar
+                </Button>
+                
             </div>
         </div>
     )

@@ -6,6 +6,7 @@ import HomeContainer from 'containers/HomeContainer';
 import SoporteContainer from 'containers/SoporteContainer';
 import TicketsContainer from 'containers/TicketsContainer';
 import FormularioTicketsContainer from 'containers/FormularioTicketsContainer';
+import EliminarTicketsContainer from 'containers/EliminarTicketsContainer';
 import HoursContainer from 'containers/HoursContainer';
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
@@ -21,11 +22,12 @@ function App() {
             <div className='contentView'>
               <Routes>
                 <Route path="/" element={<HomeContainer />}/>
-                < Route path="/about" element={<AboutContainer />} />
-                < Route path="/hours" element={<HoursContainer />} />
+                <Route path="/about" element={<AboutContainer />} />
+                <Route path="/hours" element={<HoursContainer />} />
                 <Route path="/soporte" element={<SoporteContainer />} />
                 <Route path="/soporte/tickets" element={<TicketsContainer />} />
                 <Route path="/soporte/tickets/crear" element={<FormularioTicketsContainer />} />
+                <Route path="/soporte/tickets/eliminar" element={<EliminarTicketsContainer />} />
               </Routes>
             </div>
           </div>
