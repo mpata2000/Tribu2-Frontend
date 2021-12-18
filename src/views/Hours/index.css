@@ -1,0 +1,35 @@
+.hoursView {
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    margin: 10px;
+    text-align: left;
+}
+
+.title {
+    margin: 10px;
+    padding: 5px;
+    font-family: monospace;
+    color: grey;
+    border-bottom: 2px darkcyan solid;
+}
+
+.rowDiv {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 10px;
+    padding: 5px;
+}
+
+.calendar {}
+
+.hoursList {
+    display: flex;
+    flex-direction: column;
+    min-width: 70%;
+    min-height: 70%;
+}
+
+.list {
+    padding:20px;
+    margin: 1px 20px;
+}
