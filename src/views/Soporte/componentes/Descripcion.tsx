@@ -65,9 +65,17 @@ const Descripcion = (props:any) => {
                     Eliminar
                 </Link>
 
-                <Button className='btn btn-secondary boton_accion'>
+
+                <Link to='/soporte/tickets/modificar' 
+                className='btn btn-secondary boton_accion'
+                state={{ ticketID: ticket.id,
+                 nombre : ticket.nombre ,
+                 descrip : ticket.descripcion,
+                 severidad : ticket.severidad,
+                 estado : ticket.estado
+                 }}>
                     Modificar
-                </Button>
+                </Link>
                 
             </div>
         </div>
