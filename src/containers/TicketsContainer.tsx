@@ -2,19 +2,18 @@ import React from 'react'
 import TicketsView from 'views/Soporte/Tickets'
 import {useDispatch} from 'react-redux'
 import { onTicketsGetAll } from 'redux_folder/actions/tickets.actions';
-import useTypedSelector from 'hooks/useTypedSelector';
+import { useLocation} from 'react-router-dom';
 
 const TicketsContainer = () => {
+    const product = useLocation().state.product;
+    const version = useLocation().state.version;
 
-    const ticket_state = useTypedSelector((state) => state.tickets);
+    const dispatch = useDispatch();
+    dispatch(onTicketsGetAll(product, version));
 
-    if(ticket_state.loading){
-        return (
-            <h2>Loading...</h2>
-        )
-    }
+   
     return (
-        <TicketsView tickets={ticket_state.tickets} />
+        <TicketsView product={product} version={version}/>
     )
 }
 

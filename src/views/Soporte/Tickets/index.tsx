@@ -1,31 +1,37 @@
 import React, { useState } from 'react';
 import {Button, Accordion} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Link, useLocation} from 'react-router-dom';
+import { Link} from 'react-router-dom';
 import Tabla from 'components/Tabla/Tabla'
 import './index.css'
 import Descripcion from '../componentes/Descripcion';
+import useTypedSelector from 'hooks/useTypedSelector';
 
 
 
 const TicketsView = (props: any) => {
-    const {tickets} = props;
+    const state = useTypedSelector((state) => state.tickets);
+    const tickets = state.tickets;
+
     const [ ticket_i, setTicketI ] = useState(0);
     function onRowClick(i:number){
         setTicketI(i)
     }
     
-    const product = useLocation().state.product;
-    const version = useLocation().state.version;
+    const {product} = props;
+    const {version} = props;
 
     const [ search, setSearch ] = useState('');
     const filter_name = (event:any) => {
         setSearch(event.target.value);
     }
 
-    let filtered_tickets = tickets;
-    if(search){
-        filtered_tickets = filtered_tickets.filter((ticket:any) => {return ticket.nombre.includes(search)});
+    let filtered_tickets = tickets.filter((ticket:any) => {return ticket.nombre.includes(search)});
+
+    if(state.loading){
+        return (
+            <h2>Loading...</h2>
+        )
     }
 
     return (

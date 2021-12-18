@@ -7,3 +7,7 @@ export async function getTickets(producto:string, version:string): Promise<any> 
   return response;
 }
 
+export async function getProducts(): Promise<any> {
+  const response = await get(`${url}/products`);
+  return response;
+}
