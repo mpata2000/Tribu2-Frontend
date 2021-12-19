@@ -9,10 +9,14 @@ const FormularioCrear = (props:any) => {
     const {tickets} = props;
     const {onRowClick} = props;
 
-    const state = useTypedSelector((state) => state.resources);
-    const resources = state.resources;
+    const resources_state = useTypedSelector((state) => state.resources);
+    const tareas_state = useTypedSelector((state) => state.tareas);
+    const resources = resources_state.resources;
+    const tareas = tareas_state.tareas.filter((tarea:any) => {return tarea.idTicket == 0});
 
-    if(state.loading){
+
+
+    if(resources_state.loading || tareas_state.loading){
         return (
             <h2>Loading...</h2>
         )
@@ -111,9 +115,9 @@ const FormularioCrear = (props:any) => {
                         <Form.Label className='etiqueta'>Tarea</Form.Label>
                         <Form.Select className='input_grande'>
                             <option> </option>
-                            <option value="1">Tarea1</option>
-                            <option value="2">Tarea2</option>
-                            <option value="3">Tarea3</option>
+                            {tareas.map((tarea:any) =>(
+                                <option value={tarea.idTarea}>{tarea.nombre}</option>
+                            ))}
                         </Form.Select>
                     </Form.Group>
                 <div className="d-flex flex-row justify-content-evenly">
