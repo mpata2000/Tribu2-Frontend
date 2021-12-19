@@ -3,18 +3,23 @@ import './FormularioEliminar.css';
 import Form from 'react-bootstrap/Form';
 import { FloatingLabel } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
-import { useLocation } from 'react-router-dom';
+import { NavigateFunction, useLocation } from 'react-router-dom';
 import { AnyARecord } from 'dns';
 import { delete_ } from 'services/api';
+import { useNavigate } from 'react-router-dom';
+
+function solicitarEliminacionDeTicket( id : any, estado : any, navigate : NavigateFunction) {
 
 
-function solicitarEliminacionDeTicket( id : any ) {
-
-    const url_solicitud = `https://shielded-shelf-11253.herokuapp.com/tickets/${id}`;
-
-    const respuesta = delete_(url_solicitud);
-    //deberia agarrar el error en caso de que falle.
-
+    if (estado == "cerrado") {
+        const respuesta = delete_(`https://shielded-shelf-11253.herokuapp.com/tickets/${id}`);
+        alert("Ticket correctamente eliminado");
+        navigate(-1);
+    }
+    else{
+        alert("El ticket debe estar cerrado para poder ser eliminado");
+        navigate(-1); //va a la pagina previa
+    }
 }
 
 
@@ -25,6 +30,8 @@ const FormularioEliminar = (props:any) => {
     const { ticketID } = location.state;
     const {nombre} = location.state;
     const {descrip} = location.state;
+    const {estado} = location.state;
+    const navigate = useNavigate();
 
     //const {tickets} = props;
 
@@ -58,7 +65,7 @@ const FormularioEliminar = (props:any) => {
 
                 <div className="d-flex flex-row justify-content-evenly">
                     <Form.Group className='d-flex flex-row' controlId="formBasicEmail">
-                    <Button className='btn btn-dark' onClick={() =>solicitarEliminacionDeTicket(ticketID) }>
+                    <Button className='btn btn-dark' onClick={() =>solicitarEliminacionDeTicket(ticketID, estado, navigate)}>
                         Eliminar ticket
                     </Button>
 

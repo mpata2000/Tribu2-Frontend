@@ -61,7 +61,8 @@ const Descripcion = (props:any) => {
                 className='btn btn-secondary boton_accion'
                 state={{ ticketID: ticket.id,
                  nombre : ticket.nombre ,
-                 descrip : ticket.descripcion}}>
+                 descrip : ticket.descripcion,
+                 estado : ticket.estado}}>
                     Eliminar
                 </Link>
 
