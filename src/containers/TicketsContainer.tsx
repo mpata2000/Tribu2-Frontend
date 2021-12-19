@@ -1,7 +1,7 @@
 import React from 'react'
 import TicketsView from 'views/Soporte/Tickets'
 import {useDispatch} from 'react-redux'
-import { onTicketsGetAll } from 'redux_folder/actions/tickets.actions';
+import { onTicketsGetAll, onTareasGetAll } from 'redux_folder/actions/tickets.actions';
 import { useLocation} from 'react-router-dom';
 
 const TicketsContainer = () => {
@@ -10,6 +10,7 @@ const TicketsContainer = () => {
 
     const dispatch = useDispatch();
     dispatch(onTicketsGetAll(product, version));
+    dispatch(onTareasGetAll());
 
    
     return (

@@ -7,3 +7,8 @@ export interface IProductsDefaultState {
     loading: boolean,
     products: any[],
 }
+
+export interface ITareasDefaultState {
+    loading: boolean,
+    tareas: any[],
+}
