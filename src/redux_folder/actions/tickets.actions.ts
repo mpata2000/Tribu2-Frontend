@@ -22,7 +22,7 @@ export const onProductsGetAllSucceeded = (data: any): AnyAction => (
 export const onProductsGetAllFailed = (error: unknown): AnyAction => (
   { type: constants.PRODUCTS_ON_GET_ALL_FAILED, error });
 
-// PRODUCTS_ON_GET_ALL
+// TAREAS_ON_GET_ALL
 export const onTareasGetAll = ():  AnyAction => (
   { type: constants.TAREAS_ON_GET_ALL_REQUESTED});
 
@@ -31,3 +31,13 @@ export const onTareasGetAllSucceeded = (data: any): AnyAction => (
 
 export const onTareasGetAllFailed = (error: unknown): AnyAction => (
   { type: constants.TAREAS_ON_GET_ALL_FAILED, error });
+
+// RESOURCES_ON_GET_ALL
+export const onResourcesGetAll = ():  AnyAction => (
+  { type: constants.RESOURCES_ON_GET_ALL_REQUESTED});
+
+export const onResourcesGetAllSucceeded = (data: any): AnyAction => (
+  { type: constants.RESOURCES_ON_GET_ALL_SUCCEEDED, data });
+
+export const onResourcesGetAllFailed = (error: unknown): AnyAction => (
+  { type: constants.RESOURCES_ON_GET_ALL_FAILED, error });

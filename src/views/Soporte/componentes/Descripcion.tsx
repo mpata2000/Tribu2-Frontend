@@ -11,8 +11,6 @@ const Descripcion = (props:any) => {
     const state = useTypedSelector((state) => state.tareas);
     const tareas = state.tareas;
     const tareas_ticket = tareas.filter((tarea:any) => {return ticket.tareas.includes(tarea.idTarea)});
-    console.log(ticket)
-    console.log(tareas)
     if(!ticket){
         return (<div></div>)
     }

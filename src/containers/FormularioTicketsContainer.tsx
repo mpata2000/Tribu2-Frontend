@@ -1,14 +1,13 @@
 import React from 'react'
 import FormularioTicketsView from 'views/Soporte/FormularioTickets'
 import {useDispatch} from 'react-redux'
-// import { onTicketsGetAll } from 'redux_folder/actions/tickets.actions';
-import useTypedSelector from 'hooks/useTypedSelector';
-
+import { onResourcesGetAll } from 'redux_folder/actions/tickets.actions';
 const FormularioTicketsContainer = () => {
 
 
 
-    const ticket_state = useTypedSelector((state) => state.tickets);
+    const dispatch = useDispatch();
+    dispatch(onResourcesGetAll());
 
     return (
         <FormularioTicketsView />

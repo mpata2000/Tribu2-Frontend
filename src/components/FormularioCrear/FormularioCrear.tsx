@@ -3,10 +3,20 @@ import './FormularioCrear.css'
 import Form from 'react-bootstrap/Form'
 import { FloatingLabel } from 'react-bootstrap'
 import Button from 'react-bootstrap/Button'
+import useTypedSelector from 'hooks/useTypedSelector';
 
 const FormularioCrear = (props:any) => {
     const {tickets} = props;
     const {onRowClick} = props;
+
+    const state = useTypedSelector((state) => state.resources);
+    const resources = state.resources;
+
+    if(state.loading){
+        return (
+            <h2>Loading...</h2>
+        )
+    }
     return (
         <div className='d-flex justify-content-center'>
             <Form className='d-flex flex-column justify-content-evenly formulario'>
@@ -90,8 +100,10 @@ const FormularioCrear = (props:any) => {
                     <Form.Label className='etiqueta'>Recurso</Form.Label>
                     <Form.Select className='input_grande'>
                         <option> </option>
-                        <option value="1">Recurso 1</option>
-                        <option value="2">Recurso 2</option>
+
+                        {resources.map((resource:any) =>(
+                            <option value={resource.legajo}>{resource.Nombre + ' ' + resource.Apellido}</option>
+                        ))}
                     </Form.Select>
                 </Form.Group>
 
