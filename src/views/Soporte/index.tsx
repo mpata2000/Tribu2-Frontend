@@ -19,12 +19,9 @@ const SoporteView = (props: any) => {
             
             <div className='d-flex flex-row' id="titulo">{/* Lo pongo a la izquierda y que ocupe todo el ancho  */}
                 <h2>Productos</h2>
-        
             </div>
             
             <Accordion className='productos'>
-                {/* Aca deberiamos mostrar lo del get de productos y versiones */}
-
                 {Object.entries(state.products).map((product: any, index:number)=> (
                     <Accordion.Item eventKey={index.toString()}>
                         <Accordion.Header>{product[0]}</Accordion.Header>

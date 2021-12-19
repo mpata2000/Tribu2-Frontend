@@ -6,6 +6,8 @@ import Tabla from 'components/Tabla/Tabla'
 import './index.css'
 import Descripcion from '../componentes/Descripcion';
 import useTypedSelector from 'hooks/useTypedSelector';
+import {useDispatch} from 'react-redux';
+import { onTareasGetAll } from 'redux_folder/actions/tickets.actions';
 
 
 
@@ -14,6 +16,8 @@ const TicketsView = (props: any) => {
     const tickets = state.tickets;
 
     const [ ticket_i, setTicketI ] = useState(0);
+
+
     function onRowClick(i:number){
         setTicketI(i)
     }
@@ -70,7 +74,7 @@ const TicketsView = (props: any) => {
                 </div>
                 <div className='aside shadow bg-white rounded'>
                     <Descripcion ticket={filtered_tickets ? filtered_tickets[ticket_i] : null}/>
-                    </div>
+                </div>
             </div>
             
         </div>

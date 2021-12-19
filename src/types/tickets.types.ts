@@ -7,3 +7,18 @@ export interface IProductsDefaultState {
     loading: boolean,
     products: any[],
 }
+
+export interface ITareasDefaultState {
+    loading: boolean,
+    tareas: any[],
+}
+
+export interface IResourcesDefaultState {
+    loading: boolean,
+    resources: any[],
+}
+
+export interface IClientsDefaultState {
+    loading: boolean,
+    clients: any[],
+}

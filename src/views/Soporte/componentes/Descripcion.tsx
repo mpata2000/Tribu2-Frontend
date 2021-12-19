@@ -3,12 +3,21 @@ import moment from 'moment'
 import Button from 'react-bootstrap/Button'
 import { AnyRecord } from 'dns';
 import {Link} from 'react-router-dom';
-
+import { List, ListItem, ListItemText} from '@mui/material';
+import useTypedSelector from 'hooks/useTypedSelector';
 
 const Descripcion = (props:any) => {
     let {ticket} = props;
+    const state = useTypedSelector((state) => state.tareas);
+    const tareas = state.tareas;
+    const tareas_ticket = tareas.filter((tarea:any) => {return ticket.tareas.includes(tarea.idTarea)});
     if(!ticket){
         return (<div></div>)
+    }
+    if(state.loading){
+        return (
+            <h2>Loading...</h2>
+        )
     }
     return (
         <div className='info'>
@@ -52,11 +61,16 @@ const Descripcion = (props:any) => {
                 <p className='margen_chico'>{ticket.recurso}</p>
             </div>
 
+            <p className='subtitulo margen_chico margen_derecho'>Tareas:</p>
+            <List>
+                {tareas_ticket.map((tarea:any) => (
+                    <ListItem disablePadding>
+                        <ListItemText primary={tarea.nombre} />
+                    </ListItem>
+                ))}
+            </List>
             <div className='d-flex flex-column align-items-center'>
-                <p className='btn btn-link boton_tareas'>Ver tareas asociadas</p>
-
-
-
+                
                 <Link to='/soporte/tickets/eliminar' 
                 className='btn btn-secondary boton_accion'
                 state={{ ticketID: ticket.id,
