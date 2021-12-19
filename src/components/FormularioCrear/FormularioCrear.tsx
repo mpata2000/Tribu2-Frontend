@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './FormularioCrear.css'
 import Form from 'react-bootstrap/Form'
 import { FloatingLabel } from 'react-bootstrap'
@@ -17,6 +17,31 @@ const FormularioCrear = (props:any) => {
     const tareas = tareas_state.tareas.filter((tarea:any) => {return tarea.idTicket == 0});
     const clients = clients_state.clients;
 
+    const [formValues, setFormValues ] = useState({
+        nombre: '',
+        proyecto: '',
+        version: '',
+        estado: '',
+        tipo: '',
+        severidad: '',
+        cliente: '',
+        recurso: '',
+        descripcion: '',
+        creador: '',
+        tarea: '',
+    })
+
+    const handleChange = (event:any) => {
+        const {name , value} = event.target
+        console.log(name, value)
+
+        setFormValues({...formValues, [name]: value})
+    }
+
+    const handleSubmit = (e:any) => {
+        e.preventDefault()
+        console.log(formValues)
+    }
 
     if(resources_state.loading || tareas_state.loading || clients_state.loading){
         return (
@@ -25,10 +50,10 @@ const FormularioCrear = (props:any) => {
     }
     return (
         <div className='d-flex justify-content-between'>
-            <Form className='d-flex flex-column justify-content-evenly formulario'>
+            <Form className='d-flex flex-column justify-content-evenly formulario' onSubmit = {handleSubmit}>
                 <Form.Group className="d-flex flex-row justify-content-evenly" controlId="formBasicEmail">
                     <Form.Label className='etiqueta'>Nombre</Form.Label>
-                    <Form.Control className='input_grande' type="text" placeholder="Nombre del ticket" />
+                    <Form.Control className='input_grande' type="text" placeholder="Nombre del ticket" name="nombre" value={formValues.nombre} onChange={handleChange} />
                     {/* <Form.Text className="text-muted">
                     We'll never share your email with anyone else.
                 </Form.Text> */}
@@ -36,7 +61,7 @@ const FormularioCrear = (props:any) => {
                 <div className="d-flex flex-row justify-content-evenly doble_input">
                     <Form.Group className='d-flex flex-row primer_input' controlId="floatingSelect">
                         <Form.Label className='etiqueta'>Proyectos</Form.Label>
-                        <Form.Select className='input_chico'>
+                        <Form.Select className='input_chico' name="proyecto" value={formValues.proyecto} onChange={handleChange}>
                             <option> </option>
                             <option value="1">SIU-GUARANI</option>
                             <option value="2">Proyecto2</option>
@@ -45,7 +70,7 @@ const FormularioCrear = (props:any) => {
                     </Form.Group>
                     <Form.Group className='d-flex flex-row primer_input' controlId="floatingSelect">
                         <Form.Label className='etiqueta'>Version</Form.Label>
-                        <Form.Select className='input_chico'>
+                        <Form.Select className='input_chico' name="version" value={formValues.version} onChange={handleChange}>
                             <option> </option>
                             <option value="1">1.0</option>
                             <option value="2">2.0</option>
@@ -57,7 +82,7 @@ const FormularioCrear = (props:any) => {
                 <div className="d-flex flex-row justify-content-evenly">
                     <Form.Group className='d-flex flex-row primer_input' controlId="floatingSelect">
                         <Form.Label className='etiqueta'>Estado</Form.Label>
-                        <Form.Select className='input_chico'>
+                        <Form.Select className='input_chico' name="estado" value={formValues.estado} onChange={handleChange}>
                             <option> </option>
                             <option value="1">Abierto</option>
                             <option value="2">Cerrado</option>
@@ -66,7 +91,7 @@ const FormularioCrear = (props:any) => {
                     </Form.Group>
                     <Form.Group className='d-flex flex-row primer_input' controlId="floatingSelect">
                         <Form.Label className='etiqueta'>Tipo</Form.Label>
-                        <Form.Select className='input_chico'>
+                        <Form.Select className='input_chico' name="tipo" value={formValues.tipo} onChange={handleChange}>
                             <option> </option>
                             <option value="1">Consulta</option>
                             <option value="2">Incidencia</option>
@@ -77,7 +102,7 @@ const FormularioCrear = (props:any) => {
                 <div className="d-flex flex-row justify-content-evenly">
                     <Form.Group className='d-flex flex-row primer_input' controlId="floatingSelect">
                         <Form.Label className='etiqueta'>Severidad</Form.Label>
-                        <Form.Select className='input_chico'>
+                        <Form.Select className='input_chico' name="severidad" value={formValues.severidad} onChange={handleChange}>
                             <option> </option>
                             <option value="1">Alta</option>
                             <option value="2">Media</option>
@@ -86,7 +111,7 @@ const FormularioCrear = (props:any) => {
                     </Form.Group>
                     <Form.Group className='d-flex flex-row primer_input' controlId="floatingSelect">
                         <Form.Label className='etiqueta'>Cliente</Form.Label>
-                        <Form.Select className='input_chico'>
+                        <Form.Select className='input_chico' name="cliente" value={formValues.cliente} onChange={handleChange}>
                             <option> </option>
                             {clients.map((client:any) =>(
                             <option value={client.id}>{client['razon social']}</option>
@@ -97,7 +122,7 @@ const FormularioCrear = (props:any) => {
 
                 <Form.Group className="d-flex flex-row justify-content-evenly" controlId="formBasicEmail">
                     <Form.Label className='etiqueta'>Creador</Form.Label>
-                    <Form.Control className='input_grande' type="email" placeholder="Complete" />
+                    <Form.Control className='input_grande' type="text" placeholder="Complete" name="creador" value={formValues.creador} onChange={handleChange}/>
                     {/* <Form.Text className="text-muted">
                     We'll never share your email with anyone else.
                 </Form.Text> */}
@@ -105,7 +130,7 @@ const FormularioCrear = (props:any) => {
                 
                 <Form.Group className='d-flex flex-row' controlId="floatingSelect">
                     <Form.Label className='etiqueta'>Recurso</Form.Label>
-                    <Form.Select className='input_grande'>
+                    <Form.Select className='input_grande' name="recurso" value={formValues.recurso} onChange={handleChange}>
                         <option> </option>
 
                         {resources.map((resource:any) =>(
@@ -116,7 +141,7 @@ const FormularioCrear = (props:any) => {
 
                     <Form.Group className='d-flex flex-row' controlId="floatingSelect">
                         <Form.Label className='etiqueta'>Tarea</Form.Label>
-                        <Form.Select className='input_grande'>
+                        <Form.Select className='input_grande' name="tarea" value={formValues.tarea} onChange={handleChange}>
                             <option> </option>
                             {tareas.map((tarea:any) =>(
                                 <option value={tarea.idTarea}>{tarea.nombre}</option>
@@ -130,6 +155,9 @@ const FormularioCrear = (props:any) => {
                             className='input_descripcion_crear'
                             as="textarea"
                             placeholder="Descripción del ticket"
+                            name="descripcion"
+                            value={formValues.descripcion}
+                            onChange={handleChange}
                             style={{ height: '100px' }}
                             />
                     </Form.Group>
