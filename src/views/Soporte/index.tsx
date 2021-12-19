@@ -37,6 +37,7 @@ const SoporteView = (props: any) => {
                     </Accordion.Item>
                 ))}
             </Accordion>
+
         </div>
     </>
     )

@@ -9,6 +9,7 @@ import useTypedSelector from 'hooks/useTypedSelector';
 const FormularioCrear = (props:any) => {
     const {tickets} = props;
     const {onRowClick} = props;
+    const {handleSubmit} = props;
 
     const resources_state = useTypedSelector((state) => state.resources);
     const tareas_state = useTypedSelector((state) => state.tareas);
@@ -28,7 +29,7 @@ const FormularioCrear = (props:any) => {
         recurso: '',
         descripcion: '',
         creador: '',
-        tarea: '',
+        tareas: ['1'],
     })
 
     const handleChange = (event:any) => {
@@ -38,9 +39,10 @@ const FormularioCrear = (props:any) => {
         setFormValues({...formValues, [name]: value})
     }
 
-    const handleSubmit = (e:any) => {
+    const _handleSubmit = (e:any) => {
         e.preventDefault()
-        console.log(formValues)
+        handleSubmit({...formValues})
+        //console.log(formValues)
     }
 
     if(resources_state.loading || tareas_state.loading || clients_state.loading){
@@ -50,7 +52,7 @@ const FormularioCrear = (props:any) => {
     }
     return (
         <div className='d-flex justify-content-between'>
-            <Form className='d-flex flex-column justify-content-evenly formulario' onSubmit = {handleSubmit}>
+            <Form className='d-flex flex-column justify-content-evenly formulario' onSubmit = {_handleSubmit}>
                 <Form.Group className="d-flex flex-row justify-content-evenly" controlId="formBasicEmail">
                     <Form.Label className='etiqueta'>Nombre</Form.Label>
                     <Form.Control className='input_grande' type="text" placeholder="Nombre del ticket" name="nombre" value={formValues.nombre} onChange={handleChange} />
@@ -141,7 +143,7 @@ const FormularioCrear = (props:any) => {
 
                     <Form.Group className='d-flex flex-row' controlId="floatingSelect">
                         <Form.Label className='etiqueta'>Tarea</Form.Label>
-                        <Form.Select className='input_grande' name="tarea" value={formValues.tarea} onChange={handleChange}>
+                        <Form.Select className='input_grande' name="tareas" value={formValues.tareas} onChange={handleChange}>
                             <option> </option>
                             {tareas.map((tarea:any) =>(
                                 <option value={tarea.idTarea}>{tarea.nombre}</option>
