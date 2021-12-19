@@ -5,7 +5,7 @@ import {
   import * as constants from 'redux_folder/constants/proyects.constants';
   import * as actions from 'redux_folder/actions/proyects.actions';
   
-  import { getProyects , postProyects } from 'services/proyects.services';
+  import { getProyects , getTasks, postProyects } from 'services/proyects.services';
   
   export function* proyectsGetAll() {
     try {
@@ -24,11 +24,22 @@ import {
       yield put(actions.createProyectFailed(error));
     }
   }
+
+  export function* tasksGet(data_:any) {
+    try {
+      const data: unknown = yield call(getTasks);
+      yield put(actions.onGetTasksSucceeded(data));
+    } catch (error) {
+      yield put(actions.onGetTasksFailed(error));
+    }
+  }
   
   export function* watchProyects() {
     yield all([
       takeLatest(constants.PROYECTS_ON_GET_ALL_REQUESTED, proyectsGetAll),
       takeLatest(constants.PROYECTS_ON_CREATE_REQUESTED, proyectsCreate),
+      takeLatest(constants.PROYECTS_ON_GET_TASKS_REQUESTED, tasksGet),
+
     ]);
   }
   

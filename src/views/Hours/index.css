@@ -2,6 +2,7 @@
     border: 1px solid rgba(0, 0, 0, 0.05);
     margin: 10px;
     text-align: left;
+    min-height: 90%;
 }
 
 .title {
@@ -32,4 +33,13 @@
 .list {
     padding:20px;
     margin: 1px 20px;
+}
+
+.listBox {
+    min-width: 80%;
+    min-height: 80%;
+    display:flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
 }

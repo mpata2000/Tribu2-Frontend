@@ -1,4 +1,4 @@
-import { get, post } from 'services/api';
+import { get, patch, post } from 'services/api';
 
 const url = 'https://psa-tribu2-recursos.herokuapp.com'
 
@@ -23,5 +23,42 @@ export async function getHours(filters:any): Promise<any> {
 
 export async function createHours(data_:any): Promise<any> {
   const response = await post(`${url}/hours`, data_);
+  return response;
+}
+export async function editHours(data: any): Promise<any> {
+  let body = {}
+
+  if( data.day ){
+    body = {
+      ...body,
+      day: data.day
+    }
+  }
+  
+  if( data.note ){
+    body = {
+      ...body,
+      note: data.note
+    }
+  }
+  if( data.hours ){
+    body = {
+      ...body,
+      hours: data.hours
+    }
+  }
+  if( data.minutes ){
+    body = {
+      ...body,
+      minutes: data.minutes
+    }
+  }
+  if( data.seconds ){
+    body = {
+      ...body,
+      seconds: data.seconds
+    }
+  }
+  const response = await patch(`${url}/hours/${data.id}`, body)
   return response;
 }

@@ -20,3 +20,13 @@ export const onCreateHoursSucceeded = (data: any): AnyAction => (
 
 export const onCreateHoursFailed = (error: unknown): AnyAction => (
   { type: constants.HOURS_ON_CREATE_FAILED, error });
+
+// HOURS_ON_EDIT
+export const onHoursEdit = (data:any): AnyAction => (
+  { type: constants.HOURS_ON_EDIT_REQUESTED, data});
+
+  export const onHoursEditSucceeded = (data: any): AnyAction => (
+    { type: constants.HOURS_ON_EDIT_SUCCEEDED, data });
+  
+  export const onHoursEditFailed = (error: unknown): AnyAction => (
+    { type: constants.HOURS_ON_EDIT_FAILED, error });

@@ -5,30 +5,28 @@ import PlayCircleIcon from '@mui/icons-material/PlayCircle';
 import StopCircleIcon from '@mui/icons-material/StopCircle';
 import './index.css'
 import { useDispatch } from 'react-redux';
-import { Button, IconButton } from '@mui/material';
+import { Button, IconButton, Modal } from '@mui/material';
+import {BiEdit} from 'react-icons/bi'
+import AddTaskToHoursModal from 'components/AddTaskToHoursModal';
+import EditHoursModal from 'components/EditHoursModal';
 
 const HoursButtons = (props:any) => {
-    const {hour} = props
+    const {hour, date} = props
     const [seconds, setSeconds] = useState(hour.seconds)
     const [minutes, setMinutes] = useState(hour.minutes)
     const [hours, setHours] = useState(hour.hours)
 
     const [pause, setPause] = useState(true);
-    const [stop, setStop] = useState(true);
     const [play, setPlay] = useState(false);
+    
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
 
     const dispatch = useDispatch();
 
     useEffect(() => {
-        if(stop){
-            //dispatch(onUpdateHours())
-            setPause(true)
-        }
-    }, [stop])
-
-    useEffect(() => {
         if(play){
-            setStop(false);
             setPause(false)
         }
     }, [play])
@@ -66,20 +64,25 @@ const HoursButtons = (props:any) => {
     const time = ` ${extraHoursCero}${hours}:${extraMinutesCero}${minutes}:${extraSecondsCero}${seconds}`
     return (
         <div className='container2'>
-            <div className='timer'>
-                <p className='time'>{time}</p>
-            </div>
-            <div className='rowDiv2'>
-                <IconButton onClick={() => setPause(true)}>
-                    <PauseCircleIcon  style={{color: (pause && !stop) ? 'darkcyan' : 'black' }}/>
-                </IconButton>
-                <IconButton onClick={() => setPlay(true)}>
-                    <PlayCircleIcon style={{color: (play) ? 'darkcyan' : 'black' }}/>
-                </IconButton>
-                <IconButton onClick={() => setStop(true)}>
-                    <StopCircleIcon style={{color: 'black'}} />
-                </IconButton>
-            </div>
+            <Modal
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+            >
+                <EditHoursModal hour={hour} handleClose={handleClose} date={date}/>
+            </Modal>
+            <div className='time'>{time}</div>
+            <IconButton style={{alignSelf: 'center'}} onClick={() => {(play) ? setPause(true) : setPlay(true)}}>
+                    {(play) 
+                    ? (<PauseCircleIcon style={{color: 'darkcyan' }}/>) 
+                    : <PlayCircleIcon style={{color: 'darkcyan' }}/>}
+            </IconButton >
+                
+            <IconButton style={{alignSelf: 'center'}} onClick={handleOpen}>
+                <BiEdit />
+            </IconButton>
+                
         </div>
     )
 }
