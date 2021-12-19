@@ -14,8 +14,6 @@ const Descripcion = (props:any) => {
     const state = useTypedSelector((state) => state.tareas);
     const tareas = state.tareas;
     const tareas_ticket = tareas.filter((tarea:any) => {return ticket.tareas.includes(tarea.idTarea)});
-    console.log(ticket)
-    console.log(tareas)
     if(!ticket){
         return (<div></div>)
     }
@@ -83,7 +81,8 @@ const Descripcion = (props:any) => {
                  descrip : ticket.descripcion,
                  producto : ticket.producto,
                  version : ticket.version,
-                 tareas : ticket.tareas
+                 tareas : ticket.tareas,
+                 estado : ticket.estado
                  }}>
                     Eliminar
                 </Link>

@@ -3,18 +3,23 @@ import './FormularioEliminar.css';
 import Form from 'react-bootstrap/Form';
 import { FloatingLabel } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
-import { useLocation , Link} from 'react-router-dom';
+import { NavigateFunction, useLocation , Link} from 'react-router-dom';
 import { AnyARecord } from 'dns';
 import { delete_ } from 'services/api';
+import { useNavigate } from 'react-router-dom';
+
+function solicitarEliminacionDeTicket( id : any, estado : any, navigate : NavigateFunction) {
 
 
-function solicitarEliminacionDeTicket( id : any ) {
-
-    const url_solicitud = `https://shielded-shelf-11253.herokuapp.com/tickets/${id}`;
-
-    const respuesta = delete_(url_solicitud);
-    //deberia agarrar el error en caso de que falle.
-
+    if (estado == "cerrado") {
+        const respuesta = delete_(`https://shielded-shelf-11253.herokuapp.com/tickets/${id}`);
+        alert("Ticket correctamente eliminado");
+        navigate(-1);
+    }
+    else{
+        alert("El ticket debe estar cerrado para poder ser eliminado");
+        navigate(-1); //va a la pagina previa
+    }
 }
 
 
@@ -25,11 +30,11 @@ const FormularioEliminar = (props:any) => {
     const { ticketID } = location.state;
     const {nombre} = location.state;
     const {descrip} = location.state;
+    const {estado} = location.state;
+    const navigate = useNavigate();
     const {producto} = location.state;
     const {version} = location.state;
     const {tareas} = location.state;
-    // const product = useLocation().state.product;
-    // const version = useLocation().state.version;
 
     //const {tickets} = props;
 
@@ -60,7 +65,7 @@ const FormularioEliminar = (props:any) => {
                 </Form.Group>
 
                 <Form.Group className='d-flex flex-row justify-content-center' controlId="formBasicEmail">
-                    <Button className='btn btn-secondary' onClick={() =>solicitarEliminacionDeTicket(ticketID) }>
+                    <Button className='btn btn-secondary' onClick={() =>solicitarEliminacionDeTicket(ticketID, estado, navigate) }>
                         Eliminar ticket
                     </Button>
                     <Link to="/soporte/tickets" className='btn btn-dark' state={{ product: producto, version: version, tareas: tareas }}>
