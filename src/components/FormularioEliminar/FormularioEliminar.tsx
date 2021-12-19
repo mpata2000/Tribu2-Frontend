@@ -3,7 +3,7 @@ import './FormularioEliminar.css';
 import Form from 'react-bootstrap/Form';
 import { FloatingLabel } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
-import { useLocation } from 'react-router-dom';
+import { useLocation , Link} from 'react-router-dom';
 import { AnyARecord } from 'dns';
 import { delete_ } from 'services/api';
 
@@ -25,45 +25,48 @@ const FormularioEliminar = (props:any) => {
     const { ticketID } = location.state;
     const {nombre} = location.state;
     const {descrip} = location.state;
+    const {producto} = location.state;
+    const {version} = location.state;
+    const {tareas} = location.state;
+    // const product = useLocation().state.product;
+    // const version = useLocation().state.version;
 
     //const {tickets} = props;
 
     return (
         <div className='d-flex justify-content-center'>
-            <Form className='d-flex flex-column justify-content-evenly formulario'>
+            <Form className='d-flex flex-column justify-content-evenly formulario_eliminar'>
 
-            <Form.Group className="d-flex flex-row justify-content-evenly" controlId="formBasicEmail">
-                    <Form.Label className='etiqueta'>ID del Ticket</Form.Label>
-                    <Form.Control value={ticketID} readOnly={true} className='input_grande' type="text" placeholder="Nombre del ticket" />
+                <Form.Group className="d-flex flex-row justify-content-evenly" controlId="formBasicEmail">
+                    <Form.Label className='etiqueta_eliminar'>ID del Ticket</Form.Label>
+                    <Form.Control value={ticketID} readOnly={true} className='input_grande_eliminar' type="text" placeholder="Nombre del ticket" />
                 </Form.Group>
 
                 <Form.Group className="d-flex flex-row justify-content-evenly" controlId="formBasicEmail">
-                    <Form.Label className='etiqueta'>Nombre del Ticket</Form.Label>
-                    <Form.Control value={nombre} readOnly={true} className='input_grande' type="text" placeholder="Nombre del ticket" />
+                    <Form.Label className='etiqueta_eliminar'>Nombre del Ticket</Form.Label>
+                    <Form.Control value={nombre} readOnly={true} className='input_grande_eliminar' type="text" placeholder="Nombre del ticket" />
                 </Form.Group>
 
-                <div className="d-flex flex-row justify-content-evenly">
-                    <Form.Group className='d-flex flex-row' controlId="formBasicEmail">
-                        <Form.Label  className='etiqueta'>Descripcion</Form.Label>
-                        <Form.Control
-                            value={descrip}
-                            readOnly={true}
-                            className='input_descripcion'
-                            as="textarea"
-                            placeholder="Descripción del ticket"
-                            style={{ height: '100px' }}
-                            />
-                    </Form.Group>
-                </div>
+                <Form.Group className='d-flex flex-row' controlId="formBasicEmail">
+                    <Form.Label  className='etiqueta_eliminar'>Descripcion</Form.Label>
+                    <Form.Control
+                        value={descrip}
+                        readOnly={true}
+                        className='input_grande_eliminar'
+                        as="textarea"
+                        placeholder="Descripción del ticket"
+                        style={{ height: '100px' }}
+                        />
+                </Form.Group>
 
-                <div className="d-flex flex-row justify-content-evenly">
-                    <Form.Group className='d-flex flex-row' controlId="formBasicEmail">
-                    <Button className='btn btn-dark' onClick={() =>solicitarEliminacionDeTicket(ticketID) }>
+                <Form.Group className='d-flex flex-row justify-content-center' controlId="formBasicEmail">
+                    <Button className='btn btn-secondary' onClick={() =>solicitarEliminacionDeTicket(ticketID) }>
                         Eliminar ticket
                     </Button>
-
-                    </Form.Group>
-                </div>
+                    <Link to="/soporte/tickets" className='btn btn-dark' state={{ product: producto, version: version, tareas: tareas }}>
+                        Cancelar
+                    </Link>
+                </Form.Group>
 
             </Form>
         </div>

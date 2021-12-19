@@ -4,11 +4,12 @@ import Form from 'react-bootstrap/Form'
 import { FloatingLabel } from 'react-bootstrap'
 import Button from 'react-bootstrap/Button'
 
+
 const FormularioCrear = (props:any) => {
     const {tickets} = props;
     const {onRowClick} = props;
     return (
-        <div className='d-flex justify-content-center'>
+        <div className='d-flex justify-content-between'>
             <Form className='d-flex flex-column justify-content-evenly formulario'>
                 <Form.Group className="d-flex flex-row justify-content-evenly" controlId="formBasicEmail">
                     <Form.Label className='etiqueta'>Nombre</Form.Label>
@@ -39,7 +40,7 @@ const FormularioCrear = (props:any) => {
                 </div>
 
                 <div className="d-flex flex-row justify-content-evenly">
-                    <Form.Group className='d-flex flex-row' controlId="floatingSelect">
+                    <Form.Group className='d-flex flex-row primer_input' controlId="floatingSelect">
                         <Form.Label className='etiqueta'>Estado</Form.Label>
                         <Form.Select className='input_chico'>
                             <option> </option>
@@ -48,7 +49,7 @@ const FormularioCrear = (props:any) => {
                             <option value="3">En curso</option>
                         </Form.Select>
                     </Form.Group>
-                    <Form.Group className='d-flex flex-row' controlId="floatingSelect">
+                    <Form.Group className='d-flex flex-row primer_input' controlId="floatingSelect">
                         <Form.Label className='etiqueta'>Tipo</Form.Label>
                         <Form.Select className='input_chico'>
                             <option> </option>
@@ -59,7 +60,7 @@ const FormularioCrear = (props:any) => {
                 </div>
 
                 <div className="d-flex flex-row justify-content-evenly">
-                    <Form.Group className='d-flex flex-row' controlId="floatingSelect">
+                    <Form.Group className='d-flex flex-row primer_input' controlId="floatingSelect">
                         <Form.Label className='etiqueta'>Severidad</Form.Label>
                         <Form.Select className='input_chico'>
                             <option> </option>
@@ -68,7 +69,7 @@ const FormularioCrear = (props:any) => {
                             <option value="3">Baja</option>
                         </Form.Select>
                     </Form.Group>
-                    <Form.Group className='d-flex flex-row' controlId="floatingSelect">
+                    <Form.Group className='d-flex flex-row primer_input' controlId="floatingSelect">
                         <Form.Label className='etiqueta'>Cliente</Form.Label>
                         <Form.Select className='input_chico'>
                             <option> </option>
@@ -108,7 +109,7 @@ const FormularioCrear = (props:any) => {
                     <Form.Group className='d-flex flex-row' controlId="formBasicEmail">
                         <Form.Label className='etiqueta'>Descripcion</Form.Label>
                         <Form.Control
-                            className='input_descripcion'
+                            className='input_descripcion_crear'
                             as="textarea"
                             placeholder="Descripción del ticket"
                             style={{ height: '100px' }}
@@ -120,6 +121,15 @@ const FormularioCrear = (props:any) => {
                     </Button>
                 </div>
             </Form>
+
+            <div className='d-flex flex-column justify-content-center'>
+                <h5>Tareas</h5>
+                <ul>
+                    <li>1</li>
+                    <li>2</li>
+                    <li>3</li>
+                </ul>
+            </div>
         </div>
     )
 }

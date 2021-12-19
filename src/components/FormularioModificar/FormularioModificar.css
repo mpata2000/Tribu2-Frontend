@@ -1,4 +1,4 @@
-.formulario{
+.formulario_modificar{
     width:90%;
 }
 
@@ -11,15 +11,15 @@
 }
 
 .input_grande{
-    width: 860px;
+    width: 805,22px;
 }
 
-.etiqueta{
-    width: 215px;
+.etiqueta_modificar{
+    width: 150px;
 }
 
 .input_chico{
-    width:322px;
+    width:327px;
 }
 
 .input_descripcion{

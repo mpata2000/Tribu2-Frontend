@@ -16,33 +16,33 @@ const FormularioModificar = (props:any) => {
 
     return (
         <div className='d-flex justify-content-center'>
-            <Form className='d-flex flex-column justify-content-evenly formulario'>
+            <Form className='d-flex flex-column justify-content-evenly formulario_modificar'>
 
             <Form.Group className="d-flex flex-row justify-content-evenly" controlId="formBasicEmail">
-                    <Form.Label className='etiqueta'>ID del Ticket</Form.Label>
+                    <Form.Label className='etiqueta_modificar'>ID del Ticket</Form.Label>
                     <Form.Control value={ticketID} readOnly={true} className='input_grande' type="text" placeholder="Nombre del ticket" />
                 </Form.Group>
 
                 <Form.Group className="d-flex flex-row justify-content-evenly" controlId="formBasicEmail">
-                    <Form.Label className='etiqueta'>Nombre del Ticket</Form.Label>
+                    <Form.Label className='etiqueta_modificar'>Nombre del Ticket</Form.Label>
                     <Form.Control value={nombre} readOnly={true} className='input_grande' type="text" placeholder="Severidad" />
                 </Form.Group>
 
 
                 <Form.Group className="d-flex flex-row justify-content-evenly" controlId="formBasicEmail">
-                    <Form.Label className='etiqueta'>Severidad</Form.Label>
+                    <Form.Label className='etiqueta_modificar'>Severidad</Form.Label>
                     <Form.Control  readOnly={true} className='input_grande' type="text" placeholder="Estado" />
                 </Form.Group>
 
 
                 <Form.Group className="d-flex flex-row justify-content-evenly" controlId="formBasicEmail">
-                    <Form.Label className='etiqueta'>Estado</Form.Label>
+                    <Form.Label className='etiqueta_modificar'>Estado</Form.Label>
                     <Form.Control readOnly={true} className='input_grande' type="text" placeholder="Nombre del ticket" />
                 </Form.Group>
 
                 <div className="d-flex flex-row justify-content-evenly">
                     <Form.Group className='d-flex flex-row' controlId="formBasicEmail">
-                        <Form.Label  className='etiqueta'>Descripcion</Form.Label>
+                        <Form.Label  className='etiqueta_modificar'>Descripcion</Form.Label>
                         <Form.Control
 
                             className='input_descripcion'

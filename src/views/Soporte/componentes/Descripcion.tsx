@@ -1,5 +1,6 @@
 import React from 'react'
 import moment from 'moment'
+import './Descripcion.css'
 import Button from 'react-bootstrap/Button'
 import { AnyRecord } from 'dns';
 import {Link} from 'react-router-dom';
@@ -8,6 +9,8 @@ import useTypedSelector from 'hooks/useTypedSelector';
 
 const Descripcion = (props:any) => {
     let {ticket} = props;
+    // let {product} = props;
+    // let {version} = props;
     const state = useTypedSelector((state) => state.tareas);
     const tareas = state.tareas;
     const tareas_ticket = tareas.filter((tarea:any) => {return ticket.tareas.includes(tarea.idTarea)});
@@ -77,13 +80,17 @@ const Descripcion = (props:any) => {
                 className='btn btn-secondary boton_accion'
                 state={{ ticketID: ticket.id,
                  nombre : ticket.nombre ,
-                 descrip : ticket.descripcion}}>
+                 descrip : ticket.descripcion,
+                 producto : ticket.producto,
+                 version : ticket.version,
+                 tareas : ticket.tareas
+                 }}>
                     Eliminar
                 </Link>
 
 
                 <Link to='/soporte/tickets/modificar' 
-                className='btn btn-secondary boton_accion'
+                className='btn btn-dark boton_accion'
                 state={{ ticketID: ticket.id,
                  nombre : ticket.nombre ,
                  descrip : ticket.descripcion,

@@ -1,0 +1,61 @@
+.body{
+    height:80vh;
+}
+
+.titulo{
+    margin: 1rem 2rem 1rem 1rem;
+}
+
+.tabla_aside{
+    height:85%;
+}
+
+.tabla{
+    width:60%;
+    max-height: 100%;
+}
+
+.aside{
+    width:20%;
+    height: 100%;
+
+}
+
+.info{
+    font-size: 0.80rem;
+}
+
+/* .info_item{
+    margin-bottom: 0.2rem;
+} */
+
+.subtitulo{
+    font-weight: bold;
+}
+
+.margen_chico{
+    margin-bottom:0.2rem;
+}
+
+.margen_derecho{
+    margin-right: 0.2rem;
+}
+
+.descripcion{
+    margin:0.5rem 1rem 0.5rem 1rem;
+}
+
+.boton_tareas{
+    margin: 0.2rem 1rem 0.2rem 1rem;
+}
+
+.boton_accion{
+    width:50%;
+    /* margin: 0.2rem 4rem 0.1rem 4rem; */
+}
+
+.boton_pie_pagina{
+    height:100%;
+    text-align: center;
+    margin-bottom: 0rem;
+}
