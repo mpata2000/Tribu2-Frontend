@@ -41,3 +41,13 @@ export const onResourcesGetAllSucceeded = (data: any): AnyAction => (
 
 export const onResourcesGetAllFailed = (error: unknown): AnyAction => (
   { type: constants.RESOURCES_ON_GET_ALL_FAILED, error });
+
+// CLIENTS_ON_GET_ALL
+export const onClientsGetAll = ():  AnyAction => (
+  { type: constants.CLIENTS_ON_GET_ALL_REQUESTED});
+
+export const onClientsGetAllSucceeded = (data: any): AnyAction => (
+  { type: constants.CLIENTS_ON_GET_ALL_SUCCEEDED, data });
+
+export const onClientsGetAllFailed = (error: unknown): AnyAction => (
+  { type: constants.CLIENTS_ON_GET_ALL_FAILED, error });

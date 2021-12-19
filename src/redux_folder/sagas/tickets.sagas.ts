@@ -5,7 +5,7 @@ import {
 import * as constants from 'redux_folder/constants/tickets.constants';
 import * as actions from 'redux_folder/actions/tickets.actions';
 
-import { getTickets, getProducts, getTareas, getResources } from 'services/tickets.services';
+import { getTickets, getProducts, getTareas, getResources, getClients } from 'services/tickets.services';
 
 export function* ticketsGetAll(action:any) {
   try {
@@ -43,6 +43,15 @@ export function* resourcesGetAll(action:any) {
   }
 }
 
+export function* clientsGetAll(action:any) {
+  try {
+    const data: unknown = yield call(getClients);
+    yield put(actions.onClientsGetAllSucceeded(data));
+  } catch (error) {
+    yield put(actions.onClientsGetAllFailed(error));
+  }
+}
+
 
 export function* watchTickets() {
   yield all([
@@ -65,5 +74,11 @@ export function* watchTareas() {
 export function* watchResources() {
   yield all([
     takeLatest(constants.RESOURCES_ON_GET_ALL_REQUESTED, resourcesGetAll),
+  ]);
+}
+
+export function* watchClients() {
+  yield all([
+    takeLatest(constants.CLIENTS_ON_GET_ALL_REQUESTED, clientsGetAll),
   ]);
 }

@@ -17,3 +17,8 @@ export interface IResourcesDefaultState {
     loading: boolean,
     resources: any[],
 }
+
+export interface IClientsDefaultState {
+    loading: boolean,
+    clients: any[],
+}

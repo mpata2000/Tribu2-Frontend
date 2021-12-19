@@ -11,12 +11,13 @@ const FormularioCrear = (props:any) => {
 
     const resources_state = useTypedSelector((state) => state.resources);
     const tareas_state = useTypedSelector((state) => state.tareas);
+    const clients_state = useTypedSelector((state) => state.clients);
     const resources = resources_state.resources;
     const tareas = tareas_state.tareas.filter((tarea:any) => {return tarea.idTicket == 0});
+    const clients = clients_state.clients;
 
 
-
-    if(resources_state.loading || tareas_state.loading){
+    if(resources_state.loading || tareas_state.loading || clients_state.loading){
         return (
             <h2>Loading...</h2>
         )
@@ -86,8 +87,9 @@ const FormularioCrear = (props:any) => {
                         <Form.Label className='etiqueta'>Cliente</Form.Label>
                         <Form.Select className='input_chico'>
                             <option> </option>
-                            <option value="1">Cliente 1</option>
-                            <option value="2">Cliente 2</option>
+                            {clients.map((client:any) =>(
+                            <option value={client.id}>{client['razon social']}</option>
+                            ))}
                         </Form.Select>
                     </Form.Group>
                 </div>

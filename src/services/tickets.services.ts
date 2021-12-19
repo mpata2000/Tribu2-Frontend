@@ -23,3 +23,8 @@ export async function getResources(): Promise<any> {
   const response = await get(`${recursos_url}/resources`);
   return response;
 }
+
+export async function getClients(): Promise<any> {
+  const response = await get(`${url}/clients`);
+  return response;
+}
