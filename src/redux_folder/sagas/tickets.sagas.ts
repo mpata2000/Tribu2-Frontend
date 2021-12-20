@@ -25,15 +25,6 @@ export function* productsGetAll(action:any) {
   }
 }
 
-export function* tareasGetAll(action:any) {
-  try {
-    const data: unknown = yield call(getTareas);
-    yield put(actions.onTareasGetAllSucceeded(data));
-  } catch (error) {
-    yield put(actions.onTareasGetAllFailed(error));
-  }
-}
-
 export function* resourcesGetAll(action:any) {
   try {
     const data: unknown = yield call(getResources);
@@ -62,12 +53,6 @@ export function* watchTickets() {
 export function* watchProducts() {
   yield all([
     takeLatest(constants.PRODUCTS_ON_GET_ALL_REQUESTED, productsGetAll),
-  ]);
-}
-
-export function* watchTareas() {
-  yield all([
-    takeLatest(constants.TAREAS_ON_GET_ALL_REQUESTED, tareasGetAll),
   ]);
 }
 

@@ -8,7 +8,7 @@ export async function onGetTareasByprojectId(id : any): Promise<any> {
     return response;
   }
 export async function onPostTarea(tarea : any): Promise<any> {
-    console.log(tarea.data)
+    console.log("hola" ,tarea.data)
     const response = await post(`${url}/tareas`,tarea.data);
     return response;
   }
