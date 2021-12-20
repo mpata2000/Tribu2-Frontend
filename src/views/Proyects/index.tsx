@@ -3,7 +3,7 @@ import Projects from './Proyectos/Projects';
 const ProyectsView = (props: any) => {
 
   return (
-    <div style={{ width: '80%', margin: '0 auto', marginTop: '20px' }} >
+    <div >
       <Projects
        projects = {props.projects}
       />
@@ -12,3 +12,4 @@ const ProyectsView = (props: any) => {
 }
 
 export default ProyectsView
+// style={{ width: '80%', margin: '0 auto', marginTop: '20px' }}

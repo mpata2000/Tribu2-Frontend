@@ -4,13 +4,12 @@ import ProjectForm from './ProjectForm';
 import ProjectItem from './ProjectItem';
 import { useDispatch } from 'react-redux';
 import { Toast } from 'primereact/toast';
-import { createProyect, onProyectsGetAll } from 'redux_folder/actions/proyects.actions';
+import { createProyect, deleteProyects, onProyectsGetAll } from 'redux_folder/actions/proyects.actions';
 import ProjectEditForm from './ProjectEditForm';
-import { deleteProyects, putProyects } from 'services/proyects.services';
 import useTypedSelector from 'hooks/useTypedSelector';
 
 const proyectoDefault = {
-    idProyecto: null,
+    idProyecto: 0,
     nombre: '',
     descripcion: '',
     fechaInicioReal: '',
@@ -82,13 +81,13 @@ const Projects = (props: any) => {
 
     }
 
-    const edit = () => {
-        if (null != selectedProject.idProyecto) {
+    const edit = (EditedProyecto) => {
+        if (null != EditedProyecto.idProyecto) {
             setVisibleSave(false);
             // dispatch(putProyects(selectedProject))
             const editedMessage = {
                 title: 'Proyecto editado! ',
-                description: 'Se edito correctamente el proyecto: ' + proyecto.nombre
+                description: 'Se edito correctamente el proyecto: ' + EditedProyecto.nombre
             }
             showSuccess(editedMessage);
             console.log(selectedProject);
@@ -115,8 +114,8 @@ const Projects = (props: any) => {
             if (window.confirm("¿Desea elminar Proyecto: " + selectedProject.idProyecto + "?")) {
             
                 try {
-                    debugger;
-                    dispatch(deleteProyects(selectedProject.idProyecto)); //SIEMPRE DEVUELVE ERROR PROMISE
+                    console.log(selectedProject.idProyecto.toString());
+                    dispatch(deleteProyects(selectedProject.idProyecto.toString())); //SIEMPRE DEVUELVE ERROR PROMISE
                     //REALIZA BIEN EL PUT PERO HAY UN ERROR QUE ES EL QUE SE RECIBE, LA RESPONSE QUEDA PERDIDA
                     const deletedMessage = {
                         title: 'Proyecto Eliminado! ',
@@ -169,7 +168,7 @@ const Projects = (props: any) => {
                 setVisible={setVisibleSave}
             />
             <ProjectEditForm
-                projectSelected={proyecto}
+                projectSelected={selectedProject}
                 onEdit={edit}
                 onSetEditedProject={setSelectedProject}
                 visible={visibleEdit}

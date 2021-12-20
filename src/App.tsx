@@ -27,7 +27,7 @@ function App() {
                 <Route path="/soporte" element={<SoporteContainer />} />
                 <Route path="/soporte/tickets" element={<TicketsContainer />} />
                 <Route path="/proyecto" element={<ProyectoContainer />} />
-                <Route path="/tareas/proyecto/" element={<TareasContainer />} />
+                <Route path="/proyecto/tareas" element={<TareasContainer />} />
               </Routes>
             </div>
           </div>

@@ -20,6 +20,18 @@ const ProjectEditForm = (props: any) => {
     const footer = (
         <div>
             <Button text="Guardar" icon="pi pi-check" onClick={() => {
+                 const projectData = {
+                    // nombre: enteredNombre,
+                    // descripcion: enteredDescripcion,
+                    // fechaInicioReal: enteredFechaInicioReal,
+                    // fechaFinalizacionReal: enteredFechaFinalReal,
+                    // fechaInicioEstimada: enteredFechaInicioEstimada,
+                    // fechaFinalizacionEstimada: enteredFechaFinalEstimada,
+                    // fechaEntregaComunicadaACliente: enteredFechaEntrega,
+                    // horasEstimadas: enteredHoras,
+                    // prioridad: enteredPrioridad,
+                    // estado: enteredEstado
+                }
                 props.onEdit();
             }} />
         </div>

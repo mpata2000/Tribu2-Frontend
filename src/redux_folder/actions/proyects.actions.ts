@@ -32,8 +32,8 @@ export const putProyectFailed = (error: unknown): AnyAction => (
     { type: constants.PROYECTS_ON_PUT_FAILED, error });
 
 //DELETE
-export const deleteProyects = (data: any): AnyAction => (
-    { type: constants.PROYECTS_ON_DELETE_REQUESTED, data });
+export const deleteProyects = (id:string): AnyAction => (
+    { type: constants.PROYECTS_ON_DELETE_REQUESTED, id });
 
 export const deleteProyectSucceeded = (data: any): AnyAction => (
     { type: constants.PROYECTS_ON_DELETE_SUCCEEDED, data });

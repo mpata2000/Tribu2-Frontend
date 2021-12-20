@@ -18,16 +18,15 @@ const ProjectForm = (props: any) => {
     const [enteredPrioridad, setEnteredPrioridad] = useState('');
 
     const estados = [
-        { value: 'No iniciada', label: 'No iniciada' },
-        { value: 'En desarrollo', label: 'En desarrollo' },
-        { value: 'Completada', label: 'Completada' }
+        { value: 'no iniciado', label: 'no iniciado' },
+        { value: 'iniciado', label: 'iniciado' },
+        { value: 'finalizado', label: 'finalizado' }
     ]
 
     const prioridades = [
-        { value: 'Urgente!', label: 'Urgente!' },
-        { value: 'Importante', label: 'Importante' },
-        { value: 'Media', label: 'Media' },
-        { value: 'Baja', label: 'Baja' }
+        { value: 'alta', label: 'alta' },
+        { value: 'media', label: 'media' },
+        { value: 'baja', label: 'baja' }
     ]
 
     const footer = (
@@ -63,113 +62,43 @@ const ProjectForm = (props: any) => {
     const nombreChangeHandler = (event) => {
         let val = event.target.value;
         setEnteredNombre(val);
-        // props.setProject((prevProject: { proyecto: any; }) => {
-        //     let proyecto = Object.assign({}, props.project);
-        //     proyecto.nombre = val;
-        //     // console.log(proyecto.nombre);
-        //     return { proyecto };
-        // })
     }
     const descripcionChangeHandler = (event) => {
         let val = event.target.value;
         setEnteredDescripcion(val);
-        // props.setProject((prevProject: { proyecto: any; }) => {
-        //     let proyecto = Object.assign({}, props.project);
-        //     proyecto.nombre = val;
-        //     // console.log(proyecto.nombre);
-        //     return { proyecto };
-        // })
     }
     const fechaInicioRealChangeHandler = (event) => {
         let val = event.target.value.toString();
         setEnteredFechaInicioReal(val);
-        // props.setProject((prevProject: { proyecto: any; }) => {
-        //     let proyecto = Object.assign({}, props.project);
-        //     return { proyecto };
-        // })
     };
     const fechaFinalizacionRealChangeHandler = (event) => {
         let val = event.target.value.toString();
         setEnteredFechaFinalReal(val);
-        // props.setProject((prevProject: { proyecto: any; }) => {
-        //     let proyecto = Object.assign({}, props.project);
-        //     proyecto.fechaFinalizacionReal = val;
-        //     return { proyecto };
-        // })
     };
     const fechaInicionEstimadoChangeHandler = (event) => {
         let val = event.target.value.toString();
         setEnteredFechaInicioEstimada(val);
-        // props.setProject((prevProject: { proyecto: any; }) => {
-        //     let proyecto = Object.assign({}, props.project);
-        //     return { proyecto };
-        // })
-
     };
     const fechaFinalizacionEstimadoChangeHandler = (event) => {
         let val = event.target.value.toString();
         setEnteredFechaFinalEstimada(val);
-        // props.setProject((prevProject: { proyecto: any; }) => {
-        //     let proyecto = Object.assign({}, props.project);
-        //     proyecto.fechaFinalizacionEstimado = val;
-        //     return { proyecto };
-        // })
-        // console.log(props.project);
     };
     const fechaEntregaChangeHandler = (event) => {
         let val = event.target.value.toString();
         setEnteredFechaEntrega(val);
-        // props.setProject((prevProject: { proyecto: any; }) => {
-        //     let proyecto = Object.assign({}, props.project);
-        //     proyecto.fechaEntregaComunicadaACliente = val;
-        //     return { proyecto };
-        // })
-        // console.log(props.project);
     };
     const horasChangeHandler = (event) => {
         let val = parseInt(event.target.value);
         setEnteredHoras(val);
-        // props.setProject(() => {
-        //     let proyecto = Object.assign({}, props.project);
-        //     proyecto.descripcion = val;
-        //     console.log(proyecto.horasEstimadas);
-        //     return { proyecto };
-        // })
     }
     const estadoChangeHandler = (event) => {
         let val = event.target.value;
         setEnteredEstado(val);
-        // props.setProject((prevProject: { proyecto: any; }) => {
-        //     let proyecto = Object.assign({}, props.project);
-        //     proyecto.estado = val;
-        //     return { proyecto };
-        // })
-        // console.log(val);
     };
     const prioridadChangeHandler = (event) => {
         let val = event.target.value;
         setEnteredPrioridad(val);
-        // props.setProject((prevProject: { proyecto: any; }) => {
-        //     let proyecto = Object.assign({}, props.project);
-        //     proyecto.prioridad = val;
-        //     return { proyecto };
-        // })
-        // console.log(val);
     };
-
-
-    // const setSelectProject = () => {
-    //     setEnteredNombre(props.projectSelected.nombre);
-    //     setEnteredDescripcion(props.projectSelected.descripcion);
-    //     setEnteredFechaEntrega(props.projectSelected.fechaEntregaComunicadaACliente);
-    //     setEnteredFechaFinalReal(props.projectSelected.fechaFinalizacionReal);
-    //     setEnteredFechaFinalEstimada(props.projectSelected.fechaFinalizacionEstimada);
-    //     setEnteredFechaInicioEstimada(props.projectSelected.fechaInicioEstimada);
-    //     setEnteredFechaInicioReal(props.projectSelected.fechaInicioReal);
-    //     setEnteredHoras(props.projectSelected.horasEstimadas);
-    //     setEnteredPrioridad(props.projectSelected.prioridad)
-    //     setEnteredEstado(props.projectSelected.estado);
-    // }
 
     return (
         <div>

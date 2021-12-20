@@ -35,9 +35,9 @@ import {
     }
   }
 
-  export function* proyectsDelete(id:any) {
+  export function* proyectsDelete(action:any) {
     try {
-      const data: unknown = yield call(deleteProyects,id);
+      const data: unknown = yield call(deleteProyects,action.id);
       yield put(actions.deleteProyectSucceeded(data));
     } catch (error) {
       yield put(actions.deleteProyectFailed(error));
@@ -51,7 +51,7 @@ import {
       takeLatest(constants.PROYECTS_ON_GET_ALL_REQUESTED, proyectsGetAll),
       takeLatest(constants.PROYECTS_ON_CREATE_REQUESTED, proyectsCreate),
       takeLatest(constants.PROYECTS_ON_PUT_REQUESTED, proyectsPut),
-      // takeLatest(constants.PROYECTS_ON_CREATE_REQUESTED, proyectsDelete),
+      takeLatest(constants.PROYECTS_ON_DELETE_REQUESTED, proyectsDelete),
     ]);
   }
   

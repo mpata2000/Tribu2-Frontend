@@ -19,10 +19,6 @@ const Sidebar = () => {
 
         <ListItemButton onClick={() => goTo("/")}>
             <ListItemText primary="Home" />
-        </ListItemButton>  
-        
-        <ListItemButton>
-            <ListItemText primary="Tasks" />
         </ListItemButton>      
 
         <ListItemButton onClick={() => goTo("/hours")}>

@@ -3,43 +3,30 @@ import { Column } from 'primereact/column';
 import { Panel } from 'primereact/panel'
 import { Menubar } from 'primereact/menubar'
 import './ProjectItem.css'
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button } from 'primereact/button';
 import TareasContainer from 'containers/TareasContainer';
 import { useDispatch } from 'react-redux';
 import useTypedSelector from 'hooks/useTypedSelector';
+import {Link} from "react-router-dom";
 import { onGetTareas } from 'redux_folder/actions/tareas.actions';
+import {useNavigate} from "react-router-dom";
+
 
 
 const ProjectItem = (props: any) => {
     const dispatch = useDispatch();
-    const state = useTypedSelector((state) => state.tareas);
-    // const tareas = state.tareas;
-
-
-    if(state.loading){
-        return (
-            <h2>Loading...</h2>
-        )
-    }
-
+    const navigate = useNavigate();
+    
+    const tareas = useTypedSelector((state) => state.tareas.tareas);
     const showTareas = () => {
-        const tareas = dispatch(onGetTareas(props.selectedProject.idProyecto));
-        console.log(tareas);
-        return (
-            <TareasContainer
-                items={tareas}
-            />
-        );
-        // debugger;
-        // return (
-        //     <React.Fragment>
-        //         <Button icon="pi pi-pencil" className="p-button-rounded p-button-success p-mr-2" onClick={() => redirigir()} />
-        //     </React.Fragment>);
+            dispatch(onGetTareas(props.selectedProject.idProyecto.toString()));
+            console.log(tareas);
+            navigate('/proyecto/tareas',{state:{tareas}});
     }
 
     return (
-        <div className="card">
+        <div>
             <Menubar model={props.buttons}></Menubar>
             <br></br>
             <Panel header="PSA - Proyectos" >
@@ -58,7 +45,7 @@ const ProjectItem = (props: any) => {
                     <Column field="estado" header="Estado"></Column>
                     <Column field="prioridad" header="Prioridad"></Column>
                     <Column field="idLegajo" header="Responsable"></Column>
-                    <Column body={showTareas} exportable={false} style={{ minWidth: '8rem' }}></Column>
+                    {/* <Column body={showTareas} exportable={false} style={{ minWidth: '8rem' }}></Column> */}
                 </DataTable>
             </Panel>
         </div>
