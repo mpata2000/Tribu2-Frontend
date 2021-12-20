@@ -15,6 +15,7 @@ const FormularioCrear = (props:any) => {
     const tareas_state = useTypedSelector((state) => state.tareas);
     const clients_state = useTypedSelector((state) => state.clients);
     const resources = resources_state.resources;
+    console.log(tareas_state)
     const tareas = tareas_state.tareas.filter((tarea:any) => {return tarea.idTicket == 0});
     const clients = clients_state.clients;
 

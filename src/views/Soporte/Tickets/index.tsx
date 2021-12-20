@@ -29,8 +29,8 @@ const TicketsView = (props: any) => {
     const filter_name = (event:any) => {
         setSearch(event.target.value);
     }
-    
-    let filtered_tickets = tickets.filter((ticket:any) => {return ticket.nombre.includes(search)});
+
+    let filtered_tickets = tickets.filter((ticket:any) => {return ticket.nombre.toLowerCase().includes(search.toLowerCase())});
 
     if(state.loading){
         return (
