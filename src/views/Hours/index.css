@@ -1,0 +1,45 @@
+.hoursView {
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    margin: 10px;
+    text-align: left;
+    min-height: 90%;
+}
+
+.title {
+    margin: 10px;
+    padding: 5px;
+    font-family: monospace;
+    color: grey;
+    border-bottom: 2px darkcyan solid;
+}
+
+.rowDiv {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 10px;
+    padding: 5px;
+}
+
+.calendar {}
+
+.hoursList {
+    display: flex;
+    flex-direction: column;
+    min-width: 70%;
+    min-height: 70%;
+}
+
+.list {
+    padding:20px;
+    margin: 1px 20px;
+}
+
+.listBox {
+    min-width: 80%;
+    min-height: 80%;
+    display:flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}

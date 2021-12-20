@@ -3,6 +3,7 @@ import { IHoursDefaultState } from 'types/hours.types';
 import { ITicketsDefaultState, IProductsDefaultState, ITareasDefaultState, IResourcesDefaultState, IClientsDefaultState } from 'types/tickets.types';
 
 interface IRootState {
+  proyects: any;
   hours: IHoursDefaultState;
   tickets: ITicketsDefaultState;
   products: IProductsDefaultState;
