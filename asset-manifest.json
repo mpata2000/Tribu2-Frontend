@@ -1,26 +1,26 @@
 {
   "files": {
-    "main.css": "/Tribu2-Frontend/static/css/main.2f5ab9ea.chunk.css",
-    "main.js": "/Tribu2-Frontend/static/js/main.db5c3f87.chunk.js",
-    "main.js.map": "/Tribu2-Frontend/static/js/main.db5c3f87.chunk.js.map",
-    "runtime-main.js": "/Tribu2-Frontend/static/js/runtime-main.29ccc49b.js",
-    "runtime-main.js.map": "/Tribu2-Frontend/static/js/runtime-main.29ccc49b.js.map",
-    "static/css/2.e588cac9.chunk.css": "/Tribu2-Frontend/static/css/2.e588cac9.chunk.css",
-    "static/js/2.5973b3c4.chunk.js": "/Tribu2-Frontend/static/js/2.5973b3c4.chunk.js",
-    "static/js/2.5973b3c4.chunk.js.map": "/Tribu2-Frontend/static/js/2.5973b3c4.chunk.js.map",
-    "static/js/3.1bcb1a47.chunk.js": "/Tribu2-Frontend/static/js/3.1bcb1a47.chunk.js",
-    "static/js/3.1bcb1a47.chunk.js.map": "/Tribu2-Frontend/static/js/3.1bcb1a47.chunk.js.map",
+    "main.css": "/Tribu2-Frontend/static/css/main.1dde1d6a.chunk.css",
+    "main.js": "/Tribu2-Frontend/static/js/main.1e443dc5.chunk.js",
+    "main.js.map": "/Tribu2-Frontend/static/js/main.1e443dc5.chunk.js.map",
+    "runtime-main.js": "/Tribu2-Frontend/static/js/runtime-main.31d3bd18.js",
+    "runtime-main.js.map": "/Tribu2-Frontend/static/js/runtime-main.31d3bd18.js.map",
+    "static/css/2.0087fff6.chunk.css": "/Tribu2-Frontend/static/css/2.0087fff6.chunk.css",
+    "static/js/2.63ffdcf1.chunk.js": "/Tribu2-Frontend/static/js/2.63ffdcf1.chunk.js",
+    "static/js/2.63ffdcf1.chunk.js.map": "/Tribu2-Frontend/static/js/2.63ffdcf1.chunk.js.map",
+    "static/js/3.841ceba3.chunk.js": "/Tribu2-Frontend/static/js/3.841ceba3.chunk.js",
+    "static/js/3.841ceba3.chunk.js.map": "/Tribu2-Frontend/static/js/3.841ceba3.chunk.js.map",
     "index.html": "/Tribu2-Frontend/index.html",
-    "static/css/2.e588cac9.chunk.css.map": "/Tribu2-Frontend/static/css/2.e588cac9.chunk.css.map",
-    "static/css/main.2f5ab9ea.chunk.css.map": "/Tribu2-Frontend/static/css/main.2f5ab9ea.chunk.css.map",
-    "static/js/2.5973b3c4.chunk.js.LICENSE.txt": "/Tribu2-Frontend/static/js/2.5973b3c4.chunk.js.LICENSE.txt",
+    "static/css/2.0087fff6.chunk.css.map": "/Tribu2-Frontend/static/css/2.0087fff6.chunk.css.map",
+    "static/css/main.1dde1d6a.chunk.css.map": "/Tribu2-Frontend/static/css/main.1dde1d6a.chunk.css.map",
+    "static/js/2.63ffdcf1.chunk.js.LICENSE.txt": "/Tribu2-Frontend/static/js/2.63ffdcf1.chunk.js.LICENSE.txt",
     "static/media/primeicons.css": "/Tribu2-Frontend/static/media/primeicons.c6e20533.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.29ccc49b.js",
-    "static/css/2.e588cac9.chunk.css",
-    "static/js/2.5973b3c4.chunk.js",
-    "static/css/main.2f5ab9ea.chunk.css",
-    "static/js/main.db5c3f87.chunk.js"
+    "static/js/runtime-main.31d3bd18.js",
+    "static/css/2.0087fff6.chunk.css",
+    "static/js/2.63ffdcf1.chunk.js",
+    "static/css/main.1dde1d6a.chunk.css",
+    "static/js/main.1e443dc5.chunk.js"
   ]
 }
