@@ -9,9 +9,10 @@ import DatePicker from '@mui/lab/DatePicker';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import { onHoursDelete, onHoursEdit, onHoursGet } from 'redux_folder/actions/hours.actions';
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
+import { onGetTasksByIds } from 'redux_folder/actions/proyects.actions';
 
 const EditHoursModal = (props: any) => {
-    const {hour, handleClose, date} = props;
+    const {hour, handleClose, date, task} = props;
     const dispatch = useDispatch()
 
     const [dateViewer, setDateViewer] = useState(date)
@@ -19,8 +20,6 @@ const EditHoursModal = (props: any) => {
         handleSubmit, control, formState: { errors },
       } = useForm();
 
-    useEffect(() => {
-    }, [])
     
     const style = {
         position: 'absolute' as 'absolute',
@@ -51,7 +50,7 @@ const EditHoursModal = (props: any) => {
     return (
         <Box sx={style}>
             <Typography id="title" variant="h6" component="h2">
-                Aca poner el nombre de la tarea
+                 {task.nombre}
             </Typography>
             <form onSubmit={handleSubmit(onSubmit_)} style={{display: 'flex', flexDirection:'column', justifyContent:'center', marginTop: 20}}>
             <Controller

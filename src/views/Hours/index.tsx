@@ -100,7 +100,7 @@ const HoursView = (props:any) => {
                             {hours.map((hour:any) => (
                                 <div>
                                     <ListItem item={hour} task={tasks.find((task) => `${task.idTarea}` === hour.task_id)}>
-                                        <HoursButtons hour={hour} date={date} timerOn={timerOn} setTimerOn={setTimerOn} />
+                                        <HoursButtons hour={hour} date={date} timerOn={timerOn} setTimerOn={setTimerOn} task={tasks.find((task) => `${task.idTarea}` === hour.task_id)}/>
                                     </ListItem>
                                 </div>
                             )) }

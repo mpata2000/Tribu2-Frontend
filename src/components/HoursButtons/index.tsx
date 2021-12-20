@@ -12,7 +12,7 @@ import EditHoursModal from 'components/EditHoursModal';
 import { onHoursEdit } from 'redux_folder/actions/hours.actions';
 
 const HoursButtons = (props:any) => {
-    const {hour, date, timerOn, setTimerOn} = props
+    const {hour, date, timerOn, setTimerOn, task} = props
     const [seconds, setSeconds] = useState(hour.seconds)
     const [minutes, setMinutes] = useState(hour.minutes)
     const [hours, setHours] = useState(hour.hours)
@@ -90,7 +90,7 @@ const HoursButtons = (props:any) => {
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
             >
-                <EditHoursModal hour={hour} handleClose={handleClose} date={date}/>
+                <EditHoursModal task={task} hour={hour} handleClose={handleClose} date={date}/>
             </Modal>
             <div className='time'>{time}</div>
             <IconButton style={{alignSelf: 'center'}} onClick={() => {(play) ? setPause(true) : handlePlay()}}>
