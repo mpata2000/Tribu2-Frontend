@@ -72,6 +72,7 @@ const FormularioModificar = (props:any) => {
                     <Form.Label className='etiqueta_modificar'>Estado</Form.Label>
                     <Form.Select className='input_grande' name="estado" value={formValues.estado} onChange={handleChange}>
                             <option value="abierto">Abierto</option>
+                            <option value="en curso">En Curso</option>
                             <option value="cerrado">Cerrado</option>
                         </Form.Select>
                 </Form.Group>
