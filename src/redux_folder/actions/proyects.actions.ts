@@ -19,13 +19,24 @@ export const createProyectSucceeded = (data: any): AnyAction => (
     { type: constants.PROYECTS_ON_CREATE_SUCCEEDED, data });
   
 export const createProyectFailed = (error: unknown): AnyAction => (
-    { type: constants.PROYECTS_ON_CREATE_FAILED, error });
+  { type: constants.PROYECTS_ON_CREATE_FAILED, error });
+
 
 export const onGetTasks = (): AnyAction => (
-  {type: constants.PROYECTS_ON_GET_TASKS_REQUESTED});
+{type: constants.PROYECTS_ON_GET_TASKS_REQUESTED});
 
-  export const onGetTasksSucceeded = (data: any): AnyAction => (
-    { type: constants.PROYECTS_ON_GET_TASKS_SUCCEEDED, data });
+export const onGetTasksSucceeded = (data: any): AnyAction => (
+  { type: constants.PROYECTS_ON_GET_TASKS_SUCCEEDED, data });
+
+export const onGetTasksFailed = (error: unknown): AnyAction => (
+  { type: constants.PROYECTS_ON_GET_TASKS_FAILED, error });
   
-  export const onGetTasksFailed = (error: unknown): AnyAction => (
-    { type: constants.PROYECTS_ON_GET_TASKS_FAILED, error });
+
+export const onGetTasksByIds = (ids: string[]): AnyAction => (
+  {type: constants.PROYECTS_ON_GET_TASKS_BY_IDS_REQUESTED, ids});
+
+export const onGetTasksByIdsSucceeded = (data: any): AnyAction => (
+  { type: constants.PROYECTS_ON_GET_TASKS_BY_IDS_SUCCEEDED, data });
+
+export const onGetTasksByIdsFailed = (error: unknown): AnyAction => (
+  { type: constants.PROYECTS_ON_GET_TASKS_BY_IDS_FAILED, error });

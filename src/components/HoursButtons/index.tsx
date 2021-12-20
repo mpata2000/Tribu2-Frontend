@@ -9,19 +9,27 @@ import { Button, IconButton, Modal } from '@mui/material';
 import {BiEdit} from 'react-icons/bi'
 import AddTaskToHoursModal from 'components/AddTaskToHoursModal';
 import EditHoursModal from 'components/EditHoursModal';
+import { onHoursEdit } from 'redux_folder/actions/hours.actions';
 
 const HoursButtons = (props:any) => {
-    const {hour, date} = props
+    const {hour, date, timerOn, setTimerOn} = props
     const [seconds, setSeconds] = useState(hour.seconds)
     const [minutes, setMinutes] = useState(hour.minutes)
     const [hours, setHours] = useState(hour.hours)
 
-    const [pause, setPause] = useState(true);
+    const [pause, setPause] = useState(false);
     const [play, setPlay] = useState(false);
     
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+
+    const handlePlay = () => {
+        if(!timerOn){
+            setPlay(true)
+            setTimerOn(true)
+        }
+    }
 
     const dispatch = useDispatch();
 
@@ -34,6 +42,8 @@ const HoursButtons = (props:any) => {
     useEffect(() => {
         if(pause){
             setPlay(false)
+            setTimerOn(false)
+            dispatch(onHoursEdit({hours,minutes,seconds, id:hour.id}))
         }
     }, [pause])
 
@@ -57,6 +67,16 @@ const HoursButtons = (props:any) => {
         }
     }, [minutes])
 
+    
+    useEffect(() => {
+        if(hours >= 24){
+            setHours(23)
+            setMinutes(59)
+            setSeconds(59)
+            setPause(true)
+        }
+    }, [hours])
+
     const extraSecondsCero = (seconds < 10) ? '0' : '';
     const extraMinutesCero = (minutes < 10) ? '0' : '';
     const extraHoursCero = (hours < 10) ? '0' : '';
@@ -73,7 +93,7 @@ const HoursButtons = (props:any) => {
                 <EditHoursModal hour={hour} handleClose={handleClose} date={date}/>
             </Modal>
             <div className='time'>{time}</div>
-            <IconButton style={{alignSelf: 'center'}} onClick={() => {(play) ? setPause(true) : setPlay(true)}}>
+            <IconButton style={{alignSelf: 'center'}} onClick={() => {(play) ? setPause(true) : handlePlay()}}>
                     {(play) 
                     ? (<PauseCircleIcon style={{color: 'darkcyan' }}/>) 
                     : <PlayCircleIcon style={{color: 'darkcyan' }}/>}

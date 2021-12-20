@@ -19,6 +19,7 @@ const proyectsReducer: Reducer = (state = defaultState, action) => {
       };
 
     case constants.PROYECTS_ON_GET_TASKS_REQUESTED:
+    case constants.PROYECTS_ON_GET_TASKS_BY_IDS_REQUESTED:
       return {
         ...state,
         loading: true,
@@ -31,6 +32,7 @@ const proyectsReducer: Reducer = (state = defaultState, action) => {
         proyects: data.data,
       }
     case constants.PROYECTS_ON_GET_TASKS_SUCCEEDED:
+    case constants.PROYECTS_ON_GET_TASKS_BY_IDS_SUCCEEDED:
       return {
         ...state,
         loading: false,
@@ -43,6 +45,7 @@ const proyectsReducer: Reducer = (state = defaultState, action) => {
         proyects:[],
       }
     case constants.PROYECTS_ON_GET_TASKS_FAILED:
+    case constants.PROYECTS_ON_GET_TASKS_BY_IDS_FAILED:
       return {
         ...state,
         loading:false,

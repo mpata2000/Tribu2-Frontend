@@ -16,6 +16,7 @@ import { useDispatch } from 'react-redux';
 import useTypedSelector from 'hooks/useTypedSelector';
 import { format } from 'date-fns';
 import AssignmentIcon from '@mui/icons-material/Assignment';
+import { onGetTasksByIds } from 'redux_folder/actions/proyects.actions';
 
 
 
@@ -25,28 +26,28 @@ const HoursView = (props:any) => {
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
+    const [timerOn, setTimerOn] = useState(false);
+
     const dispatch = useDispatch()
-    const creationSucceeded = useTypedSelector((state) => state.hours.creationSucceeded)
+    const actionSucceeded = useTypedSelector((state) => state.hours.actionSucceeded)
     const loading = useTypedSelector((state) => state.hours.loading)
-    useEffect(() => {
-        if(creationSucceeded){
-            dispatch(onHoursGet({day: format(date,'yyyy-MM-dd'), user_id: '102889'}))  
-        }
-    }, [creationSucceeded,date, dispatch])
 
     useEffect(() => {
-        dispatch(onHoursGet({day: format(date,'yyyy-MM-dd'), user_id: '102889'}))
-    }, [date,dispatch])
+        if(actionSucceeded){
+            dispatch(onHoursGet({day:format(date, 'yyyy-MM-dd'), user_id: '106226'}))
+        }
+    }, [actionSucceeded, date, dispatch])
 
     const hours = useTypedSelector((state) => state.hours.hours)
 
     useEffect(() => {
-        //dispatch(onGetTasksByIds(hours.map((hour) => hour.id)))
-    }, [hours])
+        dispatch(onGetTasksByIds(hours.map((hour) => hour.task_id)))
+    }, [hours, dispatch])
 
-    const onSearchByDate =() =>{
-        dispatch(onHoursGet({day: format(date,'yyyy-MM-dd'), user_id: '102889'}))
-    }
+
+
+
+    const tasks = useTypedSelector((state) => state.proyects.tasks)
 
     
     return (
@@ -66,9 +67,6 @@ const HoursView = (props:any) => {
                             />
                         </LocalizationProvider>
                     </div>
-                    <IconButton style={{width: 40, height: 40, alignSelf:'center'}} onClick={() => onSearchByDate()}>
-                        <ArrowForwardIosIcon  />
-                    </IconButton>
                     
                 </div>
             </div>
@@ -97,8 +95,8 @@ const HoursView = (props:any) => {
                         <ul className='list'>
                             {hours.map((hour:any) => (
                                 <div>
-                                    <ListItem item={hour}>
-                                        <HoursButtons hour={hour} date={date}/>
+                                    <ListItem item={hour} task={tasks.find((task) => `${task.idTarea}` === hour.task_id)}>
+                                        <HoursButtons hour={hour} date={date} timerOn={timerOn} setTimerOn={setTimerOn} />
                                     </ListItem>
                                 </div>
                             )) }
@@ -110,3 +108,4 @@ const HoursView = (props:any) => {
 }
 
 export default HoursView
+

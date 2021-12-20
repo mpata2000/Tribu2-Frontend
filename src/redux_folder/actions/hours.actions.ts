@@ -25,8 +25,19 @@ export const onCreateHoursFailed = (error: unknown): AnyAction => (
 export const onHoursEdit = (data:any): AnyAction => (
   { type: constants.HOURS_ON_EDIT_REQUESTED, data});
 
-  export const onHoursEditSucceeded = (data: any): AnyAction => (
-    { type: constants.HOURS_ON_EDIT_SUCCEEDED, data });
-  
-  export const onHoursEditFailed = (error: unknown): AnyAction => (
-    { type: constants.HOURS_ON_EDIT_FAILED, error });
+export const onHoursEditSucceeded = (data: any): AnyAction => (
+  { type: constants.HOURS_ON_EDIT_SUCCEEDED, data });
+
+export const onHoursEditFailed = (error: unknown): AnyAction => (
+  { type: constants.HOURS_ON_EDIT_FAILED, error });
+
+// HOURS_ON_DELETE
+
+export const onHoursDelete = (id:string): AnyAction => (
+  { type: constants.HOURS_ON_DELETE_REQUESTED, id});
+
+export const onHoursDeleteSucceeded = (data: any): AnyAction => (
+  { type: constants.HOURS_ON_DELETE_SUCCEEDED, data });
+
+export const onHoursDeleteFailed = (error: unknown): AnyAction => (
+  { type: constants.HOURS_ON_DELETE_FAILED, error });

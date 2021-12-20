@@ -5,7 +5,7 @@ import {
 import * as constants from 'redux_folder/constants/hours.constants';
 import * as actions from 'redux_folder/actions/hours.actions';
 
-import { createHours, editHours, getHours } from 'services/hours.services';
+import { createHours, deleteHours, editHours, getHours } from 'services/hours.services';
 
 export function* hoursGet(action:any) {
   try {
@@ -31,11 +31,19 @@ export function* hoursEdit(action: any) {
     yield put(actions.onHoursEditFailed(error));
   }
 }
-
+export function* hoursDelete(action: any) {
+  try {
+    const data: unknown = yield call(deleteHours, action.id);
+    yield put(actions.onHoursDeleteSucceeded(data));
+  } catch (error) {
+    yield put(actions.onHoursDeleteFailed(error));
+  }
+}
 export function* watchHours() {
   yield all([
     takeLatest(constants.HOURS_ON_GET_REQUESTED, hoursGet),
     takeLatest(constants.HOURS_ON_CREATE_REQUESTED,hoursCreate),
     takeLatest(constants.HOURS_ON_EDIT_REQUESTED,hoursEdit),
+    takeLatest(constants.HOURS_ON_DELETE_REQUESTED,hoursDelete),
   ]);
 }

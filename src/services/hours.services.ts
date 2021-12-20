@@ -1,4 +1,4 @@
-import { get, patch, post } from 'services/api';
+import { get, patch, post, delete_ } from 'services/api';
 
 const url = 'https://psa-tribu2-recursos.herokuapp.com'
 
@@ -60,5 +60,11 @@ export async function editHours(data: any): Promise<any> {
     }
   }
   const response = await patch(`${url}/hours/${data.id}`, body)
+  return response;
+}
+
+export async function deleteHours(id:string): Promise<any> {
+
+  const response = await delete_(`${url}/hours/${id}`);
   return response;
 }

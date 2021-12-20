@@ -39,7 +39,7 @@ const AddTaskToHoursModal = (props: any) => {
     const onSubmit = (data:any)=>{
         let data_ = {
             ...data,
-            user_id: 102889,
+            user_id: 106226,
             day: format(date, 'yyyy-MM-dd'),
         }
         if(!data.note){

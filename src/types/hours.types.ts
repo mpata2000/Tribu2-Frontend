@@ -1,5 +1,7 @@
 export interface IHoursDefaultState {
     loading: boolean,
     hours: any[],
-    creationSucceeded: boolean,
+    actionSucceeded: boolean,
+    editSucceeded: boolean,
+    deleteSucceeded: boolean,
 }

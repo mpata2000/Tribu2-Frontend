@@ -5,7 +5,9 @@ import { IHoursDefaultState } from 'types/hours.types';
 const defaultState: IHoursDefaultState = {
   loading: false,
   hours: [],
-  creationSucceeded: false,
+  actionSucceeded: false,
+  editSucceeded: false,
+  deleteSucceeded: false,
 };
 
 // eslint-disable-next-line default-param-last
@@ -31,22 +33,28 @@ const hoursReducer: Reducer = (state = defaultState, action) => {
         hours:[],
       }
     case constants.HOURS_ON_CREATE_REQUESTED:
+    case constants.HOURS_ON_EDIT_REQUESTED:
+      case constants.HOURS_ON_DELETE_REQUESTED:
       return {
         ...state,
         loading:true,
-        creationSucceeded:false,
+        actionSucceeded:false,
       }
       case constants.HOURS_ON_CREATE_SUCCEEDED:
+      case constants.HOURS_ON_EDIT_SUCCEEDED:
+      case constants.HOURS_ON_DELETE_SUCCEEDED:
         return {
           ...state,
           loading:false,
-          creationSucceeded:true,
+          actionSucceeded:true,
         }
       case constants.HOURS_ON_CREATE_FAILED:
+        case constants.HOURS_ON_EDIT_FAILED:
+        case constants.HOURS_ON_DELETE_FAILED:
         return {
           ...state,
           loading:false,
-          creationSucceeded:false,
+          actionSucceeded:false,
         }
     default:
       return state;
