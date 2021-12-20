@@ -73,7 +73,7 @@ const FormularioCrear = (props:any) => {
         alert("Ticket correctamente creado");
         console.log("click")
         console.log(formValues);
-        navigate(-1);
+        navigate(-2);
     }
 
     const agregarTarea = () => {
@@ -191,7 +191,7 @@ const FormularioCrear = (props:any) => {
                         <Form.Group className='d-flex flex-column margen' controlId="floatingSelect">
                             <Form.Label className='etiqueta'>Tareas</Form.Label>
                             <Form.Select name="tareas" value={formValues.tareas} onChange={handleChangeTarea}>
-                                    
+                                <option value=""></option>
                                 {tareas.map((tarea:any) =>(
                                     <option value={tarea.idTarea}>{tarea.idTarea + ' : ' + tarea.nombre}</option>
                                 ))}

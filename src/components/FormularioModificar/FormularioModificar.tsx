@@ -38,7 +38,7 @@ const FormularioModificar = (props:any) => {
         put(`https://shielded-shelf-11253.herokuapp.com/tickets/${ticketID}`, formValues);
         alert("Ticket correctamente actualizado");
         //console.log(formValues);
-        navigate(-1);
+        navigate(-2);
     }
 
 
@@ -104,7 +104,7 @@ const FormularioModificar = (props:any) => {
                     <Link to="/soporte/tickets" onClick={enviar_solicitud_modificar} className='btn btn-dark' state={{ product: producto, version: version, tareas: tareas }}>
                         Modificar ticket
                     </Link>
-                    <Button className='btn btn-dark' onClick={() => navigate(-1)} >
+                    <Button className='btn btn-dark' onClick={() => navigate(-2)} >
                         Cancelar
                     </Button>
 
