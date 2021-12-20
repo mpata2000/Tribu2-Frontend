@@ -3,22 +3,22 @@ import './FormularioEliminar.css';
 import Form from 'react-bootstrap/Form';
 import { FloatingLabel } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
-import { NavigateFunction, useLocation , Link} from 'react-router-dom';
+import { useLocation , Link} from 'react-router-dom';
 import { AnyARecord } from 'dns';
 import { delete_ } from 'services/api';
-import { useNavigate } from 'react-router-dom';
+//import { useNavigate } from 'react-router-dom';
 
-function solicitarEliminacionDeTicket( id : any, estado : any, navigate : NavigateFunction) {
+function solicitarEliminacionDeTicket( id : any, estado : any) {
 
 
     if (estado === "Cerrado") {
         const respuesta = delete_(`https://shielded-shelf-11253.herokuapp.com/tickets/${id}`);
         alert("Ticket correctamente eliminado");
-        navigate(-1);
+        //navigate(-1);
     }
     else{
         alert("El ticket debe estar cerrado para poder ser eliminado");
-        navigate(-1); //va a la pagina previa
+        //navigate(-1); //va a la pagina previa
         
     }
 }
@@ -32,7 +32,7 @@ const FormularioEliminar = (props:any) => {
     const {nombre} = location.state;
     const {descrip} = location.state;
     const {estado} = location.state;
-    const navigate = useNavigate();
+    //const navigate = useNavigate();
     const {producto} = location.state;
     const {version} = location.state;
     const {tareas} = location.state;
@@ -69,7 +69,7 @@ const FormularioEliminar = (props:any) => {
                     {/* <Button className='btn btn-secondary' onClick={() =>solicitarEliminacionDeTicket(ticketID, estado, navigate) }>
                         Eliminar ticket
                     </Button> */}
-                    <Link to="/soporte/tickets" onClick={() =>solicitarEliminacionDeTicket(ticketID, estado, navigate) } className='btn btn-secondary' state={{ product: producto, version: version, tareas: tareas }}>
+                    <Link to="/soporte/tickets" onClick={() =>solicitarEliminacionDeTicket(ticketID, estado) } className='btn btn-secondary' state={{ product: producto, version: version, tareas: tareas }}>
                         Eliminar ticket
                     </Link>
                     <Link to="/soporte/tickets" className='btn btn-dark' state={{ product: producto, version: version, tareas: tareas }}>
