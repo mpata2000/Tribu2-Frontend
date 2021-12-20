@@ -20,7 +20,7 @@ const FormularioCrear = (props:any) => {
 
     const [formValues, setFormValues ] = useState({
         nombre: '',
-        proyecto: '',
+        producto: '',
         version: '',
         estado: '',
         tipo: '',
@@ -63,7 +63,7 @@ const FormularioCrear = (props:any) => {
                 <div className="d-flex flex-row justify-content-evenly doble_input">
                     <Form.Group className='d-flex flex-row primer_input' controlId="floatingSelect">
                         <Form.Label className='etiqueta'>Proyectos</Form.Label>
-                        <Form.Select className='input_chico' name="proyecto" value={formValues.proyecto} onChange={handleChange}>
+                        <Form.Select className='input_chico' name="producto" value={formValues.producto} onChange={handleChange}>
                             <option> </option>
                             <option value="1">SIU-GUARANI</option>
                             <option value="2">Proyecto2</option>

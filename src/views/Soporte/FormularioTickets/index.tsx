@@ -5,7 +5,7 @@ import {Link} from "react-router-dom";
 import {Button, Accordion} from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import FormularioCrear from 'components/FormularioCrear/FormularioCrear';
-import {post} from 'services/api';
+import {crearTicket} from 'services/api';
 
 const FormularioTicketsView = (props: any) => {
 //  const {onGetTickets} = props;
@@ -13,7 +13,20 @@ const FormularioTicketsView = (props: any) => {
 
   const handleSubmit = (data:any) => {
     console.log(data)
-    const respuesta = post('https://shielded-shelf-11253.herokuapp.com/tickets',data);
+    const formData = new FormData()
+    formData.append('nombre',data.nombre)
+    formData.append('tipo',data.tipo)
+    formData.append('estado',data.estado)
+    formData.append('severidad',data.severidad)
+    formData.append('cliente',data.cliente)
+    formData.append('creador',data.creador)
+    formData.append('descripcion',data.descripcion)
+    formData.append('recurso',data.recurso)
+    formData.append('tareas',data.tareas)
+    formData.append('producto',data.producto)
+    formData.append('version',data.version)
+
+    crearTicket(formData);
   }
 
   return (

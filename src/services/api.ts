@@ -33,11 +33,25 @@ export async function get(url: string, headers = {}): Promise<AxiosResponse> {
   }
 }
 
-export async function post(url: string, params = {}, headers = {}): Promise<any> {
+// export async function post(url: string, params = {}, headers = {}): Promise<any> {
+//   try {
+//     const getToken = await getOptions();
+//     const options = { ...getToken, ...headers };
+//     const response = await api.post(url, params, options);
+//     return response;
+//   } catch (error: any) {
+//     throw errorResponse(error);
+//   }
+// }
+
+
+export async function crearTicket(data:any): Promise<any> {
   try {
-    const getToken = await getOptions();
-    const options = { ...getToken, ...headers };
-    const response = await api.post(url, params, options);
+    const response = await axios({
+      url:'https://shielded-shelf-11253.herokuapp.com/tickets',
+      method: 'POST',
+      data:data
+    })
     return response;
   } catch (error: any) {
     throw errorResponse(error);
