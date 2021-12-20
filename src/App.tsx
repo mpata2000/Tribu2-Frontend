@@ -10,6 +10,7 @@ import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import ProyectoContainer from 'containers/ProyectoContainer';
+import TareasContainer from 'containers/TareasContainer';
 
 function App() {
   
@@ -26,6 +27,7 @@ function App() {
                 <Route path="/soporte" element={<SoporteContainer />} />
                 <Route path="/soporte/tickets" element={<TicketsContainer />} />
                 <Route path="/proyecto" element={<ProyectoContainer />} />
+                <Route path="/tareas/proyecto/" element={<TareasContainer />} />
               </Routes>
             </div>
           </div>

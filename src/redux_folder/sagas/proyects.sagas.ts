@@ -6,6 +6,7 @@ import {
   import * as actions from 'redux_folder/actions/proyects.actions';
   
   import { deleteProyects, getProyects , postProyects } from 'services/proyects.services';
+
   
   export function* proyectsGetAll() {
     try {
@@ -42,6 +43,8 @@ import {
       yield put(actions.deleteProyectFailed(error));
     }
   }
+
+  
   
   export function* watchProyects() {
     yield all([

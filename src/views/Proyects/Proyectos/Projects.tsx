@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import ProjectForm from './ProjectForm';
 import ProjectItem from './ProjectItem';
@@ -7,6 +7,7 @@ import { Toast } from 'primereact/toast';
 import { createProyect, onProyectsGetAll } from 'redux_folder/actions/proyects.actions';
 import ProjectEditForm from './ProjectEditForm';
 import { deleteProyects, putProyects } from 'services/proyects.services';
+import useTypedSelector from 'hooks/useTypedSelector';
 
 const proyectoDefault = {
     idProyecto: null,
@@ -82,26 +83,39 @@ const Projects = (props: any) => {
     }
 
     const edit = () => {
-        setVisibleSave(false);
-        // dispatch(putProyects(selectedProject))
-        const editedMessage = {
-            title: 'Proyecto editado! ',
-            description: 'Se edito correctamente el proyecto: ' + proyecto.nombre
+        if (null != selectedProject.idProyecto) {
+            setVisibleSave(false);
+            // dispatch(putProyects(selectedProject))
+            const editedMessage = {
+                title: 'Proyecto editado! ',
+                description: 'Se edito correctamente el proyecto: ' + proyecto.nombre
+            }
+            showSuccess(editedMessage);
+            console.log(selectedProject);
+            //vuelvo a llamar a todos los proyectos.
+            dispatch(onProyectsGetAll());
+        } else { 
+            const deletedWarningMessage = {
+                title: 'Atencion! ',
+                description: 'Debe seleccionar un proyecto para ser editado.'
+            }
+            showWarn(deletedWarningMessage);
         }
-        showSuccess(editedMessage);
-        console.log(selectedProject);
-        //vuelvo a llamar a todos los proyectos.
-        dispatch(onProyectsGetAll());
     }
+    const proyectos = useTypedSelector((state) => state.proyects.proyects);
+
+    useEffect(() => {
+
+        dispatch(onProyectsGetAll());
+
+    }, [])
 
     const projectDelete = () => {
-
-        //SQUAD 9 HACER EL FLUJO DEL DISPATCH COMO EL GET, PARA EL DELETE
         if (null != selectedProject.idProyecto) {
             if (window.confirm("¿Desea elminar Proyecto: " + selectedProject.idProyecto + "?")) {
-                //cantidad de proyectos creados
-                const proyectos = props.projects;
+            
                 try {
+                    debugger;
                     dispatch(deleteProyects(selectedProject.idProyecto)); //SIEMPRE DEVUELVE ERROR PROMISE
                     //REALIZA BIEN EL PUT PERO HAY UN ERROR QUE ES EL QUE SE RECIBE, LA RESPONSE QUEDA PERDIDA
                     const deletedMessage = {
@@ -109,27 +123,17 @@ const Projects = (props: any) => {
                         description: 'Se elimina proyecto con exito.'
                     }
                     showSuccess(deletedMessage);
-                    dispatch(onProyectsGetAll());
                 } catch (error: any) {
-                    debugger;
-                };
-                //vuelvo a llamar para actualizar el numero de proyectos.
-                dispatch(onProyectsGetAll());
-                //comparo con la cantidad, si hay menos es porque se elimino bien
-                if (proyectos.lenght === props.projects.lenght) {
-                    const deletedErrorMessage = {
-                        title: 'Atencion! ',
-                        description: 'No se pudo eliminar el proyecto: ' + selectedProject.idProyecto + ' puede tener tareas asociadas.'
-                    }
-                    showWarn(deletedErrorMessage);
-                } else {
+                    //Error promise
                     const deletedMessage = {
-                        title: 'Proyecto Eliminado! ',
-                        description: 'Se elimina proyecto con exito.'
+                        title: 'Atencion! ',
+                        description: 'No se puede eliminar el proyecto: .' + selectedProject.idProyecto+ ' puede contener tareas.'
                     }
-                    showSuccess(deletedMessage);
-                }
+                    showWarn(deletedMessage);
+                };
             }
+            //vuelvo a llamar para actualizar el numero de proyectos.
+            dispatch(onProyectsGetAll());
         } else {
             const deletedWarningMessage = {
                 title: 'Atencion! ',

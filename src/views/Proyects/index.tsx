@@ -1,4 +1,4 @@
-import Projects from './Projects';
+import Projects from './Proyectos/Projects';
 
 const ProyectsView = (props: any) => {
 
