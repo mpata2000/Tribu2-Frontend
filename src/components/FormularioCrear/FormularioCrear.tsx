@@ -37,37 +37,25 @@ const FormularioCrear = (props:any) => {
         producto: producto,
         version: version,
         estado: 'Abierto',
-        tipo: '',
+        tipo: 'consulta',
         severidad: '1',
         cliente: '',
         recurso: '',
         descripcion: '',
         creador: '',
-        tareas: [''],
+        tareas: [] as string[],
     })
-
-    
-    var tareas_agregadas = []
+    const tareasAgregadas:string[] = [];
 
     const handleChangeTarea = (event:any) => {
         const target = event.target;
         const name = target.name;
-        console.log(event)
-        console.log(name, target.value)
-        //tareas_agregadas.push(target.value)
-        //console.log(tareas_agregadas)
-        //console.log(target.checked)
-        //const value = target.type === 'checkbox' ? target.checked : target.value;
-        //console.log(name, value)
         if(formValues.tareas.includes(target.value)){
             formValues.tareas.splice(formValues.tareas.indexOf(target.value),1)
         }
         else{
-            formValues.tareas.push(target.value) 
+            formValues.tareas.push(target.value);
         }
-        console.log(formValues.tareas.includes(target.value))
-        
-        console.log(formValues.tareas)
         setFormValues({...formValues, [name]: formValues.tareas})
     };
 
@@ -159,6 +147,7 @@ const FormularioCrear = (props:any) => {
                             <Form.Group className='d-flex flex-row primer_input margen' controlId="floatingSelect">
                                 <Form.Label className='etiqueta'>Cliente</Form.Label>
                                 <Form.Select className='input_chico' name="cliente" value={formValues.cliente} onChange={handleChange}>
+                                <option value=""></option>
                                     {clients.map((client:any) =>(
                                         <option value={client.id}>{client['razon social']}</option>
                                         ))}
@@ -177,6 +166,7 @@ const FormularioCrear = (props:any) => {
                         <Form.Group className='d-flex flex-row margen' controlId="floatingSelect">
                             <Form.Label className='etiqueta'>Recurso</Form.Label>
                             <Form.Select className='input_grande' name="recurso" value={formValues.recurso} onChange={handleChange}>
+                                <option value=""></option>
                                 {resources.map((resource:any) =>(
                                     <option value={resource.legajo}>{resource.Nombre + ' ' + resource.Apellido}</option>
                                     ))}
@@ -201,19 +191,20 @@ const FormularioCrear = (props:any) => {
                         <Form.Group className='d-flex flex-column margen' controlId="floatingSelect">
                             <Form.Label className='etiqueta'>Tareas</Form.Label>
                             <Form.Select name="tareas" value={formValues.tareas} onChange={handleChangeTarea}>
+                                    
                                 {tareas.map((tarea:any) =>(
                                     <option value={tarea.idTarea}>{tarea.idTarea + ' : ' + tarea.nombre}</option>
-                                    ))}
+                                ))}
                             </Form.Select>
                             {/* <Button onClick={agregarTarea}>
                                 Agregar Tarea
                             </Button> */}
-                            {/* <div>
-                                <ul>
-                                    <li>{formValues.tareas.map((tarea:any) =>({tarea}))}</li>
-                                </ul>
-                            </div> */}
                         </Form.Group>
+                        {<div>
+                            <ul>
+                                {formValues.tareas.map((tarea:any) =>(<li>{tarea}</li>))}
+                            </ul>
+                        </div>}
                         {/* {tareas.map((tarea:any) =>(
                         <Form.Check 
                             type='checkbox'
