@@ -145,35 +145,49 @@ const ProjectEditForm = (props: any) => {
                         <label htmlFor="descripcion">Descripción</label>
                     </span>
                     <br />
-                    <label htmlFor="fechaInicioReal">Fecha Inicio Real</label>
-                    <span className="p-float-label">
-                        <Input type='date' data-data-format='YYYY-MM-DD' value={props.projectSelected.fechaInicioReal} onChange={fechaInicioRealChangeHandler} />
-                    </span>
+
+                    <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
+                        <label htmlFor="fechaInicioReal">Fecha Inicio Real&nbsp;</label>
+                        <span className="p-float-label">
+                            <Input type='date' data-data-format='YYYY-MM-DD' value={props.projectSelected.fechaInicioReal} onChange={fechaInicioRealChangeHandler} />
+                        </span>
+                        <br />
+                        <label htmlFor="fechaFinalizacionReal">Fecha Finalización Real</label>
+                        <span className="p-float-label">
+                            <Input type='date' data-data-format='YYYY-MM-DD' value={props.projectSelected.fechaFinalizacionReal} onChange={fechaFinalizacionRealChangeHandler} />
+                        </span>
+                    </div>
+
                     <br />
-                    <label htmlFor="fechaFinalizacionReal">Fecha Finalización Real</label>
-                    <span className="p-float-label">
-                        <Input type='date' data-data-format='YYYY-MM-DD' value={props.projectSelected.fechaFinalizacionReal} onChange={fechaFinalizacionRealChangeHandler} />
-                    </span>
+
+                    <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
+                        <label htmlFor="fechaInicioEstimada">Fecha Inicio Estimada</label>
+                        <span className="p-float-label">
+                            <Input type='date' data-data-format='YYYY-MM-DD' value={props.projectSelected.fechaInicioEstimada} onChange={fechaInicionEstimadoChangeHandler} />
+                        </span>
+                        <br />
+                        <label htmlFor="fechaFinalizacionEstimada">Fecha Finalización Estimada</label>
+                        <span className="p-float-label">
+                            <Input type='date' data-data-format='YYYY-MM-DD' value={props.projectSelected.fechaFinaliazacionEstimada} onChange={fechaFinalizacionEstimadoChangeHandler} />
+                        </span>
+                    </div>
+
                     <br />
-                    <label htmlFor="fechaInicioEstimada">Fecha Inicio Estimada</label>
-                    <span className="p-float-label">
-                        <Input type='date' data-data-format='YYYY-MM-DD' value={props.projectSelected.fechaInicioEstimada} onChange={fechaInicionEstimadoChangeHandler} />
-                    </span>
-                    <br />
-                    <label htmlFor="fechaFinalizacionEstimada">Fecha Finalización Estimada</label>
-                    <span className="p-float-label">
-                        <Input type='date' data-data-format='YYYY-MM-DD' value={props.projectSelected.fechaFinaliazacionEstimada} onChange={fechaFinalizacionEstimadoChangeHandler} />
-                    </span>
-                    <br />
-                    <label htmlFor="fechaEntregaComunicadaACliente">Fecha de Entrega</label>
-                    <span className="p-float-label">
-                        <Input type='date' data-data-format='YYYY-MM-DD' value={props.projectSelected.fechaEntregaComunicadaACliente} onChange={fechaEntregaChangeHandler} />
-                    </span>
-                    <br />
-                    <span className="p-float-label">
-                        <InputText type={'number'} value={props.projectSelected.horasEstimadas} style={{ width: '100%' }} id="horasEstimadas" onKeyPress={horasChangeHandler} onInput={horasChangeHandler} />
-                        <label htmlFor="HorasEstimadas">Horas estimadas</label>
-                    </span>
+
+                    <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
+                        <label htmlFor="fechaEntregaComunicadaACliente">Fecha de Entrega</label>
+                        <span className="p-float-label">
+                            <Input type='date' data-data-format='YYYY-MM-DD' value={props.projectSelected.fechaEntregaComunicadaACliente} onChange={fechaEntregaChangeHandler} />
+                        </span>
+                        <br />
+                        <span className="p-float-label">
+                            <InputText type={'number'} value={props.projectSelected.horasEstimadas} style={{ width: '100%' }} id="horasEstimadas" onKeyPress={horasChangeHandler} onInput={horasChangeHandler} />
+                            <label htmlFor="HorasEstimadas">Horas estimadas</label>
+                        </span>
+                        <label>&nbsp;</label>
+                        <label>&nbsp;</label>
+                    </div>
+
                     <br />
                     <span className="p-float-label">
                         <Box sx={{ minWidth: 120 }}>
@@ -188,6 +202,8 @@ const ProjectEditForm = (props: any) => {
                             </FormControl>
                         </Box>
                     </span>
+                    
+
                     <br />
                     <span className="p-float-label">
                         <Box sx={{ minWidth: 120 }}>
