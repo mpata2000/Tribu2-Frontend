@@ -6,8 +6,8 @@ interface IRootState {
   proyects: any;
   hours: IHoursDefaultState;
   tickets: ITicketsDefaultState;
-  products: IProductsDefaultState;
   tareas: ITareasDefaultState;
+  products: IProductsDefaultState;
   resources: IResourcesDefaultState;
   clients: IClientsDefaultState;
 }
