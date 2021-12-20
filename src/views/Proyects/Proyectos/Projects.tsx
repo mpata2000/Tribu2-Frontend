@@ -27,7 +27,8 @@ const Projects = (props: any) => {
     const [visibleSave, setVisibleSave] = useState(false)
     const [visibleEdit, setVisibleEdit] = useState(false)
     const [selectedProject, setSelectedProject] = useState(proyectoDefault)
-    const [proyecto, setProyecto] = useState(proyectoDefault)
+    // const [proyecto, setProyecto] = useState(proyectoDefault)
+    const proyectos = useTypedSelector((state) => state.proyects.proyects);
     const dispatch = useDispatch();
 
 
@@ -81,19 +82,20 @@ const Projects = (props: any) => {
 
     }
 
-    const edit = (EditedProyecto) => {
-        if (null != EditedProyecto.idProyecto) {
+    const edit = () => {
+        console.log(selectedProject);
+        debugger;
+        if (0 !== selectedProject.idProyecto) {
             setVisibleSave(false);
             // dispatch(putProyects(selectedProject))
             const editedMessage = {
                 title: 'Proyecto editado! ',
-                description: 'Se edito correctamente el proyecto: ' + EditedProyecto.nombre
+                description: 'Se edito correctamente el proyecto: ' + selectedProject.nombre
             }
             showSuccess(editedMessage);
-            console.log(selectedProject);
             //vuelvo a llamar a todos los proyectos.
             dispatch(onProyectsGetAll());
-        } else { 
+        } else {
             const deletedWarningMessage = {
                 title: 'Atencion! ',
                 description: 'Debe seleccionar un proyecto para ser editado.'
@@ -101,32 +103,23 @@ const Projects = (props: any) => {
             showWarn(deletedWarningMessage);
         }
     }
-    const proyectos = useTypedSelector((state) => state.proyects.proyects);
-
-    useEffect(() => {
-
-        dispatch(onProyectsGetAll());
-
-    }, [])
 
     const projectDelete = () => {
-        if (null != selectedProject.idProyecto) {
+        if (0 !== selectedProject.idProyecto) {
             if (window.confirm("¿Desea elminar Proyecto: " + selectedProject.idProyecto + "?")) {
-            
+
                 try {
-                    console.log(selectedProject.idProyecto.toString());
-                    dispatch(deleteProyects(selectedProject.idProyecto.toString())); //SIEMPRE DEVUELVE ERROR PROMISE
-                    //REALIZA BIEN EL PUT PERO HAY UN ERROR QUE ES EL QUE SE RECIBE, LA RESPONSE QUEDA PERDIDA
-                    const deletedMessage = {
-                        title: 'Proyecto Eliminado! ',
-                        description: 'Se elimina proyecto con exito.'
-                    }
-                    showSuccess(deletedMessage);
-                } catch (error: any) {
-                    //Error promise
+                    dispatch(deleteProyects(selectedProject.idProyecto.toString()));
                     const deletedMessage = {
                         title: 'Atencion! ',
-                        description: 'No se puede eliminar el proyecto: .' + selectedProject.idProyecto+ ' puede contener tareas.'
+                        description: 'No se puede eliminar el proyecto: .' + selectedProject.idProyecto + ' puede contener tareas.'
+                    }
+                    showWarn(deletedMessage);
+
+                } catch (error: any) {
+                    const deletedMessage = {
+                        title: 'Atencion! ',
+                        description: 'No se puede eliminar el proyecto: .' + selectedProject.idProyecto + ' puede contener tareas.'
                     }
                     showWarn(deletedMessage);
                 };
@@ -149,15 +142,23 @@ const Projects = (props: any) => {
     }
 
     const showEditDialog = () => {
-        setVisibleEdit(true)
-        setProyecto(selectedProject)
+        if (0 !== selectedProject.idProyecto) {
+            setVisibleEdit(true)
+            // setProyecto(selectedProject)
+        } else {
+            const deletedWarningMessage = {
+                title: 'Atencion! ',
+                description: 'Debe seleccionar un proyecto para ser editado.'
+            }
+            showWarn(deletedWarningMessage);
+        }
     }
 
     return (
         <div>
             <Toast ref={toast} />
             <ProjectItem
-                items={props.projects}
+                items={proyectos}
                 buttons={buttons}
                 selectedProject={selectedProject}
                 setSelectedProject={setSelectedProject}

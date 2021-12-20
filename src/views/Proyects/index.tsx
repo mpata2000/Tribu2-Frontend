@@ -12,4 +12,3 @@ const ProyectsView = (props: any) => {
 }
 
 export default ProyectsView
-// style={{ width: '80%', margin: '0 auto', marginTop: '20px' }}

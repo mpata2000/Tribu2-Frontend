@@ -66,19 +66,18 @@ const Tareas = (props: any) => {
     }
 
     const tareasDelete = () => {
-        if (null != selectedTarea.idTarea) {
+        if (0!== selectedTarea.idTarea) {
             if (window.confirm("¿Desea elminar Tarea: " + selectedTarea.idTarea + "?")) {
                 console.log(selectedTarea.idTarea.toString());
-                dispatch(onDeleteTarea(selectedTarea.idTarea.toString())); //SIEMPRE DEVUELVE ERROR PROMISE
-                //REALIZA BIEN EL PUT PERO HAY UN ERROR QUE ES EL QUE SE RECIBE, LA RESPONSE QUEDA PERDIDA
+                dispatch(onDeleteTarea(selectedTarea.idTarea.toString())); 
                 const deletedMessage = {
-                    title: 'Proyecto Eliminado! ',
-                    description: 'Se elimina proyecto con exito.'
+                    title: 'Tarea Eliminada! ',
+                    description: 'Se elimina tarea con exito.'
                 }
                 showSuccess(deletedMessage);
             }
             //vuelvo a llamar para actualizar el numero de proyectos.
-            // dispatch(onProyectsGetAll());
+           // dispatch(onGetTareas());
         } else {
             const deletedWarningMessage = {
                 title: 'Atencion! ',

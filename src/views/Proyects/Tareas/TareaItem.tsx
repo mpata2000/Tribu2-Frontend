@@ -9,11 +9,19 @@ const TareaItem = (props: any) => {
     //props.items[0].idProyecto (tengo)
     const botones = () => { }
     console.log(props.items);
+    const getIdProject=()=>{
+        if(0 === props.items.length){
+            return""
+        }
+        else{
+            return props.items[0].idProyecto.idProyecto;
+        }
+    }
     return (
         <div className="card">
             <Menubar model={props.buttons}></Menubar>
             <br></br>
-            <Panel header={"Proyecto: "+ /*props.items[0].idProyecto.idProyecto+*/ " - Tareas"} >
+            <Panel header={"Proyecto "+ getIdProject() + " - Tareas"} >
                 <DataTable value={props.items} selectionMode="single" selection={props.selectedTarea} onSelectionChange={(e: any) => props.setSelectedTarea(e.value)}>
                     {/* <Column selectionMode="single" headerStyle={{ width: '3rem' }} exportable={false}></Column>  */}
                     <Column field="idTarea" header="Id Proyecto" sortable ></Column>

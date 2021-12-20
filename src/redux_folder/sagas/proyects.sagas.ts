@@ -40,7 +40,8 @@ import {
       const data: unknown = yield call(deleteProyects,action.id);
       yield put(actions.deleteProyectSucceeded(data));
     } catch (error) {
-      yield put(actions.deleteProyectFailed(error));
+      //yield put(actions.deleteProyectFailed(error));
+      yield error; //devuelvo el error para mostrar mensaje
     }
   }
 

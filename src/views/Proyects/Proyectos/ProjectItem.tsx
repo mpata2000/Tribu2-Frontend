@@ -3,12 +3,8 @@ import { Column } from 'primereact/column';
 import { Panel } from 'primereact/panel'
 import { Menubar } from 'primereact/menubar'
 import './ProjectItem.css'
-import React, { useEffect, useState } from 'react';
-import { Button } from 'primereact/button';
-import TareasContainer from 'containers/TareasContainer';
 import { useDispatch } from 'react-redux';
 import useTypedSelector from 'hooks/useTypedSelector';
-import {Link} from "react-router-dom";
 import { onGetTareas } from 'redux_folder/actions/tareas.actions';
 import {useNavigate} from "react-router-dom";
 
@@ -21,7 +17,6 @@ const ProjectItem = (props: any) => {
     const tareas = useTypedSelector((state) => state.tareas.tareas);
     const showTareas = () => {
             dispatch(onGetTareas(props.selectedProject.idProyecto.toString()));
-            console.log(tareas);
             navigate('/proyecto/tareas',{state:{tareas}});
     }
 
