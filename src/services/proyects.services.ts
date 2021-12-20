@@ -18,7 +18,18 @@ export async function saveProyects(): Promise<any> {
   return response;
 }
  export async function deleteProyects(id): Promise<any> {
-   const response = await delete_(`${url}/proyectos/`+id);
+   const response = await delete_(`${url}/proyectos/${id}`);
    return response;
  }
 
+export async function getTasks(): Promise<any> {
+  const response = await get(`${url}/tareas`);
+  return response;
+}
+
+export async function getTasksByIds(ids: string[]): Promise<any> {
+  console.log(`${url}/tareas?ids=${ids}`);
+  
+  const response = await get(`${url}/tareas?ids=${ids}`);
+  return response;
+}

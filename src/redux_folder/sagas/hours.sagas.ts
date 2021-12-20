@@ -5,14 +5,14 @@ import {
 import * as constants from 'redux_folder/constants/hours.constants';
 import * as actions from 'redux_folder/actions/hours.actions';
 
-import { createHours, getHours } from 'services/hours.services';
+import { createHours, deleteHours, editHours, getHours } from 'services/hours.services';
 
-export function* hoursGetAll() {
+export function* hoursGet(action:any) {
   try {
-    const data: unknown = yield call(getHours);
-    yield put(actions.onGetAllSucceeded(data));
+    const data: unknown = yield call(getHours,action.filters);
+    yield put(actions.onGetSucceeded(data));
   } catch (error) {
-    yield put(actions.onGetAllFailed(error));
+    yield put(actions.onGetFailed(error));
   }
 }
 export function* hoursCreate(action: any) {
@@ -23,10 +23,27 @@ export function* hoursCreate(action: any) {
     yield put(actions.onCreateHoursFailed(error));
   }
 }
-
+export function* hoursEdit(action: any) {
+  try {
+    const data: unknown = yield call(editHours, action.data);
+    yield put(actions.onHoursEditSucceeded(data));
+  } catch (error) {
+    yield put(actions.onHoursEditFailed(error));
+  }
+}
+export function* hoursDelete(action: any) {
+  try {
+    const data: unknown = yield call(deleteHours, action.id);
+    yield put(actions.onHoursDeleteSucceeded(data));
+  } catch (error) {
+    yield put(actions.onHoursDeleteFailed(error));
+  }
+}
 export function* watchHours() {
   yield all([
-    takeLatest(constants.HOURS_ON_GET_ALL_REQUESTED, hoursGetAll),
-    takeLatest(constants.HOURS_ON_CREATE_REQUESTED,hoursCreate)
+    takeLatest(constants.HOURS_ON_GET_REQUESTED, hoursGet),
+    takeLatest(constants.HOURS_ON_CREATE_REQUESTED,hoursCreate),
+    takeLatest(constants.HOURS_ON_EDIT_REQUESTED,hoursEdit),
+    takeLatest(constants.HOURS_ON_DELETE_REQUESTED,hoursDelete),
   ]);
 }
