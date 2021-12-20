@@ -2,7 +2,7 @@ import { Reducer } from 'redux';
 import * as constantsTareas from 'redux_folder/constants/tareas.constants';
 import { ITareasDefaultState } from 'types/tareas.types';
 import * as constants from 'redux_folder/constants/tickets.constants';
-import { ITareasDefaultState } from 'types/tickets.types';
+//import { ITareasDefaultState } from 'types/tickets.types';
 
 const defaultState: ITareasDefaultState = {
   loading: false,
