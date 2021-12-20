@@ -30,14 +30,14 @@ const FormularioCrear = (props:any) => {
         nombre: '',
         producto: producto,
         version: version,
-        estado: '',
+        estado: 'Abierto',
         tipo: '',
-        severidad: '',
+        severidad: '1',
         cliente: '',
         recurso: '',
         descripcion: '',
         creador: '',
-        tareas: ['1'],
+        tareas: ["1"],
     })
 
     const handleChange = (event:any) => {
@@ -88,18 +88,19 @@ const FormularioCrear = (props:any) => {
                     <Form.Group className='d-flex flex-row primer_input' controlId="floatingSelect">
                         <Form.Label className='etiqueta'>Estado</Form.Label>
                         <Form.Select className='input_chico' name="estado" value={formValues.estado} onChange={handleChange}>
-                            <option> </option>
-                            <option value="1">Abierto</option>
-                            <option value="2">Cerrado</option>
-                            <option value="3">En curso</option>
+                            <option value="Abierto">Abierto</option>
+                            <option value="En proceso">En Proceso</option>
+                            <option value="En proceso">A la espera de desarollo</option>
+                            <option value="Cerrado">A la espera de cliente</option>
+                            <option value="En Curso">Cerrado</option>
                         </Form.Select>
                     </Form.Group>
                     <Form.Group className='d-flex flex-row primer_input' controlId="floatingSelect">
                         <Form.Label className='etiqueta'>Tipo</Form.Label>
                         <Form.Select className='input_chico' name="tipo" value={formValues.tipo} onChange={handleChange}>
                             <option> </option>
-                            <option value="1">Consulta</option>
-                            <option value="2">Incidencia</option>
+                            <option value="consulta">Consulta</option>
+                            <option value="incidencia">Incidencia</option>
                         </Form.Select>
                     </Form.Group>
                 </div>
@@ -108,16 +109,15 @@ const FormularioCrear = (props:any) => {
                     <Form.Group className='d-flex flex-row primer_input' controlId="floatingSelect">
                         <Form.Label className='etiqueta'>Severidad</Form.Label>
                         <Form.Select className='input_chico' name="severidad" value={formValues.severidad} onChange={handleChange}>
-                            <option> </option>
-                            <option value="1">Alta</option>
-                            <option value="2">Media</option>
-                            <option value="3">Baja</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
                         </Form.Select>
                     </Form.Group>
                     <Form.Group className='d-flex flex-row primer_input' controlId="floatingSelect">
                         <Form.Label className='etiqueta'>Cliente</Form.Label>
                         <Form.Select className='input_chico' name="cliente" value={formValues.cliente} onChange={handleChange}>
-                            <option> </option>
                             {clients.map((client:any) =>(
                             <option value={client.id}>{client['razon social']}</option>
                             ))}
@@ -137,7 +137,6 @@ const FormularioCrear = (props:any) => {
                     <Form.Label className='etiqueta'>Recurso</Form.Label>
                     <Form.Select className='input_grande' name="recurso" value={formValues.recurso} onChange={handleChange}>
                         <option> </option>
-
                         {resources.map((resource:any) =>(
                             <option value={resource.legajo}>{resource.Nombre + ' ' + resource.Apellido}</option>
                         ))}
