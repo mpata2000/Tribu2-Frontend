@@ -118,7 +118,7 @@ const ProjectForm = (props: any) => {
                     <br />
 
                     <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
-                        <label htmlFor="fechaInicioReal">Fecha Inicio</label>
+                        <label htmlFor="fechaInicioReal">Fecha Inicio&nbsp;</label>
                         <span className="p-float-label">
                             <Input type='date' data-data-format='YYYY-MM-DD' value={enteredFechaInicioReal} onChange={fechaInicioRealChangeHandler} />
                         </span>
@@ -130,25 +130,35 @@ const ProjectForm = (props: any) => {
                     </div>
 
                     <br />
-                    <label htmlFor="fechaInicioEstimada">Fecha Inicio Estimada</label>
-                    <span className="p-float-label">
-                        <Input type='date' data-data-format='YYYY-MM-DD' value={enteredFechaInicioEstimada} onChange={fechaInicionEstimadoChangeHandler} />
-                    </span>
+
+                    <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
+                        <label htmlFor="fechaInicioEstimada">Fecha Inicio Estimada</label>
+                        <span className="p-float-label">
+                            <Input type='date' data-data-format='YYYY-MM-DD' value={enteredFechaInicioEstimada} onChange={fechaInicionEstimadoChangeHandler} />
+                        </span>
+                        <br />
+                        <label htmlFor="fechaFinalizacionEstimada">Fecha Finalización Estimada</label>
+                        <span className="p-float-label">
+                            <Input type='date' data-data-format='YYYY-MM-DD' value={enteredFechaFinalEstimada} onChange={fechaFinalizacionEstimadoChangeHandler} />
+                        </span>
+                    </div>
+
                     <br />
-                    <label htmlFor="fechaFinalizacionEstimada">Fecha Finalización Estimada</label>
-                    <span className="p-float-label">
-                        <Input type='date' data-data-format='YYYY-MM-DD' value={enteredFechaFinalEstimada} onChange={fechaFinalizacionEstimadoChangeHandler} />
-                    </span>
-                    <br />
-                    <label htmlFor="fechaEntregaComunicadaACliente">Fecha de Entrega</label>
-                    <span className="p-float-label">
-                        <Input type='date' data-data-format='YYYY-MM-DD' value={enteredFechaEntrega} onChange={fechaEntregaChangeHandler} />
-                    </span>
-                    <br />
-                    <span className="p-float-label">
-                        <InputText type={'number'} value={enteredHoras} style={{ width: '100%' }} id="horasEstimadas" onKeyPress={horasChangeHandler} onInput={horasChangeHandler} />
-                        <label htmlFor="HorasEstimadas">Horas estimadas</label>
-                    </span>
+
+                    <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
+                        <label htmlFor="fechaEntregaComunicadaACliente">Fecha de Entrega</label>
+                        <span className="p-float-label">
+                            <Input type='date' data-data-format='YYYY-MM-DD' value={enteredFechaEntrega} onChange={fechaEntregaChangeHandler} />
+                        </span>
+                        <br />
+                        <span className="p-float-label">
+                            <InputText type={'number'} value={enteredHoras} style={{ width: '100%' }} id="horasEstimadas" onKeyPress={horasChangeHandler} onInput={horasChangeHandler} />
+                            <label htmlFor="HorasEstimadas">Horas estimadas</label>
+                        </span>
+                        <label>&nbsp;</label>
+                        <label>&nbsp;</label>
+
+                    </div>
                     <br />
                     <span className="p-float-label">
                         <Box sx={{ minWidth: 120 }}>
@@ -164,6 +174,8 @@ const ProjectForm = (props: any) => {
                             </FormControl>
                         </Box>
                     </span>
+
+
                     <br />
                     <span className="p-float-label">
                         <Box sx={{ minWidth: 120 }}>

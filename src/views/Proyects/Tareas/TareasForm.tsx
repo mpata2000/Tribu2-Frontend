@@ -85,7 +85,7 @@ const TareasForm = (props: any) => {
     };
     return (
         <div>
-            <Dialog header={'Crear Tarea'} visible={props.visible} style={{ width: '400px' }} footer={footer} modal={true} onHide={() => props.setVisible(false)}>
+            <Dialog header={'Crear Tarea'} visible={props.visible} style={{ width: '600px' }} footer={footer} modal={true} onHide={() => props.setVisible(false)}>
                 <form id="proyecto-form" style={{ width: '100%' }}>
                     <br />
                     <span className="p-float-label">
@@ -98,15 +98,19 @@ const TareasForm = (props: any) => {
                         <label htmlFor="descripcion">Descripción</label>
                     </span>
                     <br />
-                    <label htmlFor="fechaInicioReal">Fecha Inicio</label>
-                    <span className="p-float-label">
-                        <Input type='date' data-data-format='YYYY-MM-DD' value={enteredFechaInicioReal} onChange={fechaInicioRealChangeHandler} />
-                    </span>
-                    <br />
-                    <label htmlFor="fechaFinalizacionReal">Fecha Finalización</label>
-                    <span className="p-float-label">
-                        <Input type='date' data-data-format='YYYY-MM-DD' value={enteredFechaFinalizacionReal} onChange={fechaFinalizacionRealChangeHandler} />
-                    </span>
+
+                    <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
+                        <label htmlFor="fechaInicioReal">Fecha Inicio</label>
+                        <span className="p-float-label">
+                            <Input type='date' data-data-format='YYYY-MM-DD' value={enteredFechaInicioReal} onChange={fechaInicioRealChangeHandler} />
+                        </span>
+                        <br />
+                        <label htmlFor="fechaFinalizacionReal">Fecha Finalización</label>
+                        <span className="p-float-label">
+                            <Input type='date' data-data-format='YYYY-MM-DD' value={enteredFechaFinalizacionReal} onChange={fechaFinalizacionRealChangeHandler} />
+                        </span>
+                    </div>
+
                     <br />
                     <span className="p-float-label">
                         <InputText type={'number'} value={enteredHorasEstimadas} style={{ width: '100%' }} id="horasEstimadas" onKeyPress={horasChangeHandler} onInput={horasChangeHandler} />
