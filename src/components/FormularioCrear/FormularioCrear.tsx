@@ -5,7 +5,7 @@ import { FloatingLabel } from 'react-bootstrap'
 import Button from 'react-bootstrap/Button'
 import useTypedSelector from 'hooks/useTypedSelector';
 import { post } from 'services/api';
-//import {useNavigate} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import {useLocation} from 'react-router-dom';
 import FormControl from '@mui/material/FormControl';
 import ListItemText from '@mui/material/ListItemText';
@@ -18,7 +18,7 @@ const FormularioCrear = (props:any) => {
     const {tickets} = props;
     const {onRowClick} = props;
     const {handleSubmit} = props;
-    //const navigate = useNavigate();
+    const navigate = useNavigate();
 
     const location = useLocation();
     const { producto } = location.state;
@@ -73,7 +73,7 @@ const FormularioCrear = (props:any) => {
         alert("Ticket correctamente creado");
         console.log("click")
         console.log(formValues);
-        //navigate(-1);
+        navigate(-1);
     }
 
     const agregarTarea = () => {
