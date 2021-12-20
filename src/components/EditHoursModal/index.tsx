@@ -60,7 +60,7 @@ const EditHoursModal = (props: any) => {
                     return(
                         <LocalizationProvider dateAdapter={AdapterDateFns}>
                             <DatePicker
-                                label="Date"
+                                label="Fecha"
                                 value={dateViewer}
                                 onChange={(newValue) => {onChange(format(newValue, 'yyyy-MM-dd')); setDateViewer(newValue)}}
                                 renderInput={(params) => <TextField {...params} />}
@@ -76,7 +76,7 @@ const EditHoursModal = (props: any) => {
                 return (
                     <FormControl style={{margin: '40px 0px'}}>
                         <InputLabel id="note"/> 
-                        <TextField id="note" inputProps={{ maxLength: 100 }} defaultValue={hour.note} label='Note' multiline rows={4} variant="outlined" onChange={onChange}/>
+                        <TextField id="note" inputProps={{ maxLength: 100 }} defaultValue={hour.note} label='Nota' multiline rows={4} variant="outlined" onChange={onChange}/>
                     </FormControl>
                         
                     )}}
@@ -88,7 +88,7 @@ const EditHoursModal = (props: any) => {
                         control={control}
                         render={({ field: { onChange, onBlur, value } }) => {
                             return (
-                                <Tooltip title="Hours">
+                                <Tooltip title="Hora">
                                     <TextField id="hours"  inputProps={{style: {textAlign: 'center', width: 70}}} defaultValue={hour.hours} placeholder='00'  variant="standard" onChange={onChange}/>
                                 </Tooltip>
                                     
@@ -103,7 +103,7 @@ const EditHoursModal = (props: any) => {
                         control={control}
                         render={({ field: { onChange, onBlur, value } }) => {
                             return (
-                                <Tooltip title="Minutes">
+                                <Tooltip title="Minutos">
                                     <TextField id="minutes"  inputProps={{style: {textAlign: 'center', width: 70}}} defaultValue={hour.minutes} placeholder='00'  variant="standard" onChange={onChange}/>
                                 </Tooltip>
                                 )}}
@@ -115,7 +115,7 @@ const EditHoursModal = (props: any) => {
                         control={control}
                         render={({ field: { onChange, onBlur, value } }) => {
                             return (
-                                <Tooltip title="Seconds">
+                                <Tooltip title="Segundos">
                                     <TextField id="seconds"  inputProps={{style: {textAlign: 'center', width: 70}}} defaultValue={hour.seconds} placeholder='00'  variant="standard" onChange={onChange}/>
                                 </Tooltip>
                                 )}}
@@ -126,10 +126,10 @@ const EditHoursModal = (props: any) => {
                 </div>
                 <div style={{display:'flex', flexDirection:'row', justifyContent:'space-between', marginTop: 30}}>
                     <Button variant="outlined" color="error" startIcon={<DeleteOutlinedIcon />} onClick={handleDelete}>
-                        Delete
+                        Borrar
                     </Button>
                     <Button endIcon={<EditIcon/>} variant="contained" onClick={handleSubmit(onSubmit_)}>
-                        Edit
+                        Editar
                     </Button>
 
                 </div>

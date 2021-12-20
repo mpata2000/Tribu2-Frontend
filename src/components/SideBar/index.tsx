@@ -22,7 +22,7 @@ const Sidebar = () => {
         </ListItemButton>      
 
         <ListItemButton onClick={() => goTo("/hours")}>
-            <ListItemText primary="Hours" />
+            <ListItemText primary="Horas" />
         </ListItemButton>
 
         <ListItemButton onClick={() => goTo("/proyecto")}>

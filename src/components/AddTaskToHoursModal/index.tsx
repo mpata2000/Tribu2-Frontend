@@ -1,4 +1,4 @@
-import { Alert, Box, Button, FormControl, InputLabel, MenuItem, Select, TextField, Typography  } from '@mui/material';
+import { Alert, Box, Button, FormControl, InputLabel, MenuItem, Select, TextField, Typography, Tooltip  } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import { format } from 'date-fns';
 import useTypedSelector from 'hooks/useTypedSelector';
@@ -83,12 +83,12 @@ const AddTaskToHoursModal = (props: any) => {
                     render={({ field: { onChange, onBlur, value } }) => {
                         return (
                             <FormControl fullWidth style={{marginTop: 40}}>
-                                <InputLabel id="tasks"> Tasks </InputLabel>
+                                <InputLabel id="tasks"> Tareas </InputLabel>
                                 <Select
                                     labelId="tasks"
                                     id="tasks"
                                     value={value}
-                                    label="Tasks"
+                                    label="Tareas"
                                     onChange={onChange}
                                     style={{minWidth: '80%'}}
                                 >
@@ -105,7 +105,7 @@ const AddTaskToHoursModal = (props: any) => {
                         return (
                             <FormControl style={{margin: '40px 0px'}}>
                                 <InputLabel id="note"/> 
-                                <TextField id="note"  label='Note' multiline rows={4} variant="outlined" onChange={onChange}/>
+                                <TextField id="note"  label='Nota' multiline rows={4} variant="outlined" onChange={onChange}/>
                             </FormControl>
 
 
@@ -118,9 +118,9 @@ const AddTaskToHoursModal = (props: any) => {
                         control={control}
                         render={({ field: { onChange, onBlur, value } }) => {
                             return (
-                                <>
+                                <Tooltip title="Hora">
                                     <TextField id="hours"   inputProps={{style: {textAlign: 'center', width: 70}}} placeholder='00'  variant="standard" onChange={onChange}/>
-                                </>
+                                </Tooltip>
                             )}}
                         name="hours"
                         rules={{pattern: /^((?:[0-9]|1[0-9]|2[0-3])(?:.\d{1,2})?|23(?:.00?)?)$/}}
@@ -131,9 +131,9 @@ const AddTaskToHoursModal = (props: any) => {
                         control={control}
                         render={({ field: { onChange, onBlur, value } }) => {
                             return (
-                                <>
+                                <Tooltip title="Minutos">
                                     <TextField id="minutes"  inputProps={{style: {textAlign: 'center', width: 70}}} placeholder='00'  variant="standard" onChange={onChange}/>
-                                </>
+                                </Tooltip>
                                 )}}
                         name="minutes"
                         rules={{pattern: /^((?:[0-9]|1[0-9]|2[0-9]|3[0-9]|4[0-9]|5[0-9])(?:.\d{1,2})?|59(?:.00?)?)$/}}
@@ -143,9 +143,9 @@ const AddTaskToHoursModal = (props: any) => {
                         control={control}
                         render={({ field: { onChange, onBlur, value } }) => {
                             return (
-                                <>
+                                <Tooltip title="Segundos">
                                     <TextField id="seconds"   inputProps={{style: {textAlign: 'center', width: 70}}} placeholder='00'  variant="standard" onChange={onChange}/>
-                                </>
+                                </Tooltip>
                                 )}}
                         name="seconds"
                         rules={{pattern: /^((?:[0-9]|1[0-9]|2[0-9]|3[0-9]|4[0-9]|5[0-9])(?:.\d{1,2})?|59(?:.00?)?)$/ }}
@@ -154,7 +154,7 @@ const AddTaskToHoursModal = (props: any) => {
                 </div>  
 
                 <Button style={{margin:'10px 0px',right: '0px', bottom:'0px', alignSelf: 'flex-end'}} endIcon={<AddIcon/>} variant="contained" onClick={handleSubmit(onSubmit)}>
-                    Add
+                    Añadir
                 </Button>
                 </form>
                 {errors?.hours?.type === 'pattern' && <p style={{color: 'red', fontSize: 10}}>Please enter a valid number</p>}
