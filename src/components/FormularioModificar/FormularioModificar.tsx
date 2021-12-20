@@ -15,7 +15,9 @@ const FormularioModificar = (props:any) => {
     const {nombre} = location.state;
     const {descrip} = location.state;
     const navigate = useNavigate();
-    //const {tickets} = props;
+    const {producto} = location.state;
+    const {version} = location.state;
+    const {tareas} = location.state;
 
 
 
@@ -96,9 +98,12 @@ const FormularioModificar = (props:any) => {
 
                 <div className="d-flex flex-row justify-content-evenly">
                     <Form.Group className='d-flex flex-row' controlId="formBasicEmail">
-                    <Button className='btn btn-dark' onClick={enviar_solicitud_modificar}>
+                    {/* <Button className='btn btn-dark' onClick={enviar_solicitud_modificar}>
                         Modificar ticket
-                    </Button>
+                    </Button> */}
+                    <Link to="/soporte/tickets" onClick={enviar_solicitud_modificar} className='btn btn-dark' state={{ product: producto, version: version, tareas: tareas }}>
+                        Modificar ticket
+                    </Link>
                     <Button className='btn btn-dark' onClick={() => navigate(-1)} >
                         Cancelar
                     </Button>

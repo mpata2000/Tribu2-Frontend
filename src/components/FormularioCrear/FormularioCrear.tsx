@@ -5,8 +5,14 @@ import { FloatingLabel } from 'react-bootstrap'
 import Button from 'react-bootstrap/Button'
 import useTypedSelector from 'hooks/useTypedSelector';
 import { post } from 'services/api';
-import { useNavigate } from 'react-router-dom';
-import { useLocation } from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
+import {useLocation} from 'react-router-dom';
+import FormControl from '@mui/material/FormControl';
+import ListItemText from '@mui/material/ListItemText';
+import Select from '@mui/material/Select';
+import Checkbox from '@mui/material/Checkbox';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import MenuItem from '@mui/material/MenuItem';
 
 const FormularioCrear = (props:any) => {
     const {tickets} = props;
@@ -57,6 +63,14 @@ const FormularioCrear = (props:any) => {
         console.log(formValues);
         navigate(-1);
     }
+      
+    const handleChangeTarea = (event) => {
+      const {target: { value },} = event;
+        setFormValues(
+        // On autofill we get a the stringified value.
+        typeof value === 'string' ? value.split(',') : value,
+      );
+    };
 
     if(resources_state.loading || tareas_state.loading || clients_state.loading){
         return (
@@ -90,15 +104,14 @@ const FormularioCrear = (props:any) => {
                         <Form.Select className='input_chico' name="estado" value={formValues.estado} onChange={handleChange}>
                             <option value="Abierto">Abierto</option>
                             <option value="En proceso">En Proceso</option>
-                            <option value="En proceso">A la espera de desarollo</option>
-                            <option value="Cerrado">A la espera de cliente</option>
-                            <option value="En Curso">Cerrado</option>
+                            <option value="A la espera de desarrollo">A la espera de desarollo</option>
+                            <option value="A la espera de cliente">A la espera de cliente</option>
+                            <option value="Cerrado">Cerrado</option>
                         </Form.Select>
                     </Form.Group>
                     <Form.Group className='d-flex flex-row primer_input' controlId="floatingSelect">
                         <Form.Label className='etiqueta'>Tipo</Form.Label>
                         <Form.Select className='input_chico' name="tipo" value={formValues.tipo} onChange={handleChange}>
-                            <option> </option>
                             <option value="consulta">Consulta</option>
                             <option value="incidencia">Incidencia</option>
                         </Form.Select>
@@ -136,7 +149,6 @@ const FormularioCrear = (props:any) => {
                 <Form.Group className='d-flex flex-row' controlId="floatingSelect">
                     <Form.Label className='etiqueta'>Recurso</Form.Label>
                     <Form.Select className='input_grande' name="recurso" value={formValues.recurso} onChange={handleChange}>
-                        <option> </option>
                         {resources.map((resource:any) =>(
                             <option value={resource.legajo}>{resource.Nombre + ' ' + resource.Apellido}</option>
                         ))}
@@ -145,12 +157,31 @@ const FormularioCrear = (props:any) => {
 
                     <Form.Group className='d-flex flex-row' controlId="floatingSelect">
                         <Form.Label className='etiqueta'>Tarea</Form.Label>
-                        <Form.Select className='input_grande' name="tareas" onChange={handleChange} value={formValues.tareas}>
-                            <option> </option>
+                        <Form.Control as="select" className='input_grande' multiple name="tareas" onChange={handleChange} value={formValues.tareas}>
                             {tareas.map((tarea:any) =>(
                                 <option value={tarea.idTarea}>{tarea.idTarea + ":" + tarea.nombre}</option>
                             ))}
-                        </Form.Select>
+                        </Form.Control>
+
+                        {/* <FormControl sx={{ m: 1, width: 300 }}>
+                            <Select
+                                labelId="demo-multiple-checkbox-label"
+                                id="demo-multiple-checkbox"
+                                multiple
+                                value={formValues.tareas}
+                                onChange={handleChangeTarea}
+                                input={<OutlinedInput label="Tag" />}
+                                renderValue={(selected) => selected.join(', ')}
+                                //MenuProps={MenuProps}
+                                >
+                                {tareas.map((tarea) => (
+                                    <MenuItem key={tarea.idTarea} value={tarea.nombre}>
+                                    <Checkbox checked={formValues.tareas.indexOf(tarea) > -1} />
+                                    <ListItemText primary={tarea} />
+                                    </MenuItem>
+                                ))}
+                        </Select>
+                    </FormControl> */}
                     </Form.Group>
                 <div className="d-flex flex-row justify-content-evenly">
                     <Form.Group className='d-flex flex-row' controlId="formBasicEmail">

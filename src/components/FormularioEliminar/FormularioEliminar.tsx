@@ -19,6 +19,7 @@ function solicitarEliminacionDeTicket( id : any, estado : any, navigate : Naviga
     else{
         alert("El ticket debe estar cerrado para poder ser eliminado");
         navigate(-1); //va a la pagina previa
+        
     }
 }
 
@@ -65,9 +66,12 @@ const FormularioEliminar = (props:any) => {
                 </Form.Group>
 
                 <Form.Group className='d-flex flex-row justify-content-center' controlId="formBasicEmail">
-                    <Button className='btn btn-secondary' onClick={() =>solicitarEliminacionDeTicket(ticketID, estado, navigate) }>
+                    {/* <Button className='btn btn-secondary' onClick={() =>solicitarEliminacionDeTicket(ticketID, estado, navigate) }>
                         Eliminar ticket
-                    </Button>
+                    </Button> */}
+                    <Link to="/soporte/tickets" onClick={() =>solicitarEliminacionDeTicket(ticketID, estado, navigate) } className='btn btn-secondary' state={{ product: producto, version: version, tareas: tareas }}>
+                        Eliminar ticket
+                    </Link>
                     <Link to="/soporte/tickets" className='btn btn-dark' state={{ product: producto, version: version, tareas: tareas }}>
                         Cancelar
                     </Link>
