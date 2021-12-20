@@ -33,6 +33,10 @@ const HoursView = (props:any) => {
     const loading = useTypedSelector((state) => state.hours.loading)
 
     useEffect(() => {
+        dispatch(onHoursGet({day:format(date, 'yyyy-MM-dd'), user_id: '106226'}))
+    }, [])
+    
+    useEffect(() => {
         if(actionSucceeded){
             dispatch(onHoursGet({day:format(date, 'yyyy-MM-dd'), user_id: '106226'}))
         }
