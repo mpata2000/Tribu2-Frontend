@@ -106,7 +106,7 @@ const Projects = (props: any) => {
 
     const projectDelete = () => {
         if (0 !== selectedProject.idProyecto) {
-            if (window.confirm("¿Desea elminar Proyecto: " + selectedProject.idProyecto + "?")) {
+            if (window.confirm("¿Desea eliminar Proyecto: " + selectedProject.idProyecto + "?")) {
 
                 try {
                     dispatch(deleteProyects(selectedProject.idProyecto.toString()));

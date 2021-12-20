@@ -6,17 +6,17 @@ import { Box, FormControl, Input, InputLabel, MenuItem, Select } from '@mui/mate
 const ProjectEditForm = (props: any) => {
 
     const estados = [
-        { value: 'No iniciada', label: 'No iniciada' },
-        { value: 'En desarrollo', label: 'En desarrollo' },
-        { value: 'Completada', label: 'Completada' }
+        { value: 'no iniciado', label: 'no iniciado' },
+        { value: 'iniciado', label: 'iniciado' },
+        { value: 'finalizado', label: 'finalizado' }
     ]
 
     const prioridades = [
-        { value: 'Urgente!', label: 'Urgente!' },
-        { value: 'Importante', label: 'Importante' },
-        { value: 'Media', label: 'Media' },
-        { value: 'Baja', label: 'Baja' }
+        { value: 'alta', label: 'alta' },
+        { value: 'media', label: 'media' },
+        { value: 'baja', label: 'baja' }
     ]
+    
     const footer = (
         <div>
             <Button text="Guardar" icon="pi pi-check" onClick={() => {
@@ -130,16 +130,19 @@ const ProjectEditForm = (props: any) => {
 
     return (
         <div>
-            <Dialog header={'Editar Proyecto: ' + props.projectSelected.idProyecto} visible={props.visible} style={{ width: '400px' }} footer={footer} modal={true} onHide={() => props.setVisible(false)}>
+            <Dialog header={'Editar Proyecto: ' + props.projectSelected.idProyecto} visible={props.visible} style={{ width: '40vw' }} footer={footer} modal={true} onHide={() => props.setVisible(false)}>
                 <form id="proyecto-form">
+                    <br />
                     <span className="p-float-label">
+                        
+                        <InputText type='text' name='nombre' value={props.projectSelected.nombre} style={{ width: '100%' }} id="nombre" onChange={nombreChangeHandler} />
                         <label htmlFor="nombre">Nombre</label>
-                        <Input type='text' name='nombre' value={props.projectSelected.nombre} style={{ width: '100%' }} id="nombre" onChange={nombreChangeHandler} />
                     </span>
                     <br />
                     <span className="p-float-label">
+                        
+                        <InputText type='text' value={props.projectSelected.descripcion} style={{ width: '100%' }} id="descripcion" onChange={descripcionChangeHandler} />
                         <label htmlFor="descripcion">Descripción</label>
-                        <Input type='text' value={props.projectSelected.descripcion} style={{ width: '100%' }} id="descripcion" onChange={descripcionChangeHandler} />
                     </span>
                     <br />
                     <label htmlFor="fechaInicioReal">Fecha Inicio Real</label>
@@ -178,10 +181,9 @@ const ProjectEditForm = (props: any) => {
                                 <InputLabel id='prioridad'>Prioridad</InputLabel>
                                 <Select labelId='prioridad' id="prioridades" label='Prioridad' onChange={prioridadChangeHandler} value={props.projectSelected.prioridad}
                                 >
-                                    <MenuItem value={'Urgente!'}>Urgente!</MenuItem>
-                                    <MenuItem value={'Importante'}>Importante</MenuItem>
-                                    <MenuItem value={'Media'}>Media</MenuItem>
-                                    <MenuItem value={'Baja'}>Baja</MenuItem>
+                                    <MenuItem value={'alta'}>Alta</MenuItem>
+                                    <MenuItem value={'media'}>Media</MenuItem>
+                                    <MenuItem value={'baja'}>Baja</MenuItem>
                                 </Select>
                             </FormControl>
                         </Box>
@@ -193,10 +195,9 @@ const ProjectEditForm = (props: any) => {
                                 <InputLabel id='estado'>Estado</InputLabel>
                                 <Select labelId='Estado' id="estados" label='Estado' onChange={estadoChangeHandler} value={props.projectSelected.estado}
                                 >
-                                    <MenuItem value={'No iniciada'}>No iniciada</MenuItem>
-                                    <MenuItem value={'En desarrollo'}>En desarrollo</MenuItem>
-                                    <MenuItem value={'En prueba'}>En prueba</MenuItem>
-                                    <MenuItem value={'Completada'}>Completada</MenuItem>
+                                    <MenuItem value={'no iniciada'}>No iniciada</MenuItem>
+                                    <MenuItem value={'iniciada'}>Iniciada</MenuItem>
+                                    <MenuItem value={'finalizada'}>Finalizada</MenuItem>
                                 </Select>
                             </FormControl>
                         </Box>

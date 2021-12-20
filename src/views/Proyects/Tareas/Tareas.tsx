@@ -67,7 +67,7 @@ const Tareas = (props: any) => {
 
     const tareasDelete = () => {
         if (0!== selectedTarea.idTarea) {
-            if (window.confirm("¿Desea elminar Tarea: " + selectedTarea.idTarea + "?")) {
+            if (window.confirm("¿Desea eliminar Tarea: " + selectedTarea.idTarea + "?")) {
                 console.log(selectedTarea.idTarea.toString());
                 dispatch(onDeleteTarea(selectedTarea.idTarea.toString())); 
                 const deletedMessage = {
@@ -93,8 +93,8 @@ const Tareas = (props: any) => {
         dispatch(onCreateTarea(enteredTarea));
         setVisibleSave(false);
         const createdMessage = {
-            title: 'Pryecto agregado! ',
-            description: 'Se agrego correctamente el proyecto: ' + enteredTarea.nombre
+            title: 'Tarea agregada! ',
+            description: 'Se agrego correctamente al proyecto: ' + enteredTarea.nombre
         }
         showSuccess(createdMessage);
         //vuelvo a llamar a todos los proyectos.

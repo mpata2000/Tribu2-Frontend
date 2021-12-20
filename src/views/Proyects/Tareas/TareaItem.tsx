@@ -24,17 +24,16 @@ const TareaItem = (props: any) => {
             <Panel header={"Proyecto "+ getIdProject() + " - Tareas"} >
                 <DataTable value={props.items} selectionMode="single" selection={props.selectedTarea} onSelectionChange={(e: any) => props.setSelectedTarea(e.value)}>
                     {/* <Column selectionMode="single" headerStyle={{ width: '3rem' }} exportable={false}></Column>  */}
-                    <Column field="idTarea" header="Id Proyecto" sortable ></Column>
+                    <Column field="idTarea" header="Id Tarea" sortable ></Column>
                     <Column field="nombre" header="Nombre"></Column>
                     <Column field="descripcion" header="Descripcion"></Column>
-                    <Column field="fechaInicioReal" header="Fecha inicio Real"></Column>
-                    <Column field="fechaFinalizacionReal" header="Fecha fin Real"></Column>
+                    <Column field="fechaInicioReal" header="Fecha inicio"></Column>
+                    <Column field="fechaFinalizacionReal" header="Fecha fin"></Column>
                     <Column field="horasEstimadas" header="Horas estimadas"></Column>
                     <Column field="horasTrabajadas" header="Horas trabajadas"></Column>
                     <Column field="idTicket" header="Ticket"></Column>
                     <Column field="prioridad" header="Prioridad"></Column>
                     <Column field="estado" header="Estado"></Column>
-                    <Column body={botones} exportable={false} style={{ minWidth: '8rem' }}></Column>
                 </DataTable>
             </Panel>
         </div>

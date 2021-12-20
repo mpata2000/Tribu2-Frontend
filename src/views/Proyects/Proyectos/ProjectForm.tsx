@@ -4,6 +4,7 @@ import { Dialog } from 'primereact/dialog';
 import { InputText } from 'primereact/inputtext';
 import Button from 'components/Button/Button';
 import { Box, FormControl, Input, InputLabel, MenuItem, Select } from '@mui/material';
+import { Column } from 'primereact/column';
 
 const ProjectForm = (props: any) => {
     const [enteredNombre, setEnteredNombre] = useState('');
@@ -102,24 +103,25 @@ const ProjectForm = (props: any) => {
 
     return (
         <div>
-            <Dialog header={'Crear Proyecto'} visible={props.visible} style={{ width: '400px' }} footer={footer} modal={true} onHide={() => props.setVisible(false)}>
+            <Dialog header={'Crear Proyecto'} visible={props.visible} style={{ width: '40vw' }} footer={footer} modal={true} onHide={() => props.setVisible(false)}>
                 <form id="proyecto-form"  style={{ width: '100%' }}>
+                    <br />
                     <span className="p-float-label">
+                        <InputText type='text' name='nombre' value={enteredNombre} style={{ width: '100%' }} id="nombre" onChange={nombreChangeHandler} />
                         <label htmlFor="nombre">Nombre</label>
-                        <Input type='text' name='nombre' value={enteredNombre} style={{ width: '100%' }} id="nombre" onChange={nombreChangeHandler} />
                     </span>
                     <br />
                     <span className="p-float-label">
+                        <InputText type='text' value={enteredDescripcion} style={{ width: '100%' }} id="descripcion" onChange={descripcionChangeHandler} />
                         <label htmlFor="descripcion">Descripción</label>
-                        <Input type='text' value={enteredDescripcion} style={{ width: '100%' }} id="descripcion" onChange={descripcionChangeHandler} />
                     </span>
                     <br />
-                    <label htmlFor="fechaInicioReal">Fecha Inicio Real</label>
+                    <label htmlFor="fechaInicioReal">Fecha Inicio</label>
                     <span className="p-float-label">
                         <Input type='date' data-data-format='YYYY-MM-DD' value={enteredFechaInicioReal} onChange={fechaInicioRealChangeHandler} />
                     </span>
                     <br />
-                    <label htmlFor="fechaFinalizacionReal">Fecha Finalización Real</label>
+                    <label htmlFor="fechaFinalizacionReal">Fecha Finalización</label>
                     <span className="p-float-label">
                         <Input type='date' data-data-format='YYYY-MM-DD' value={enteredFechaFinalReal} onChange={fechaFinalizacionRealChangeHandler} />
                     </span>
@@ -150,10 +152,10 @@ const ProjectForm = (props: any) => {
                                 <InputLabel id='prioridad'>Prioridad</InputLabel>
                                 <Select labelId='prioridad' id="prioridades" label='Prioridad' onChange={prioridadChangeHandler} value={enteredPrioridad}
                                 >
-                                    <MenuItem value={'Urgente!'}>Urgente!</MenuItem>
-                                    <MenuItem value={'Importante'}>Importante</MenuItem>
-                                    <MenuItem value={'Media'}>Media</MenuItem>
-                                    <MenuItem value={'Baja'}>Baja</MenuItem>
+                                    
+                                    <MenuItem value={'alta'}>Alta</MenuItem>
+                                    <MenuItem value={'media'}>Media</MenuItem>
+                                    <MenuItem value={'baja'}>Baja</MenuItem>
                                 </Select>
                             </FormControl>
                         </Box>
@@ -165,10 +167,25 @@ const ProjectForm = (props: any) => {
                                 <InputLabel id='estado'>Estado</InputLabel>
                                 <Select labelId='Estado' id="estados" label='Estado' onChange={estadoChangeHandler} value={enteredEstado}
                                 >
-                                    <MenuItem value={'No iniciada'}>No iniciada</MenuItem>
-                                    <MenuItem value={'En desarrollo'}>En desarrollo</MenuItem>
-                                    <MenuItem value={'En prueba'}>En prueba</MenuItem>
-                                    <MenuItem value={'Completada'}>Completada</MenuItem>
+                                    <MenuItem value={'no iniciada'}>No iniciada</MenuItem>
+                                    <MenuItem value={'iniciada'}>Iniciada</MenuItem>
+                                    <MenuItem value={'finalizada'}>Finalizada</MenuItem>
+                                    
+                                </Select>
+                            </FormControl>
+                        </Box>
+                    </span>
+                    <br />
+                    <span className="p-float-label">
+                        <Box sx={{ minWidth: 120 }}>
+                            <FormControl fullWidth>
+                                <InputLabel id='responsable'>Responsable</InputLabel>
+                                <Select labelId='Responsable' id="responsables" label='Responsable' onChange={estadoChangeHandler} value={enteredEstado}
+                                >
+                                    <MenuItem value={'Tomas Bruneleschi'}>Tomas Bruneleschi</MenuItem>
+                                    <MenuItem value={'Maximiliano Gantt'}>Maximiliano Gantt</MenuItem>
+                                    <MenuItem value={'Fernando Leonardez'}>Fernando Leonardez</MenuItem>
+                                    
                                 </Select>
                             </FormControl>
                         </Box>

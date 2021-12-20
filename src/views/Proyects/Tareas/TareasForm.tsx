@@ -87,14 +87,15 @@ const TareasForm = (props: any) => {
         <div>
             <Dialog header={'Crear Tarea'} visible={props.visible} style={{ width: '400px' }} footer={footer} modal={true} onHide={() => props.setVisible(false)}>
                 <form id="proyecto-form" style={{ width: '100%' }}>
+                    <br />
                     <span className="p-float-label">
+                        <InputText type='text' name='nombre' value={enteredNombre} style={{ width: '100%' }} id="nombre" onChange={nombreChangeHandler} />
                         <label htmlFor="nombre">Nombre</label>
-                        <Input type='text' name='nombre' value={enteredNombre} style={{ width: '100%' }} id="nombre" onChange={nombreChangeHandler} />
                     </span>
                     <br />
                     <span className="p-float-label">
+                        <InputText type='text' value={enteredDescripcion} style={{ width: '100%' }} id="descripcion" onChange={descripcionChangeHandler} />
                         <label htmlFor="descripcion">Descripción</label>
-                        <Input type='text' value={enteredDescripcion} style={{ width: '100%' }} id="descripcion" onChange={descripcionChangeHandler} />
                     </span>
                     <br />
                     <label htmlFor="fechaInicioReal">Fecha Inicio</label>

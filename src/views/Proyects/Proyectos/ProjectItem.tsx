@@ -31,8 +31,8 @@ const ProjectItem = (props: any) => {
                     <Column field="idProyecto" header="Id Proyecto" sortable ></Column>
                     <Column field="nombre" header="Nombre"></Column>
                     <Column field="descripcion" header="Descripcion"></Column>
-                    <Column field="fechaInicioReal" header="Fecha inicio Real"></Column>
-                    <Column field="fechaFinalizacionReal" header="Fecha fin Real"></Column>
+                    <Column field="fechaInicioReal" header="Fecha inicio"></Column>
+                    <Column field="fechaFinalizacionReal" header="Fecha fin"></Column>
                     <Column field="fechaInicioEstimada" header="Fecha inicio Estimada"></Column>
                     <Column field="fechaFinalizacionEstimada" header="Fecha fin Estimada"></Column>
                     <Column field="fechaEntregaComunicadaACliente" header="Fecha de Entrega"></Column>
