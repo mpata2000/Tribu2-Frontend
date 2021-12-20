@@ -67,7 +67,11 @@ const TicketsView = (props: any) => {
                         <Link to='/soporte' className='btn btn-secondary boton_pie_pagina'>
                             Volver a Productos
                         </Link>
-                        <Link to='/soporte/tickets/crear' className='btn btn-dark boton_pie_pagina'>
+                        <Link to='/soporte/tickets/crear' className='btn btn-dark boton_pie_pagina'
+                                                            state={{ 
+                                                                producto: product,
+                                                                version : version
+                                                                }}>
                             Crear nuevo ticket
                         </Link>
                     </div>

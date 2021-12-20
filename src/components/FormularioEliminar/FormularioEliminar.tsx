@@ -11,7 +11,7 @@ import { useNavigate } from 'react-router-dom';
 function solicitarEliminacionDeTicket( id : any, estado : any, navigate : NavigateFunction) {
 
 
-    if (estado == "cerrado") {
+    if (estado === "Cerrado") {
         const respuesta = delete_(`https://shielded-shelf-11253.herokuapp.com/tickets/${id}`);
         alert("Ticket correctamente eliminado");
         navigate(-1);

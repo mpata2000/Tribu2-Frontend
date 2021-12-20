@@ -71,11 +71,11 @@ const FormularioModificar = (props:any) => {
                 <Form.Group className="d-flex flex-row justify-content-evenly" controlId="formBasicEmail">
                     <Form.Label className='etiqueta_modificar'>Estado</Form.Label>
                     <Form.Select className='input_grande' name="estado" value={formValues.estado} onChange={handleChange}>
-                            <option value="abierto">Abierto</option>
-                            <option value="En proceso">En Proceso</option>
-                            <option value="En proceso">A la espera de desarollo</option>
-                            <option value="Cerrado">A la espera de cliente</option>
-                            <option value="En Curso">Cerrado</option>
+                            <option value="Abierto">Abierto</option>
+                            <option value="En Proceso">En Proceso</option>
+                            <option value="A la espera de desarollo">A la espera de desarollo</option>
+                            <option value="A la espera de cliente">A la espera de cliente</option>
+                            <option value="Cerrado">Cerrado</option>
                         </Form.Select>
                 </Form.Group>
                 <br></br>
