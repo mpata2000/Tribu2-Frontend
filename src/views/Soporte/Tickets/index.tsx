@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import {Button, Accordion} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Link } from 'react-router-dom';
+import { Link} from 'react-router-dom';
 import Tabla from 'components/Tabla/Tabla'
 import './index.css'
 import Descripcion from '../componentes/Descripcion';
 import useTypedSelector from 'hooks/useTypedSelector';
+import {useDispatch} from 'react-redux';
+import { onTareasGetAll } from 'redux_folder/actions/tickets.actions';
 
 
 
@@ -29,6 +31,13 @@ const TicketsView = (props: any) => {
     }
 
     let filtered_tickets = tickets.filter((ticket:any) => {return ticket.nombre.toLowerCase().includes(search.toLowerCase())});
+
+    if(state.loading){
+        return (
+            <h2>Loading...</h2>
+        )
+    }
+
     return (
       <>
         <div className='body'>
@@ -52,23 +61,19 @@ const TicketsView = (props: any) => {
             <div className='d-flex flex-row justify-content-evenly tabla_aside'>
                 <div className='d-flex flex-column justify-content-between tabla'>
                     
-                    <Tabla tickets={tickets} onRowClick={onRowClick} />
+                    <Tabla tickets={filtered_tickets} onRowClick={onRowClick} />
 
                     <div className='d-flex flex-row justify-content-between'>
                         <Link to='/soporte' className='btn btn-secondary boton_pie_pagina'>
                             Volver a Productos
                         </Link>
-                        <Link to='/soporte/tickets/crear' className='btn btn-dark boton_pie_pagina'
-                                        state={{ producto: product,
-                                                 version : version
-                                            }}>
+                        <Link to='/soporte/tickets/crear' className='btn btn-dark boton_pie_pagina'>
                             Crear nuevo ticket
                         </Link>
                     </div>
                 </div>
                 <div className='aside shadow bg-white rounded'>
-                    <Descripcion ticket={tickets[ticket_i]}/>
-                    
+                    <Descripcion ticket={filtered_tickets ? filtered_tickets[ticket_i] : null}/>
                 </div>
             </div>
             
