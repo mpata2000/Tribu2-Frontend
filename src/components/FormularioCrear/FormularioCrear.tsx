@@ -4,24 +4,32 @@ import Form from 'react-bootstrap/Form'
 import { FloatingLabel } from 'react-bootstrap'
 import Button from 'react-bootstrap/Button'
 import useTypedSelector from 'hooks/useTypedSelector';
-
+import { post } from 'services/api';
+import { useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 const FormularioCrear = (props:any) => {
     const {tickets} = props;
     const {onRowClick} = props;
     const {handleSubmit} = props;
+    const navigate = useNavigate();
+
+    const location = useLocation();
+    const { producto } = location.state;
+    const {version} = location.state;
 
     const resources_state = useTypedSelector((state) => state.resources);
     const tareas_state = useTypedSelector((state) => state.tareas);
     const clients_state = useTypedSelector((state) => state.clients);
     const resources = resources_state.resources;
+    console.log(tareas_state)
     const tareas = tareas_state.tareas.filter((tarea:any) => {return tarea.idTicket == 0});
     const clients = clients_state.clients;
 
     const [formValues, setFormValues ] = useState({
         nombre: '',
-        producto: '',
-        version: '',
+        producto: producto,
+        version: version,
         estado: '',
         tipo: '',
         severidad: '',
@@ -35,14 +43,19 @@ const FormularioCrear = (props:any) => {
     const handleChange = (event:any) => {
         const {name , value} = event.target
         console.log(name, value)
-
-        setFormValues({...formValues, [name]: value})
+        if (name=="tareas"){
+            setFormValues({...formValues, [name]: [ parseInt(value) ]})
+        }else{
+            setFormValues({...formValues, [name]: value})
+        }
     }
 
-    const _handleSubmit = (e:any) => {
+    const enviar_solicitud_agregar = (e:any) => {
         e.preventDefault()
-        handleSubmit({...formValues})
-        //console.log(formValues)
+        post(`https://shielded-shelf-11253.herokuapp.com/tickets`,formValues);
+        alert("Ticket correctamente creado");
+        console.log(formValues);
+        navigate(-1);
     }
 
     if(resources_state.loading || tareas_state.loading || clients_state.loading){
@@ -52,7 +65,7 @@ const FormularioCrear = (props:any) => {
     }
     return (
         <div className='d-flex justify-content-between'>
-            <Form className='d-flex flex-column justify-content-evenly formulario' onSubmit = {_handleSubmit}>
+            <Form className='d-flex flex-column justify-content-evenly formulario'>
                 <Form.Group className="d-flex flex-row justify-content-evenly" controlId="formBasicEmail">
                     <Form.Label className='etiqueta'>Nombre</Form.Label>
                     <Form.Control className='input_grande' type="text" placeholder="Nombre del ticket" name="nombre" value={formValues.nombre} onChange={handleChange} />
@@ -63,21 +76,11 @@ const FormularioCrear = (props:any) => {
                 <div className="d-flex flex-row justify-content-evenly doble_input">
                     <Form.Group className='d-flex flex-row primer_input' controlId="floatingSelect">
                         <Form.Label className='etiqueta'>Proyectos</Form.Label>
-                        <Form.Select className='input_chico' name="producto" value={formValues.producto} onChange={handleChange}>
-                            <option> </option>
-                            <option value="1">SIU-GUARANI</option>
-                            <option value="2">Proyecto2</option>
-                            <option value="3">Proyecto3</option>
-                        </Form.Select>
+                        <Form.Control type="text" className='input_chico' name="producto" value={formValues.producto} readOnly={true}  />
                     </Form.Group>
                     <Form.Group className='d-flex flex-row primer_input' controlId="floatingSelect">
                         <Form.Label className='etiqueta'>Version</Form.Label>
-                        <Form.Select className='input_chico' name="version" value={formValues.version} onChange={handleChange}>
-                            <option> </option>
-                            <option value="1">1.0</option>
-                            <option value="2">2.0</option>
-                            <option value="3">2.1</option>
-                        </Form.Select>
+                        <Form.Control type="text" className='input_chico' name="version" value={formValues.version} readOnly={true} />
                     </Form.Group>
                 </div>
 
@@ -143,10 +146,10 @@ const FormularioCrear = (props:any) => {
 
                     <Form.Group className='d-flex flex-row' controlId="floatingSelect">
                         <Form.Label className='etiqueta'>Tarea</Form.Label>
-                        <Form.Select className='input_grande' name="tareas" value={formValues.tareas} onChange={handleChange}>
+                        <Form.Select className='input_grande' name="tareas" onChange={handleChange} value={formValues.tareas}>
                             <option> </option>
                             {tareas.map((tarea:any) =>(
-                                <option value={tarea.idTarea}>{tarea.nombre}</option>
+                                <option value={tarea.idTarea}>{tarea.idTarea + ":" + tarea.nombre}</option>
                             ))}
                         </Form.Select>
                     </Form.Group>
@@ -164,7 +167,7 @@ const FormularioCrear = (props:any) => {
                             />
                     </Form.Group>
 
-                    <Button className='btn btn-dark' type="submit">
+                    <Button className='btn btn-dark' onClick={enviar_solicitud_agregar}>
                         Crear ticket
                     </Button>
                 </div>

@@ -1,18 +1,44 @@
-import React from 'react'
+import React , { useState }from 'react'
 import './FormularioModificar.css'
 import Form from 'react-bootstrap/Form'
 import { FloatingLabel } from 'react-bootstrap'
 import Button from 'react-bootstrap/Button'
 import {Link} from "react-router-dom";
 import { useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { allowedNodeEnvironmentFlags } from 'process';
+import { put } from 'services/api';
 
 const FormularioModificar = (props:any) => {
     const location = useLocation();
     const { ticketID } = location.state;
     const {nombre} = location.state;
-    const {descrip} = location.state
-
+    const {descrip} = location.state;
+    const navigate = useNavigate();
     //const {tickets} = props;
+
+
+
+    const [formValues, setFormValues ] = useState({
+        estado: 'abierto',
+        severidad: '1',
+        descripcion: descrip,
+    })
+
+    const handleChange = (event:any) => {
+        const {name , value} = event.target;
+        //console.log(name, value);
+        setFormValues({...formValues, [name]: value});
+    }
+
+    const enviar_solicitud_modificar = (e:any) => {
+        e.preventDefault();
+        put(`https://shielded-shelf-11253.herokuapp.com/tickets/${ticketID}`, formValues);
+        alert("Ticket correctamente actualizado");
+        //console.log(formValues);
+        navigate(-1);
+    }
+
 
     return (
         <div className='d-flex justify-content-center'>
@@ -25,26 +51,39 @@ const FormularioModificar = (props:any) => {
 
                 <Form.Group className="d-flex flex-row justify-content-evenly" controlId="formBasicEmail">
                     <Form.Label className='etiqueta_modificar'>Nombre del Ticket</Form.Label>
-                    <Form.Control value={nombre} readOnly={true} className='input_grande' type="text" placeholder="Severidad" />
+                    <Form.Control value={nombre} readOnly={true} className='input_grande' type="text"  onChange={handleChange} />
                 </Form.Group>
-
-
-                <Form.Group className="d-flex flex-row justify-content-evenly" controlId="formBasicEmail">
+                <br></br>
+                <br></br>
+                <h2 className="flex-row justify-content-evenly" >Campos Modificables</h2>
+                <br></br>
+                <Form.Group className="d-flex flex-row justify-content-evenly" controlId="formBasicEmail" >
                     <Form.Label className='etiqueta_modificar'>Severidad</Form.Label>
-                    <Form.Control  readOnly={true} className='input_grande' type="text" placeholder="Estado" />
+                    <Form.Select className='input_grande' name="severidad" value={formValues.severidad} onChange={handleChange}>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </Form.Select>
                 </Form.Group>
-
+                <br></br>
 
                 <Form.Group className="d-flex flex-row justify-content-evenly" controlId="formBasicEmail">
                     <Form.Label className='etiqueta_modificar'>Estado</Form.Label>
-                    <Form.Control readOnly={true} className='input_grande' type="text" placeholder="Nombre del ticket" />
+                    <Form.Select className='input_grande' name="estado" value={formValues.estado} onChange={handleChange}>
+                            <option value="abierto">Abierto</option>
+                            <option value="en curso">En Curso</option>
+                            <option value="cerrado">Cerrado</option>
+                        </Form.Select>
                 </Form.Group>
-
+                <br></br>
                 <div className="d-flex flex-row justify-content-evenly">
                     <Form.Group className='d-flex flex-row' controlId="formBasicEmail">
                         <Form.Label  className='etiqueta_modificar'>Descripcion</Form.Label>
                         <Form.Control
-
+                            value={formValues.descripcion}
+                            name="descripcion"
+                            onChange={handleChange}
                             className='input_descripcion'
                             as="textarea"
                             placeholder={descrip}
@@ -55,8 +94,11 @@ const FormularioModificar = (props:any) => {
 
                 <div className="d-flex flex-row justify-content-evenly">
                     <Form.Group className='d-flex flex-row' controlId="formBasicEmail">
-                    <Button className='btn btn-dark' type="submit">
+                    <Button className='btn btn-dark' onClick={enviar_solicitud_modificar}>
                         Modificar ticket
+                    </Button>
+                    <Button className='btn btn-dark' onClick={() => navigate(-1)} >
+                        Cancelar
                     </Button>
 
                     </Form.Group>
