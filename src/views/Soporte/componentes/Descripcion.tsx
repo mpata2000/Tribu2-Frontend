@@ -13,10 +13,10 @@ const Descripcion = (props:any) => {
     // let {version} = props;
     const state = useTypedSelector((state) => state.tareas);
     const tareas = state.tareas;
-    const tareas_ticket = tareas.filter((tarea:any) => {return ticket.tareas.includes(tarea.idTarea)});
     if(!ticket){
         return (<div></div>)
     }
+    const tareas_ticket = tareas.filter((tarea:any) => {return ticket.tareas.includes(tarea.idTarea)});
     if(state.loading){
         return (
             <h2>Loading...</h2>
