@@ -8,13 +8,6 @@ import FormularioCrear from 'components/FormularioCrear/FormularioCrear';
 import {post} from 'services/api';
 
 const FormularioTicketsView = (props: any) => {
-//  const {onGetTickets} = props;
-//  const {tickets}      = props;
-
-  const handleSubmit = (data:any) => {
-    console.log(data)
-    const respuesta = post('https://shielded-shelf-11253.herokuapp.com/tickets',data);
-  }
 
   return (
     <>
@@ -24,7 +17,7 @@ const FormularioTicketsView = (props: any) => {
                 <h2>Crear ticket</h2>
             </div>
             
-            <FormularioCrear handleSubmit={handleSubmit}/>
+            <FormularioCrear/>
 
         </div>
     </>

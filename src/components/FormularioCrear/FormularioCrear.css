@@ -1,5 +1,5 @@
 .formulario{
-    width:70%;
+    width:100%;
 }
 
 .doble_input{
@@ -15,7 +15,7 @@
 }
 
 .etiqueta{
-    width: 126px;
+    width: 110px;
 }
 
 
@@ -24,11 +24,15 @@
 }
 
 .input_descripcion_crear{
-    width:524px;
+    width:800px;
 }
 
 .btn{
     height:50px;
     width:215px;
     margin:25px 0px 5px 25px; 
+}
+
+.margen{
+    margin-bottom: 5px;
 }

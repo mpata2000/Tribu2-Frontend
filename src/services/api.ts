@@ -44,6 +44,7 @@ export async function post(url: string, params = {}, headers = {}): Promise<any>
   }
 }
 
+
 export async function put(url: string, params = {}, headers = {}): Promise<any> {
   try {
     const getToken = await getOptions();

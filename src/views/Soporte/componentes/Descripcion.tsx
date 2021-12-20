@@ -65,13 +65,11 @@ const Descripcion = (props:any) => {
             </div>
 
             <p className='subtitulo margen_chico margen_derecho'>Tareas:</p>
-            <List>
+            <ul style={{padding: '0px'}}>
                 {tareas_ticket.map((tarea:any) => (
-                    <ListItem disablePadding>
-                        <ListItemText primary={tarea.nombre} />
-                    </ListItem>
+                        <li>{tarea.nombre}</li>
                 ))}
-            </List>
+            </ul>
             <div className='d-flex flex-column align-items-center'>
                 
                 <Link to='/soporte/tickets/eliminar' 
