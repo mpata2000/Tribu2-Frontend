@@ -5,18 +5,30 @@ import { Link } from 'react-router-dom';
 import Tabla from 'components/Tabla/Tabla'
 import './index.css'
 import Descripcion from '../componentes/Descripcion';
+import useTypedSelector from 'hooks/useTypedSelector';
 
 
 
 const TicketsView = (props: any) => {
-    const {tickets} = props;
-    console.log(tickets);
+    const state = useTypedSelector((state) => state.tickets);
+    const tickets = state.tickets;
+
     const [ ticket_i, setTicketI ] = useState(0);
+
+
     function onRowClick(i:number){
         setTicketI(i)
-        console.log(i)
+    }
+    
+    const {product} = props;
+    const {version} = props;
+
+    const [ search, setSearch ] = useState('');
+    const filter_name = (event:any) => {
+        setSearch(event.target.value);
     }
 
+    let filtered_tickets = tickets.filter((ticket:any) => {return ticket.nombre.toLowerCase().includes(search.toLowerCase())});
     return (
       <>
         <div className='body'>
