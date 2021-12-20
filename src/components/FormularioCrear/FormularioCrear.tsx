@@ -56,6 +56,7 @@ const FormularioCrear = (props:any) => {
         else{
             formValues.tareas.push(target.value);
         }
+        console.log(formValues.tareas)
         setFormValues({...formValues, [name]: formValues.tareas})
     };
 
@@ -66,7 +67,6 @@ const FormularioCrear = (props:any) => {
     }
 
     const enviar_solicitud_agregar = (e:any) => {
-        formValues.tareas.splice(0,1)
         console.log(formValues.tareas)
         e.preventDefault()
         post(`https://shielded-shelf-11253.herokuapp.com/tickets`,formValues);
