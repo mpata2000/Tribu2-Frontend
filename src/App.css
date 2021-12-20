@@ -43,7 +43,7 @@
   border-radius: 8px;
   text-align: center;
   width: 80%;
-  height: 500px;
+  min-height: 500px;
   padding: 10px;
   margin: 10px;
   background-color: white;
