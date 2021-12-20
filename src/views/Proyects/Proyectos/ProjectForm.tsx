@@ -116,15 +116,19 @@ const ProjectForm = (props: any) => {
                         <label htmlFor="descripcion">Descripción</label>
                     </span>
                     <br />
-                    <label htmlFor="fechaInicioReal">Fecha Inicio</label>
-                    <span className="p-float-label">
-                        <Input type='date' data-data-format='YYYY-MM-DD' value={enteredFechaInicioReal} onChange={fechaInicioRealChangeHandler} />
-                    </span>
-                    <br />
-                    <label htmlFor="fechaFinalizacionReal">Fecha Finalización</label>
-                    <span className="p-float-label">
-                        <Input type='date' data-data-format='YYYY-MM-DD' value={enteredFechaFinalReal} onChange={fechaFinalizacionRealChangeHandler} />
-                    </span>
+
+                    <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
+                        <label htmlFor="fechaInicioReal">Fecha Inicio</label>
+                        <span className="p-float-label">
+                            <Input type='date' data-data-format='YYYY-MM-DD' value={enteredFechaInicioReal} onChange={fechaInicioRealChangeHandler} />
+                        </span>
+                    
+                        <label htmlFor="fechaFinalizacionReal">Fecha Finalización</label>
+                        <span className="p-float-label">
+                            <Input type='date' data-data-format='YYYY-MM-DD' value={enteredFechaFinalReal} onChange={fechaFinalizacionRealChangeHandler} />
+                        </span>
+                    </div>
+
                     <br />
                     <label htmlFor="fechaInicioEstimada">Fecha Inicio Estimada</label>
                     <span className="p-float-label">

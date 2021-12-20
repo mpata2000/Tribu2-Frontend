@@ -4,9 +4,10 @@ import ProjectForm from './ProjectForm';
 import ProjectItem from './ProjectItem';
 import { useDispatch } from 'react-redux';
 import { Toast } from 'primereact/toast';
-import { createProyect, deleteProyects, onProyectsGetAll } from 'redux_folder/actions/proyects.actions';
+import { createProyect, deleteProyects, onProyectsGetAll, putProyect } from 'redux_folder/actions/proyects.actions';
 import ProjectEditForm from './ProjectEditForm';
 import useTypedSelector from 'hooks/useTypedSelector';
+import { putProyects } from 'services/proyects.services';
 
 const proyectoDefault = {
     idProyecto: 0,
@@ -87,7 +88,7 @@ const Projects = (props: any) => {
         debugger;
         if (0 !== selectedProject.idProyecto) {
             setVisibleSave(false);
-            // dispatch(putProyects(selectedProject))
+            dispatch(putProyect(selectedProject))
             const editedMessage = {
                 title: 'Proyecto editado! ',
                 description: 'Se edito correctamente el proyecto: ' + selectedProject.nombre
